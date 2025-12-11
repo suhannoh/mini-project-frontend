@@ -3,8 +3,14 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  list-style: none;
+  
 }
-.main-container{
-  display: flex;
-  gap : 2rem;
+* {
+  list-style: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+

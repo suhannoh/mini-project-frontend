@@ -1,18 +1,16 @@
 
 import { Route, Routes } from 'react-router-dom';
 import './App.css'
-import Join from './pages/Join';
-import Main from './pages/Main';
-import Login from './pages/Login';
+import JoinPage from './pages/JoinPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
 
   return (
     <>
       <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/join' element={<Join />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/' element={<LoginPage />} />
+        <Route path='/join' element={<JoinPage />} />
       </Routes>
     </>
   )
