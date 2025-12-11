@@ -33,7 +33,7 @@
     background-color: gray;
     margin: 1rem;
 }
-.card-title { 
+.main-card-title { 
   width: 100%;
   background: #1e1e1e; 
   border-radius: 12px; 
@@ -42,7 +42,7 @@
   0 10px 20px rgba(0, 0, 0, 0.08);
   
 }
-.card-content { 
+.main-card-content { 
   width: 100%;
   height: 100%;
   display: flex;
@@ -51,7 +51,7 @@
   transform  : 0.2s ease, box-shadow 0.3s ease;
   
 }
-.card {
+.main-card {
   width: 20rem;
   height: 15rem;
   background: #151515;
@@ -61,24 +61,10 @@
                 0 8px 16px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
-.card:hover {
+.main-card:hover {
   cursor: pointer;
   transform: translateY(-4px);
   box-shadow:
     0 8px 20px rgba(0,0,0,0.35),
     0 12px 40px rgba(0,0,0,0.25);
-}
-#logout-btn{
-    margin-left: 50rem;
-    transition: transform 0.5s ease, box-shadow 0.3s ease;
-}
-#logout-btn:hover {
-    border: none;
-  transform: translateY(6px) scaleY(1.1) scaleX(1.1); 
-}
-#logout-btn:active {
-  transform: translateY(6px);
-}   
-#logout-btn:focus {
-    outline: none;
 }
