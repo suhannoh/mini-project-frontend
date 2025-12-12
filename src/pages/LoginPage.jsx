@@ -11,11 +11,14 @@ export default function LoginPage() {
     console.log(API_BASE);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [load, setLoad] = useState(false);
+    
     const login = AuthStore((state) => state.login);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setLoad(true);
 
         try {
             const res = await axios.post(`${API_BASE}/user/login`,
@@ -34,8 +37,15 @@ export default function LoginPage() {
             } else {
                 alert("예상치 못한 오류가 발생되어 로그인에 실패하였습니다 ")
             }
+            setLoad(false);
         } 
     }
+        if(load) {
+            return ( <h2> Loading... <br /><br />
+                    첫 로그인 시 20초 ~ 60초 정도 걸릴 수 있습니다.</h2> 
+                    )
+        }
+
 
     return (
         <div>   

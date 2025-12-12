@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
 import { API_BASE } from '../config/env';
+import BackBtn from '../components/BackBtn';
 
 export default function JoinPage() {
 
@@ -42,12 +43,15 @@ const handleJoin = async (e) => {
   };
   return (
     <div>
-    <>
+    <>      
+            <BackBtn/>
             <form onSubmit={handleJoin} className='loginForm'>
             <div className='login-form-left'>
               <h1> 회원가입 </h1>
               <br/>
               <p>서비스 이용을 위해 계정을 생성해주세요. </p>
+              <br />
+              <p>⚠️ 이 웹 사이트는 학습용입니다 <br/><span className='red-text'> 실제 개인정보를 이용하지 마세요 </span></p>
             </div>
             <div className='login-form-right'>
                 <div className='login-input'>
