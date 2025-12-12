@@ -6,6 +6,7 @@ import LinkCard from '../components/LinkCard';
 import { useNavigate } from 'react-router-dom';
 import BackBtn from '../components/BackBtn';
 import { API_BASE } from '../config/env';
+import LogoutBtn from '../components/LogoutBtn';
 
 export default function LinksPage() {
     const navigate = useNavigate();
@@ -51,7 +52,7 @@ export default function LinksPage() {
                     </div>
                 </div>
             </div>
-            <button id='logout-btn'>logout</button>
+            <LogoutBtn />
         </div>
     )
 }

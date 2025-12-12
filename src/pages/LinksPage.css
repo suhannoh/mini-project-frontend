@@ -1,4 +1,6 @@
 .link-page-wrap {
+  width: 50rem;
+  height: 30rem;
     padding: 1rem;
     border-radius: 10px;
     display: flex;

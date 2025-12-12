@@ -15,7 +15,7 @@ export default function MainPage() {
           <div>
           <div className='main-left-top'>
              <ul className='menu-list'>
-              <li className='main-card'>
+              <li className='main-card ' onClick={() => alert("api 준비중")} >
                 <div className="main-card-title">
                   <h2>📝 게시판</h2>
                 </div>
@@ -23,8 +23,8 @@ export default function MainPage() {
                   <p> 미구현 ,, api 준비중 ,, </p>
                 </div>
               </li>
-              <li className='main-card' onClick={() => navigate('/links')}>
-                <div className="main-card-title">
+              <li className='main-card' onClick={() => navigate('/links')}  >
+                <div className="main-card-title" style={{color:"greenYellow"}}>
                   <h2>🔗 Links</h2>
                 </div>
                  <div className='main-card-content'>
@@ -35,7 +35,7 @@ export default function MainPage() {
           </div>
           <div className='main-left-bottom'>
             <ul className='menu-list'>
-              <li className='main-card'>
+              <li className='main-card' onClick={() => alert("api 준비중")}>
                 <div className="main-card-title">
                   <h2>⚙️ API </h2>
                 </div>
@@ -43,7 +43,7 @@ export default function MainPage() {
                   <p>미구현 ,, api 준비중 ,, </p>
                 </div>
               </li>
-              <li className='main-card'>
+              <li className='main-card' onClick={() => alert("api 준비중")}>
                 <div className="main-card-title">
                   <h2>👤 마이페이지</h2>
                 </div>
