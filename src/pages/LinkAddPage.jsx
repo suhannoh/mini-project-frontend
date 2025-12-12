@@ -13,7 +13,7 @@ export default function LinkAddPage() {
     e.preventDefault();
 
     try {
-         await axios.post("http://localhost:8080/user/links",
+         await axios.post("https://mini-project-0yg2.onrender.com/user/links",
             {
               notionUrl,
               gitHubUrl,

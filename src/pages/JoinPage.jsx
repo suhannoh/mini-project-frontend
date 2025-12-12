@@ -23,7 +23,7 @@ const handleJoin = async (e) => {
 
   try {
       const response = await axios.post(
-        "http://localhost:8080/user/join",
+        "https://mini-project-0yg2.onrender.com/user/join",
         {
             email,
             password,

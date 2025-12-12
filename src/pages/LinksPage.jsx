@@ -22,7 +22,7 @@ export default function LinksPage() {
         const getList = async () => {
 
             try {
-                const res = await axios.get("http://localhost:8080/user/links");
+                const res = await axios.get("https://mini-project-0yg2.onrender.com/user/links");
                 setList(res.data);
             } catch (e) {
                 console.log(e);
