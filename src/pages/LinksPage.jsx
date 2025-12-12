@@ -5,6 +5,7 @@ import axios from 'axios';
 import LinkCard from '../components/LinkCard';
 import { useNavigate } from 'react-router-dom';
 import BackBtn from '../components/BackBtn';
+import { API_BASE } from '../config/env';
 
 export default function LinksPage() {
     const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function LinksPage() {
         const getList = async () => {
 
             try {
-                const res = await axios.get("https://mini-project-0yg2.onrender.com/user/links");
+                const res = await axios.get(`${API_BASE}/user/links`);
                 setList(res.data);
             } catch (e) {
                 console.log(e);

@@ -3,6 +3,8 @@ import AuthStore from '../store/AuthStore';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import BackBtn from '../components/BackBtn';
+import { API_BASE } from '../config/env';
+
 
 export default function LinkAddPage() {
 
@@ -13,7 +15,7 @@ export default function LinkAddPage() {
     e.preventDefault();
 
     try {
-         await axios.post("https://mini-project-0yg2.onrender.com/user/links",
+         await axios.post(`${API_BASE}/user/links`,
             {
               notionUrl,
               gitHubUrl,

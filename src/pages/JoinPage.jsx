@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 import {useNavigate } from 'react-router-dom';
+import { API_BASE } from '../config/env';
 
 export default function JoinPage() {
 
@@ -15,7 +16,7 @@ const handleJoin = async (e) => {
   e.preventDefault();
 
   if(!email || !password || !name) {
-    return alert("공백은 입력할 수 없습니다");
+    return alert("공백  은 입력할 수 없습니다");
   }
   if(password.length < 5) {
     return alert("비밀번호는 5자리 이상입니다");
@@ -23,7 +24,7 @@ const handleJoin = async (e) => {
 
   try {
       const response = await axios.post(
-        "https://mini-project-0yg2.onrender.com/user/join",
+        `${API_BASE}/user/join`,
         {
             email,
             password,

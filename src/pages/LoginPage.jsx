@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css'
 import MainPage from './mainpage';
+import { API_BASE } from '../config/env';
 
 export default function LoginPage() {
 
@@ -16,7 +17,7 @@ export default function LoginPage() {
         e.preventDefault();
 
         try {
-            const res = await axios.post("https://mini-project-0yg2.onrender.com/user/login",
+            const res = await axios.post(`${API_BASE}/user/login`,
                 {
                     email,
                     password,
