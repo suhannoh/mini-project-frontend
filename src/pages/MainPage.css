@@ -1,7 +1,7 @@
 .main-page-wrap {
     padding: 1rem;
     border-radius: 10px;
-    display: flex;
+     display: flex;
      box-shadow:
     0 4px 10px rgba(0, 0, 0, 0.35),
     0 8px 30px rgba(0, 0, 0, 0.25);
@@ -48,7 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform  : 0.2s ease, box-shadow 0.3s ease;
+  transition  : 0.2s ease, box-shadow 0.3s ease;
   
 }
 .main-card {
@@ -67,4 +67,22 @@
   box-shadow:
     0 8px 20px rgba(0,0,0,0.35),
     0 12px 40px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 768px) {
+  .main-page-wrap {
+   max-width: 100vw;
+   height: auto;
+   overflow: hidden;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+  .menu-list {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .menu-list li{ 
+    height: 10rem;
+  }
 }

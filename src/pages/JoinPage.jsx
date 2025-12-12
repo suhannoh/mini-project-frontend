@@ -44,7 +44,9 @@ const handleJoin = async (e) => {
   return (
     <div>
     <>      
-            <BackBtn/>
+              <div className='flex-box'>
+                <BackBtn />
+              </div>
             <form onSubmit={handleJoin} className='loginForm'>
             <div className='login-form-left'>
               <h1> 회원가입 </h1>

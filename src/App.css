@@ -12,5 +12,13 @@
   margin: 0;
   padding: 0;
 }
+@media (max-width: 768px) {
+  #root {
+    width: 100%;
+    min-width: 0;       
+    padding: 1rem;         
+    margin: 0;
+    /* overflow: hidden; */
+  }
 
-
+}

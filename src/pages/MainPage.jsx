@@ -20,7 +20,7 @@ export default function MainPage() {
                   <h2>📝 게시판</h2>
                 </div>
                 <div className='main-card-content'>
-                  <p> 이동 </p>
+                  <p> 미구현 ,, api 준비중 ,, </p>
                 </div>
               </li>
               <li className='main-card' onClick={() => navigate('/links')}>
@@ -40,7 +40,7 @@ export default function MainPage() {
                   <h2>⚙️ API </h2>
                 </div>
                   <div className='main-card-content'>
-                  <p>내용 들어갈 부분</p>
+                  <p>미구현 ,, api 준비중 ,, </p>
                 </div>
               </li>
               <li className='main-card'>
@@ -56,8 +56,9 @@ export default function MainPage() {
         </div>
         <div className='bar'>&nbsp;</div>
         <div className='main-right'>
-          <h2 className='now-title'>접속중 </h2>
+          <h2 className='now-title'>접속중 (예정)</h2>
           <ul className='now-users'>
+            <li>예시</li>
             <li>🟢 user 1</li>
             <li>🟢 user 2</li>
             <li>🟢 user 3</li>

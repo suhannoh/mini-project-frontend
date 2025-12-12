@@ -6,7 +6,7 @@ export default function BackBtn() {
     const navigate = useNavigate();
   return (
     <div>
-        <button id='backBtn' onClick={() => {navigate(-1)}}>  ◀ Back  </button>
+        <button id='backBtn' type='button' onClick={() => {navigate(-1)}}>  ◀ Back  </button>
     </div>
   )
 }

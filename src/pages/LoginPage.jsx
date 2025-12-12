@@ -41,7 +41,7 @@ export default function LoginPage() {
         } 
     }
         if(load) {
-            return ( <h2> Loading... <br /><br />
+            return ( <h2 className='loading'> Loading... <br /><br />
                     첫 로그인 시 20초 ~ 60초 정도 걸릴 수 있습니다.</h2> 
                     )
         }
@@ -49,6 +49,16 @@ export default function LoginPage() {
 
     return (
         <div>   
+            {import.meta.env.DEV && (
+  <button
+    onClick={() => {
+      AuthStore.setState({ isLogin: true, user: { name: "devUser" } });
+      navigate("/main");
+    }}
+  >
+    DEV: 바로 입장
+  </button>
+)}
             <form onSubmit={handleLogin} className='loginForm'>
                 <div className='login-form-left'>
                     <h1> 안녕하세요 </h1>
