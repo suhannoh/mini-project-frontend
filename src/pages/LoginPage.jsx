@@ -8,6 +8,7 @@ import { API_BASE } from '../config/env';
 
 export default function LoginPage() {
 
+    console.log(API_BASE);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const login = AuthStore((state) => state.login);
