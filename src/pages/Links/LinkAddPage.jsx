@@ -25,7 +25,6 @@ export default function LinkAddPage() {
   const handleAdd = async (e) => {
     e.preventDefault();
 
-    console.log(linkStore);
     try {
       if(linkStore) {
         await axios.put(`${API_BASE}/user/links`,
