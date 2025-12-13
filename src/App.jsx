@@ -10,7 +10,6 @@ import PostPage from './pages/Posts/PostPage';
 import MyPage from './pages/My/MyPage';
 import DummyApiPage from './pages/Dummy/dummyApiPage';
 import LinkAddPage from './pages/Links/LinkAddPage';
-import LinkSetPage from './pages/Links/LinkSetPage';
 
 function App() {
 

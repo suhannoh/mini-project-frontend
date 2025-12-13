@@ -1,8 +1,10 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 const AuthStore = create(
+  persist (
     (set) => ({
-    user: null,            // ✅ 로그인 유저 정보
+    user: null,  
     isLogin: false,
 
   login: (userData) =>
@@ -16,6 +18,10 @@ const AuthStore = create(
       user: null,
       isLogin: false,
     }),
-}));
-
+}),
+{
+      name: "auth-storage", // localStorage key
+    }
+));
+  
 export default AuthStore;

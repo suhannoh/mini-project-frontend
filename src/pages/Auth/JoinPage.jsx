@@ -8,22 +8,25 @@ export default function JoinPage() {
 
 const [email, setEmail] = useState("");
 const [password, setPassword] = useState("");
+const [passwordConfirm, setPasswordConfirm] = useState("");
 const [name, setName] = useState("");
 const [phone , setPhone ] = useState("");
 const navigate = useNavigate();
 const [load, setLoad] = useState(false);
+const isMatch = password.length > 0 && passwordConfirm.length > 0 &&
+                password === passwordConfirm;
 
 
 const handleJoin = async (e) => {
   e.preventDefault();
-  setLoad(true);
-
+  
   if(!email || !password || !name) {
-    return alert("공백  은 입력할 수 없습니다");
+    return alert("공백은 입력할 수 없습니다");
   }
   if(password.length < 5) {
     return alert("비밀번호는 5자리 이상입니다");
   }
+  setLoad(true);
 
   try {
       await axios.post(
@@ -58,6 +61,8 @@ const handleJoin = async (e) => {
                     <span>첫 회원가입 시 20초 ~ 60초 정도 걸릴 수 있습니다.</span></h2> 
                     )
         }
+  
+
   return (
     <div>
     <>      
@@ -85,6 +90,11 @@ const handleJoin = async (e) => {
                     value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <div className='login-input'>
+                    <p><span className='red-text'>*</span> Password Confirm {isMatch ? "🟢" : "🔴"} </p>
+                    <input type="password" placeholder='비밀번호 재확인 (필수)' 
+                    value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} />
+                </div>
+                <div className='login-input'>
                     <p><span className='red-text'>*</span> Name </p>
                     <input type="text" placeholder='이름 (필수)' 
                     value={name} onChange={(e) => setName(e.target.value)} />
@@ -95,7 +105,8 @@ const handleJoin = async (e) => {
                     value={phone} onChange={(e) => setPhone(e.target.value)} />
                 </div>
                 <div className='join-footer'>
-                <button type='submit' id='join-btn'> 전송 </button>
+                <button style={{background : isMatch ? "" : "gray"}}
+                type='submit' disabled={!isMatch} id='join-btn'> 전송 </button>
                 </div>
             </div>
             </form>

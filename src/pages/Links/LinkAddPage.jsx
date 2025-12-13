@@ -9,9 +9,9 @@ import LinkStore from '../../store/LinkStore';
 
 export default function LinkAddPage() {
 
-  const [notionUrl , setNotion] = useState(null);
-  const [gitHubUrl , setGithub] = useState(null);
-  const naivgate = useNavigate();
+  const [notionUrl , setNotion] = useState("");
+  const [gitHubUrl , setGithub] = useState("");
+  const navigate = useNavigate();
   const {user} = AuthStore();
   const {linkStore} = LinkStore();
 
@@ -49,7 +49,7 @@ export default function LinkAddPage() {
     } catch (e) {
         alert("예상치 못한 오류로 저장에 실패하였습니다." + e);
     } finally {
-      naivgate("/links");
+      navigate("/links" ,{ replace: true });
     }
   }
 
@@ -61,7 +61,7 @@ export default function LinkAddPage() {
           <div className='main-left-top add-link'>
             <form onSubmit={handleAdd}>
             <ul className='main-list' >
-                <li>GitHub : <input id="git" type="url" value={gitHubUrl} placeholder='github - url' name="gitHubUrl"
+                <li>Gi  tHub : <input id="git" type="url" value={gitHubUrl} placeholder='github - url' name="gitHubUrl"
                                onChange={(e) => setGithub(e.target.value)}/></li>
                 <li>Notion : <input id="notion" type="url" value={notionUrl} placeholder='notion - url' name="notionUrl"
                                onChange={(e) => setNotion(e.target.value)} /></li>

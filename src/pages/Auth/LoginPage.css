@@ -1,6 +1,6 @@
 .loginForm {
   width: 50rem;
-  height: 30rem;
+  height: auto;
   padding: 2rem;
   border: 1px solid #ddd;
   border-radius: 1rem;

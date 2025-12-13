@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './MainPage.css'
 import AuthStore from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
 import LogoutBtn from '../../components/LogoutBtn';
+import axios from 'axios';
+import { API_BASE } from '../../config/env';
 
 export default function MainPage() {
-
+  const [activeUsers , setActiveUsers] = useState([]);
   const navigate = useNavigate();
   
+   useEffect(() => {
+        const getActiveUsers = async () => {
+            try {
+                const res = await axios.get(`${API_BASE}/useractive`);
+                setActiveUsers(res.data);
+            } catch (e) {
+                console.log(e);
+            } 
+        };
+        getActiveUsers();
+    }, []);
+
 
   return (
     <div>
@@ -56,13 +70,11 @@ export default function MainPage() {
         </div>
         <div className='bar'>&nbsp;</div>
         <div className='main-right'>
-          <h2 className='now-title'>접속중 (예정)</h2>
+          <h2 className='now-title'> 최근 1시간 이내 접속 </h2>
           <ul className='now-users'>
-            <li>예시</li>
-            <li>🟢 user 1</li>
-            <li>🟢 user 2</li>
-            <li>🟢 user 3</li>
-            <li>🟢 user 4</li>
+            {activeUsers.map((user) => (
+              <li className="now-li" key={user.id}>🟢 <span style={{paddingLeft:"5px"}}>{user.userName}</span></li>
+            ))}
           </ul>
         </div>
         </div>

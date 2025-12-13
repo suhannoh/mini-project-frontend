@@ -42,7 +42,7 @@ export default function LinksPage() {
     if (load) return <p> Loading...</p>;
     return (
         <div>
-            <BackBtn />
+            <BackBtn  navi="/main"/>
             <div className='link-page-wrap'>
                     <div className='link-w'>
                         <ul className='link-list' >
@@ -56,7 +56,7 @@ export default function LinksPage() {
                         </ul>
                     </div>
             </div>
-            <LogoutBtn navi="/main" />
+            <LogoutBtn/>
         </div>
     )
 }

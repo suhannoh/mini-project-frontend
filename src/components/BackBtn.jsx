@@ -6,7 +6,7 @@ export default function BackBtn({navi}) {
     const navigate = useNavigate();
   return (
     <div className='flexBtn' >
-        <button id='backBtn' type='button' onClick={() => {navi ? navigate(`${navi}`) : navigate(-1)}}>  ◀ Back  </button>
+        <button id='backBtn' type='button' onClick={() => {navi ? navigate(`${navi}` , { replace: true }) : navigate(-1)}}>  ◀ Back  </button>
     </div>
   )
 }
