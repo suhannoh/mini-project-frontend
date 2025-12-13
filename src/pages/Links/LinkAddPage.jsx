@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import AuthStore from '../store/AuthStore';
+import AuthStore from '../../store/AuthStore';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import BackBtn from '../components/BackBtn';
-import { API_BASE } from '../config/env';
+import BackBtn from '../../components/BackBtn';
+import { API_BASE } from '../../config/env';
 
 
 export default function LinkAddPage() {

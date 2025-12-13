@@ -1,10 +1,10 @@
 import axios from 'axios';
-import AuthStore from '../store/AuthStore';
+import AuthStore from '../../store/AuthStore';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css'
-import MainPage from './mainpage';
-import { API_BASE } from '../config/env';
+import MainPage from '../Main/MainPage';
+import { API_BASE } from '../../config/env';
 
 export default function LoginPage() {
 
@@ -28,6 +28,7 @@ export default function LoginPage() {
                 }
             );
             login(res.data);
+            console.log(AuthStore.getState((state)=> state.user))
             alert("로그인에 성공하여 메인페이지로 이동합니다.");
             navigate("/main", {replace : true});
         } catch (e) {
@@ -41,7 +42,8 @@ export default function LoginPage() {
         } 
     }
         if(load) {
-            return ( <h2 className='loading'> Loading... <br /><br />
+            return (
+                 <h2 className='loading'> <span className='loading-text'>Loading </span><br /><br />
                     첫 로그인 시 20초 ~ 60초 정도 걸릴 수 있습니다.</h2> 
                     )
         }

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import AuthStore from '../store/AuthStore'
+import AuthStore from '../../store/AuthStore'
 import './Linkspage.css';
 import axios from 'axios';
-import LinkCard from '../components/LinkCard';
+import LinkCard from '../../components/LinkCard';
 import { useNavigate } from 'react-router-dom';
-import BackBtn from '../components/BackBtn';
-import { API_BASE } from '../config/env';
-import LogoutBtn from '../components/LogoutBtn';
+import BackBtn from '../../components/BackBtn';
+import { API_BASE } from '../../config/env';
+import LogoutBtn from '../../components/LogoutBtn';
 
 export default function LinksPage() {
     const navigate = useNavigate();

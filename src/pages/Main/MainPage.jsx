@@ -1,8 +1,8 @@
 import React from 'react'
 import './MainPage.css'
-import AuthStore from '../store/AuthStore';
+import AuthStore from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
-import LogoutBtn from '../components/LogoutBtn';
+import LogoutBtn from '../../components/LogoutBtn';
 
 export default function MainPage() {
 
@@ -15,7 +15,7 @@ export default function MainPage() {
           <div>
           <div className='main-left-top'>
              <ul className='menu-list'>
-              <li className='main-card ' onClick={() => alert("api 준비중")} >
+              <li className='main-card ' onClick={() => navigate('/posts')} >
                 <div className="main-card-title">
                   <h2>📝 게시판</h2>
                 </div>
@@ -35,7 +35,7 @@ export default function MainPage() {
           </div>
           <div className='main-left-bottom'>
             <ul className='menu-list'>
-              <li className='main-card' onClick={() => alert("api 준비중")}>
+              <li className='main-card' onClick={() =>navigate('/dummy')}>
                 <div className="main-card-title">
                   <h2>⚙️ API </h2>
                 </div>
@@ -43,7 +43,7 @@ export default function MainPage() {
                   <p>미구현 ,, api 준비중 ,, </p>
                 </div>
               </li>
-              <li className='main-card' onClick={() => alert("api 준비중")}>
+              <li className='main-card' onClick={() => navigate('/my')}>
                 <div className="main-card-title">
                   <h2>👤 마이페이지</h2>
                 </div>
