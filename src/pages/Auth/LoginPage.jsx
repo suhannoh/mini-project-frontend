@@ -3,7 +3,6 @@ import AuthStore from '../../store/AuthStore';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css'
-import MainPage from '../Main/MainPage';
 import { API_BASE } from '../../config/env';
 
 export default function LoginPage() {
