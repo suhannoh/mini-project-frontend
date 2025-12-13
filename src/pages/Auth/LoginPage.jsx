@@ -33,7 +33,6 @@ export default function LoginPage() {
                 }
             );
             login(res.data);
-            console.log(AuthStore.getState((state)=> state.user))
             alert("로그인에 성공하여 메인페이지로 이동합니다.");
             navigate("/main", {replace : true});
         } catch (e) {
@@ -63,7 +62,9 @@ export default function LoginPage() {
             {import.meta.env.DEV && (
                 <button
                 onClick={() => {
-                    AuthStore.setState({ isLogin: true, user: { name: "devUser" } });
+                    AuthStore.setState({ isLogin: true, user: { 
+                        id : 1,
+                    } });
                     navigate("/main");
                 }}
                 >

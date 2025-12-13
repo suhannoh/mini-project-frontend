@@ -9,9 +9,12 @@ export default function LinkCard({ link , onClick}) {
                 <h2> {link.user_name}</h2>
             </div>
             <div className='card-content'>
-                <p>{link.gitHubUrl ? <a href={link.gitHubUrl}>GitHub</a> : ""}</p>
-                <br />
-                <p>{link.notionUrl ? <a href={link.notionUrl}>Notion</a> : ""}</p>
+                <ul className='flex-link-box'>
+                    {link.gitHubUrl ? <li className='link-box'> 
+                        <a href={link.gitHubUrl} target="_blank" rel="noopener noreferrer">github</a></li> : ""}     
+                    {link.notionUrl ? <li className='link-box'> 
+                        <a href={link.notionUrl} target="_blank" rel="noopener noreferrer">notion</a></li> : ""}     
+                </ul>
             </div>
         </li>
     )
