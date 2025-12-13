@@ -56,7 +56,7 @@ export default function LinksPage() {
                         </ul>
                     </div>
             </div>
-            <LogoutBtn />
+            <LogoutBtn navi="/main" />
         </div>
     )
 }
