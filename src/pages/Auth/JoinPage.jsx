@@ -11,10 +11,12 @@ const [password, setPassword] = useState("");
 const [name, setName] = useState("");
 const [phone , setPhone ] = useState("");
 const navigate = useNavigate();
+const [load, setLoad] = useState(false);
 
 
 const handleJoin = async (e) => {
   e.preventDefault();
+  setLoad(true);
 
   if(!email || !password || !name) {
     return alert("공백  은 입력할 수 없습니다");
@@ -24,23 +26,38 @@ const handleJoin = async (e) => {
   }
 
   try {
-      const response = await axios.post(
+      await axios.post(
         `${API_BASE}/user/join`,
         {
             email,
             password,
             name,
+            phone,
         }
       );
-
-      console.log("✅ 회원가입 성공:", response.data);
       alert("회원가입 성공!");
       navigate("/") 
-    } catch (error) {
-      console.error("❌ 회원가입 실패:", error);
-      alert("회원가입 실패");
+    } catch (e) {
+      if(e.response?.status === 500) {
+
+        alert("중복되는 이메일입니다. ");
+      }
+      else {
+        alert("예상치 못한 오류로 종료되었습니다")
+      }
+      console.log(e);
+      setLoad(false);
     } 
   };
+
+  if(load) {
+            return (
+                 <h2 className='loading'> 
+                 <span className='loading-text'>Loading </span>
+                 <br /><br />
+                    <span>첫 회원가입 시 20초 ~ 60초 정도 걸릴 수 있습니다.</span></h2> 
+                    )
+        }
   return (
     <div>
     <>      

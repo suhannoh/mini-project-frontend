@@ -8,7 +8,8 @@ import { API_BASE } from '../../config/env';
 
 export default function LoginPage() {
 
-    console.log(API_BASE);
+    
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [load, setLoad] = useState(false);
@@ -16,7 +17,12 @@ export default function LoginPage() {
     const login = AuthStore((state) => state.login);
     const navigate = useNavigate();
 
+    
+
     const handleLogin = async (e) => {
+        console.log("API")
+        console.log(import.meta.env.MODE);
+        console.log(import.meta.env.VITE_API_URL);
         e.preventDefault();
         setLoad(true);
 
@@ -38,26 +44,30 @@ export default function LoginPage() {
             } else {
                 alert("예상치 못한 오류가 발생되어 로그인에 실패하였습니다 ")
             }
+            
             setLoad(false);
         } 
     }
         if(load) {
             return (
-                 <h2 className='loading'> <span className='loading-text'>Loading </span><br /><br />
-                    첫 로그인 시 20초 ~ 60초 정도 걸릴 수 있습니다.</h2> 
+                 <h2 className='loading'> 
+                 <span className='loading-text'>Loading </span>
+                 <br /><br />
+                    <span>첫 로그인 시 20초 ~ 60초 정도 걸릴 수 있습니다.</span></h2> 
                     )
         }
 
 
     return (
         <div>   
+            <p>version 1.0.1</p>
             {import.meta.env.DEV && (
-  <button
-    onClick={() => {
-      AuthStore.setState({ isLogin: true, user: { name: "devUser" } });
-      navigate("/main");
-    }}
-  >
+                <button
+                onClick={() => {
+                    AuthStore.setState({ isLogin: true, user: { name: "devUser" } });
+                    navigate("/main");
+                }}
+                >
     DEV: 바로 입장
   </button>
 )}
