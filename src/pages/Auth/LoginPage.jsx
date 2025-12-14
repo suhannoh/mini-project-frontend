@@ -32,7 +32,6 @@ export default function LoginPage() {
                 }
             );
             login(res.data);
-            alert("로그인에 성공하여 메인페이지로 이동합니다.");
             navigate("/main", {replace : true});
         } catch (e) {
             // 500 -> 데이터 오류 (서버에서 보내준 오류코드 )

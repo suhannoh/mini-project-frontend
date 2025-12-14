@@ -11,9 +11,14 @@ export default function LinkCard({ link , onClick}) {
             <div className='card-content'>
                 <ul className='flex-link-box'>
                     {link.gitHubUrl ? <li className='link-box'> 
-                        <a href={link.gitHubUrl} target="_blank" rel="noopener noreferrer">github</a></li> : ""}     
+                        <a id='github-link' href={link.gitHubUrl} target="_blank" rel="noopener noreferrer">github</a></li> : ""}     
                     {link.notionUrl ? <li className='link-box'> 
-                        <a href={link.notionUrl} target="_blank" rel="noopener noreferrer">notion</a></li> : ""}     
+                        <a id='notion-link' href={link.notionUrl} target="_blank" rel="noopener noreferrer">notion</a></li> : ""}     
+                    {!link.gitHubUrl && !link.notionUrl && ( 
+                        <li className="empty-links" > <span> {!onClick ? "등록된 링크가 없어요" : ""}</span> 
+                        {/* <button onClick={() => navigate("/links/add")}>링크 등록</button> */} 
+                        </li> 
+                    )}
                 </ul>
             </div>
         </li>

@@ -16,7 +16,6 @@ export default function MainPage() {
             try {
                 const res = await axios.get(`${API_BASE}/useractive`);
                 setActiveUsers(res.data);
-                console.log("data " ,res.data);
             } catch (e) {
                 console.log("axios error", e);
                 console.log("status", e?.response?.status);
@@ -26,7 +25,6 @@ export default function MainPage() {
         getActiveUsers();
     }, []);
 
-    console.log(activeUsers)
   return (
     <div>
         <div className='main-page-wrap'>
