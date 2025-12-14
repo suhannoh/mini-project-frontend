@@ -95,7 +95,7 @@ export default function LoginPage() {
                             value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
                     <div className='login-footer'>
-                        <button type='submit'>Login</button>
+                        <button type='submit' style={{color :  "rgba(255,255,255,0.87)"}}>Login</button>
                         <ul className='login-find-menu'>
                             <li onClick={() => alert("api 준비중")}  >아이디 찾기</li>
                             <li onClick={() => alert("api 준비중")}  >비밀번호 찾기</li>

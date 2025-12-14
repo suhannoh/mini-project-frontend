@@ -4,7 +4,7 @@ const AuthStore = create(
     (set) => ({
     user: null,  
     isLogin: false,
-    theme: false,
+    theme: true,
 
   login: (userData) =>
     set({
