@@ -101,7 +101,7 @@ const handleJoin = async (e) => {
                 </div>
                  <div className='login-input'>
                     <p> Phone </p>
-                    <input type="text" placeholder='전화번호 (선택)' 
+                    <input type="tel" placeholder='전화번호 (선택)' 
                     value={phone} onChange={(e) => setPhone(e.target.value)} />
                 </div>
                 <div className='join-footer'>

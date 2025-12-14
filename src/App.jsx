@@ -10,6 +10,7 @@ import PostPage from './pages/Posts/PostPage';
 import MyPage from './pages/My/MyPage';
 import DummyApiPage from './pages/Dummy/dummyApiPage';
 import LinkAddPage from './pages/Links/LinkAddPage';
+import MyEditPage from './pages/My/MyEditPage';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
           <Route path='/posts' element={<PostPage />} />
           <Route path='/dummy' element={<DummyApiPage />} />
           <Route path='/my' element={<MyPage />} />
+          <Route path="/my/edit" element={<MyEditPage/>} />
         </Route>
       </Routes>
     </>
