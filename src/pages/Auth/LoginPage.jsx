@@ -63,7 +63,7 @@ export default function LoginPage() {
 
     return (
         <div>   
-            <p>version 1.0.1</p>
+            <p>version 1.1</p>
             {import.meta.env.DEV && (
                 <button
                 onClick={() => {
