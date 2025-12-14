@@ -1,0 +1,27 @@
+.layout-wrap {
+    width: 60rem;
+    height: 32rem;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.35),
+    0 8px 30px rgba(0, 0, 0, 0.25);
+    overflow-y: auto;            
+    overflow-x: hidden; 
+}
+
+.layout-options {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .layout-wrap {
+      max-width: 100%;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+}

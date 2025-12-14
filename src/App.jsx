@@ -11,8 +11,19 @@ import MyPage from './pages/My/MyPage';
 import DummyApiPage from './pages/Dummy/dummyApiPage';
 import LinkAddPage from './pages/Links/LinkAddPage';
 import MyEditPage from './pages/My/MyEditPage';
+import AuthStore from './store/AuthStore';
+import { useEffect } from 'react';
 
 function App() {
+
+  const { theme } = AuthStore(); // theme: true/false 또는 'dark'/'light'
+
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      theme ? "dark" : "light"
+    );
+  }, [theme]);
 
   return (
     <>

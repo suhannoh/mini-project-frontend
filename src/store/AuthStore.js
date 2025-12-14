@@ -1,11 +1,10 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
 const AuthStore = create(
-  persist (
     (set) => ({
     user: null,  
     isLogin: false,
+    theme: false,
 
   login: (userData) =>
     set({
@@ -18,10 +17,10 @@ const AuthStore = create(
       user: null,
       isLogin: false,
     }),
-}),
-{
-      name: "auth-storage", // localStorage key
-    }
-));
-  
+  toggleTheme: () =>
+    set((state) => ({
+      theme : !state.theme,
+    })),
+}));
+
 export default AuthStore;

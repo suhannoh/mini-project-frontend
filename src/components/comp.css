@@ -2,6 +2,7 @@
     /* margin-left: 50rem; */
     display: flex;
     justify-content: flex-end;
+    color: rgba(255,255,255,0.87);;
     transition: transform 0.5s ease, box-shadow 0.3s ease;
 }
 #logout-btn:hover {
@@ -14,6 +15,7 @@
 #logout-btn:focus {
     outline: none;
 }
+
 .flexBox{
   display: flex;
 }
@@ -22,6 +24,7 @@
   justify-content: right;
 }
 #backBtn {
+    color: rgba(255,255,255,0.87);;
     display: flex;
     transition: transform 0.5s ease, box-shadow 0.3s ease;
 }
@@ -76,11 +79,13 @@
 .card-title { 
   width: 100%;
   background: #1e1e1e; 
-  border-radius: 12px; 
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  /* border-radius: 12px;  */
   padding: 20px;              
   box-shadow:0 4px 6px rgba(0, 0, 0, 0.12),
-  0 10px 20px rgba(0, 0, 0, 0.08);
-  
+             0 10px 20px rgba(0, 0, 0, 0.08);
+  color: rgba(255,255,255,0.87);
 }
 .card-content { 
   width: 100%;
@@ -97,7 +102,7 @@
   height: 250px;
   /* height: 15rem; */
   background: #151515;
-  border-radius: 14px;
+  /* border-radius: 14px; */
   overflow: hidden; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
                 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -115,6 +120,7 @@
   opacity: .7;
   padding: 1rem;
 }
+
 
 
 @media (max-width: 768px) {

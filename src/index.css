@@ -1,26 +1,48 @@
 :root {
-  color-scheme: light dark;
+  --bg: #ffffff;
+  --text: #111111;
+  --panel: #f4f4f5;
+  --btn: #1a1a1a;
+
+  background-color: var(--bg);
+  color: var(--text);
+
+  /* color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #242424; */
 
 }
+html[data-theme="dark"]{
+  --bg: #242424;
+  --text: rgba(255,255,255,0.87);
+  --panel: #151515;
+  --btn: #1a1a1a;
+
+  color-scheme: dark;
+}
+/* 라이트 명시(선택) */
+html[data-theme="light"]{
+  color-scheme: light;
+} 
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 button {
-  color: white;
+  color : var(--text);
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--btn);
   cursor: pointer;
   transition: border-color 0.25s;
 }

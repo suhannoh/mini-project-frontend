@@ -55,7 +55,7 @@ export default function LoginPage() {
                           소요될 수 있습니다.</span></h2> 
                           <br /><br />
 
-                    <p className='loading-desc'> ✅ 서버가 일정 시간 미접속 시 절전 상태로 전환됩니다. </p>
+                    <p className='loading-desc'> 원인 ✅ 서버가 일정 시간 미접속 시 절전 상태로 전환됩니다. </p>
                     </>
                     )
         }
