@@ -61,7 +61,7 @@ export default function LinkAddPage() {
           <div className='main-left-top add-link'>
             <form onSubmit={handleAdd}>
             <ul className='main-list' >
-                <li>Gi  tHub : <input id="git" type="url" value={gitHubUrl} placeholder='github - url' name="gitHubUrl"
+                <li>GitHub : <input id="git" type="url" value={gitHubUrl} placeholder='github - url' name="gitHubUrl"
                                onChange={(e) => setGithub(e.target.value)}/></li>
                 <li>Notion : <input id="notion" type="url" value={notionUrl} placeholder='notion - url' name="notionUrl"
                                onChange={(e) => setNotion(e.target.value)} /></li>
