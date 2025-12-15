@@ -2,7 +2,7 @@ import './Layout.css'
 import Theme from '../components/theme'
 import LogoutBtn from '../components/LogoutBtn'
 import BackBtn from '../components/BackBtn'
-export default function Layout({ children , backbtn=true}) {
+export default function Layout({ children , backbtn=true , logoutBtn=true}) {
   
   return (
     <>
@@ -12,7 +12,7 @@ export default function Layout({ children , backbtn=true}) {
       </div>
       <div className='layout-options'>
         <Theme />
-        <LogoutBtn />
+        {logoutBtn && <LogoutBtn />}
       </div>
     </>
   )

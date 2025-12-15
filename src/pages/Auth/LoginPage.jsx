@@ -4,19 +4,20 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css'
 import { API_BASE } from '../../config/env';
+import Layout from '../../layout/Layout';
 
 export default function LoginPage() {
 
-    
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [load, setLoad] = useState(false);
-    
+
     const login = AuthStore((state) => state.login);
     const navigate = useNavigate();
 
-    
+
 
     const handleLogin = async (e) => {
         console.log("API")
@@ -32,79 +33,83 @@ export default function LoginPage() {
                 }
             );
             login(res.data);
-            navigate("/main", {replace : true});
+            navigate("/main", { replace: true });
         } catch (e) {
             // 500 -> 데이터 오류 (서버에서 보내준 오류코드 )
-            if(e.response?.status === 500) {
+            if (e.response?.status === 500) {
                 alert("이메일과 비밀번호를 확인해주세요 ");
             } else {
                 alert("예상치 못한 오류가 발생되어 로그인에 실패하였습니다 ")
             }
-            
-            setLoad(false);
-        } 
-    }
-        if(load) {
-            return (
-                <>
-                 <h2 className='loading'> 
-                 <span className='loading-text'>Loading </span>
-                 <br /><br />
-                    <span>
-                          첫 로그인 시 최대 1~2분 정도<br/>
-                          소요될 수 있습니다.</span></h2> 
-                          <br /><br />
 
-                    <p className='loading-desc'> 원인 ✅ 서버가 일정 시간 미접속 시 절전 상태로 전환됩니다. </p>
-                    </>
-                    )
+            setLoad(false);
         }
+    }
+    if (load) {
+        return (
+            <>
+                <h2 className='loading'>
+                    <span className='loading-text'>Loading </span>
+                    <br /><br />
+                    <span>
+                        첫 로그인 시 최대 1~2분 정도<br />
+                        소요될 수 있습니다.</span></h2>
+                <br /><br />
+
+                <p className='loading-desc'> 원인 ✅ 서버가 일정 시간 미접속 시 절전 상태로 전환됩니다. </p>
+            </>
+        )
+    }
 
 
     return (
-        <div>   
+        <div>
             <p>version 1.1</p>
             {import.meta.env.DEV && (
                 <button
-                onClick={() => {
-                    AuthStore.setState({ isLogin: true, user: { 
-                        id : 1,
-                    } });
-                    navigate("/main");
-                }}
+                    onClick={() => {
+                        AuthStore.setState({
+                            isLogin: true, user: {
+                                id: 1,
+                            }
+                        });
+                        navigate("/main");
+                    }}
                 >
-    DEV: 바로 입장
-  </button>
-)}
-            <form onSubmit={handleLogin} className='loginForm'>
-                <div className='login-form-left'>
-                    <h1> 안녕하세요 </h1>
-                    <br />
-                    <p>서비스 이용을 위해 로그인을 해주세요. </p>
-                </div>
-                <div className='login-form-right'>
-                    <div className='login-input'>
-                        <p> Email </p>
-                        <input type="email" placeholder='이메일'
-                            value={email} onChange={(e) => setEmail(e.target.value)} />
-
-                    </div>
-                    <div className='login-input'>
-                        <p> Password </p>
-                        <input type="password" placeholder='비밀번호'
-                            value={password} onChange={(e) => setPassword(e.target.value)} />
-                    </div>
-                    <div className='login-footer'>
-                        <button type='submit' style={{color :  "rgba(255,255,255,0.87)"}}>Login</button>
-                        <ul className='login-find-menu'>
-                            <li onClick={() => alert("api 준비중")}  >아이디 찾기</li>
-                            <li onClick={() => alert("api 준비중")}  >비밀번호 찾기</li>
-                            <li onClick={() => navigate("/join")} className='point-text'> 회원가입 </li>
-                        </ul>
+                    DEV: 바로 입장
+                </button>
+            )}
+            <Layout backbtn={false} logoutBtn={false}>
+                <form onSubmit={handleLogin} className='auth-wrap'>
+                    <div className='auth-wrap-left'>
+                        <h1> 안녕하세요 </h1>
                         <br />
+                        <p>서비스 이용을 위해 로그인을 해주세요. </p>
                     </div>
-                </div>
-            </form>
+                    <div className='auth-wrap-right'>
+                        <div className='auth-input-box'>
+                            <p> Email </p>
+                            <input type="email" placeholder='이메일'
+                                value={email} onChange={(e) => setEmail(e.target.value)} />
+
+                        </div>
+                        <div className='auth-input-box'>
+                            <p> Password </p>
+                            <input type="password" placeholder='비밀번호'
+                                value={password} onChange={(e) => setPassword(e.target.value)} />
+                        </div>
+                        <div className='login-submit'>
+                            <button type='submit' style={{ color: "rgba(255,255,255,0.87)" }}>Login</button>
+                            <ul className='login-options-menu'>
+                                <li onClick={() => alert("api 준비중")}  >아이디 찾기</li>
+                                <li onClick={() => alert("api 준비중")}  >비밀번호 찾기</li>
+                                <li onClick={() => navigate("/join")} className='point-b'> 회원가입 </li>
+                            </ul>
+                            <br />
+                        </div>
+                    </div>
+                </form>
+            </Layout>
         </div>
     )
 }

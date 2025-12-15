@@ -1,19 +1,18 @@
-.loginForm {
+.auth-wrap{
   width: 50rem;
-  height: auto;
   padding: 2rem;
-  border: 1px solid #ddd;
-  border-radius: 1rem;
   display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-}
+  /* justify-content: flex-end; */
+  /* align-items: center; */
 
-.loginForm Button {
+  align-items: stretch;      /* ✅ center 제거 */
+  justify-content: flex-start;
+  gap: 1rem;  
+}
+.auth-wrap Button {
   margin-top: 2rem;
 }
-.login-form-left{
+.auth-wrap-left{
   width: 100%;
   height: 100%;
   margin: 0;
@@ -22,30 +21,35 @@
   justify-content: center;
   flex: 1;
 }
-.login-form-right{
-  margin-top: 4rem;
+.auth-wrap-right{
   flex: 1;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* justify-content: flex-start; */
   gap: 10px;
   padding: 2rem;
 }
-.login-form-right Button {
+.auth-wrap-right form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transform: scale(0.9);
+}
+.auth-wrap-right Button {
   width: 90%;
 }
-.login-input{
+.auth-input-box{
   width: 100%;
   text-align: start;
 }
-.login-input input {
+.auth-input-box input {
   width: 100%;
   padding: 1rem;
 }
-
-.login-find-menu {
+.login-options-menu {
   list-style: none;
   display: flex;
   gap: 0.9rem;
@@ -54,34 +58,33 @@
   align-content: center;
   margin-top: 2rem;
 }
-
-.login-find-menu li {
+.login-options-menu li {
   display: flex;
   align-items: center ;
+  font-size: 14px;
 }
-.joinForm input {
-    padding: 0.5rem 1rem;
+.login-options-menu li:hover {
+  text-decoration: underline;
 }
-
-.point-text {
+.point-b {
   border: 1px solid rgb(87, 87, 219);
   padding: 0.8rem   1rem;
   border-radius: 1rem;
 }
-.point-text:hover {
+
+.point-b:hover {
   transition: 0.5s;
   cursor: pointer;
   background: rgb(87, 87, 219);
 }
-
-.join-form-top {
-    margin-top: 2rem;
-}
-
 .red-text {
     color: red;
 }
-
+.join-btn-wrap {
+  height: 100%;
+  align-items: flex-end;
+  padding: 1rem; 
+  }
 #join-btn {
     margin: 0;
     border: 1px solid rgb(87, 87, 219);
@@ -91,22 +94,28 @@
     display: flex;
     justify-content: flex-end;
 }
-.login-find-menu li:hover {
-  text-decoration: underline;
-}
-.flex-box {
-  width: 100%;
-  display: flex;
-  justify-content: left;
-}
 .loading-text::after {
   content: "";
   animation: dots 1.2s steps(3, end) infinite;
 }
 
 
+
+/* .join-form-top {
+    margin-top: 2rem;
+} */
+
+
+
+/* .flex-box {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+} */
+
+
 @keyframes dots { 
-  0%   { content: ""; }
+  0%   { content: ""; } 
   33%  { content: "."; }
   66%  { content: ".."; }
   100% { content: "..."; }
@@ -121,8 +130,8 @@
 @media (max-width: 768px) {
 
 
-  .loginForm {
-  width: 100%;
+  .auth-wrap {
+  /* width: 100%;
   height: 100dvh;
   min-height: unset;
   margin: 0 auto;
@@ -133,13 +142,26 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 0 1rem;
+  padding: 3rem 1rem; */
+   width: 100%;
+    margin: 0;
+    padding: 2rem 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    overflow: visible; 
 }
-.login-form-left{
+.join-wrap {
+  overflow: scroll;
+}
+.auth-wrap-left{
   margin: 0;
   justify-content: flex-end;
 }
-.login-form-right{
+.auth-wrap-right{
   flex: 2;
   margin: 0;
   justify-content: left;
@@ -154,4 +176,5 @@ input {
 .loading-desc {
   font-size: 14px;
 }
+
 }
