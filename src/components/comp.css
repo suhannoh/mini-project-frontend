@@ -90,14 +90,17 @@
 
 .card-title-w { 
   width: 100%;
-  background: #725a5a;
+  /* background: #725a5a; */
+  /* background: #67c4e6;/ */
+  background: #3B82F6;
   border-top-left-radius: 9px;
   border-top-right-radius: 9px;
   /* border-radius: 12px;  */
   padding: 20px;              
   box-shadow:0 4px 6px rgba(0, 0, 0, 0.12),
              0 10px 20px rgba(0, 0, 0, 0.08);
-  color: rgba(255,255,255,0.87);
+  /* color: rgba(255,255,255,0.87); */
+  color: white;
 }
 .card-content { 
   width: 100%;

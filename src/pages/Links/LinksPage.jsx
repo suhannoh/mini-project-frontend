@@ -10,7 +10,7 @@ import Layout from '../../layout/Layout';
 
 export default function LinksPage() {
 	const navigate = useNavigate();
-	const { user } = AuthStore();
+	const { user, theme } = AuthStore();
 	const { linkStore, setLinkStore } = LinkStore();
 	const [linkList, setLinkList] = useState([]);
 	const [load, setLoad] = useState(true);
@@ -51,7 +51,7 @@ export default function LinksPage() {
 			<Layout>
 					<div className='links-wrap'>
 						<ul className='link-card-ul' >
-							<div className='point-border'>
+							<div className={theme ?  'point-border' : 'point-border-w'}>
 								{!linkStore ? <LinkCard onClick={() => navigate("/links/new")} key={addLink.id} link={addLink} />
 														: <LinkCard onClick={() => navigate("/links/new")} key={setLink.id} link={setLink} />}
 							</div>

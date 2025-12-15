@@ -42,7 +42,11 @@
 .point-border {
   border: 3px solid rgb(32, 111, 107);
   border-radius: 12px;
-}
+} 
+.point-border-w {
+  border: 3px solid #4FD1C5;
+  border-radius: 12px;
+} 
 
 @media (max-width: 768px) {
   .link-page-wrap {
