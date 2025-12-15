@@ -3,7 +3,7 @@ import AuthStore from '../store/AuthStore'
 import { useNavigate } from 'react-router-dom';
 
 export default function LogoutBtn() {
-     const logout = AuthStore((state) => state.logout);
+     const {logout , theme} = AuthStore();
      const navigate = useNavigate();
 
      const handleLogout = () => {
@@ -12,7 +12,7 @@ export default function LogoutBtn() {
      }
   return (
     <div className='flexJustfyRight'>
-        <button id='logout-btn' onClick={handleLogout}>Logout</button>
+        <button id='logout-btn'  className={theme ? "" : "options-btn-w" } onClick={handleLogout}>Logout</button>
     </div>
   )
 }

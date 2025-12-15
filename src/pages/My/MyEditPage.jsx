@@ -7,6 +7,7 @@ import { API_BASE } from '../../config/env';
 import { useNavigate } from 'react-router-dom';
 
 export default function MyEditPage() {
+  const {theme} = AuthStore();
   const {user , login} = AuthStore();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -49,8 +50,8 @@ export default function MyEditPage() {
     <div>
          <BackBtn />
                   <div className='my-page-wrap'>
-                        <form onSubmit={handleUpdate}>
-                            <ul>
+                        <form onSubmit={handleUpdate} className={theme ? '' : 'mpw-w'} >
+                            <ul >
                               <li><span>이름 : </span><input type="text" value={name} 
                                           onChange={(e) => setName(e.target.value)}/></li>
                               <li> <span>이메일 : </span> <input type="email" value={email}

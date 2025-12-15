@@ -112,4 +112,7 @@
   .main-card-ul li{ 
     height: 10rem;
   }
+  .main-top-layout {
+    margin-bottom: 0.5rem;
+  }
 }

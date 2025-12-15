@@ -53,6 +53,9 @@
     border-radius: 10px;
     padding: 1rem
 }
+.mpw-w input{
+    border: 1px solid #725a5a !important;
+}
 
 .red-green {
         padding-right: 3rem;
