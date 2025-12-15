@@ -87,6 +87,18 @@
              0 10px 20px rgba(0, 0, 0, 0.08);
   color: rgba(255,255,255,0.87);
 }
+
+.card-title-w { 
+  width: 100%;
+  background: #725a5a;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  /* border-radius: 12px;  */
+  padding: 20px;              
+  box-shadow:0 4px 6px rgba(0, 0, 0, 0.12),
+             0 10px 20px rgba(0, 0, 0, 0.08);
+  color: rgba(255,255,255,0.87);
+}
 .card-content { 
   width: 100%;
   height: 100%;

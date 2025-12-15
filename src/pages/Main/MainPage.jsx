@@ -10,7 +10,7 @@ import Layout from '../../layout/Layout';
 
 export default function MainPage() {
   const [activeUsers , setActiveUsers] = useState([]);
-  const { user } = AuthStore();
+  const { user , theme } = AuthStore();
   const navigate = useNavigate();
   
    useEffect(() => {
@@ -35,7 +35,7 @@ export default function MainPage() {
             {/* grid로 변경 예정 */}
              <ul className='main-card-ul'>
               <li className='main-card ' onClick={() => navigate('/posts')} >
-                <div className="main-card-title">
+                <div className={theme ? "main-card-title" :  "main-card-title-w"}>
                   <h2>📝 게시판</h2>
                 </div>
                 <div className='main-card-content'>
@@ -43,7 +43,7 @@ export default function MainPage() {
                 </div>
               </li>
               <li className='main-card' onClick={() => navigate('/links')}  >
-                <div className="main-card-title" style={{color:"greenYellow"}}>
+                <div className={theme ? "main-card-title" :  "main-card-title-w"} style={{color:"greenYellow"}}>
                   <h2>🔗 Links</h2>
                 </div>
                  <div className='main-card-content'>
@@ -55,7 +55,7 @@ export default function MainPage() {
           <div className='main-bottom-layout'>
             <ul className='main-card-ul'>
               <li className='main-card' onClick={() =>navigate('/dummy')}>
-                <div className="main-card-title">
+                <div className={theme ? "main-card-title" :  "main-card-title-w"}>
                   <h2>⚙️ API </h2>
                 </div>
                   <div className='main-card-content'>
@@ -63,7 +63,7 @@ export default function MainPage() {
                 </div>
               </li>
               <li className='main-card' onClick={() => navigate('/my')}>
-                <div className="main-card-title">
+                <div className={theme ? "main-card-title" :  "main-card-title-w"}>
                   <h2>👤 마이페이지</h2>
                 </div>
                   <div className='main-card-content'>
