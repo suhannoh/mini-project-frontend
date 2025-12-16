@@ -110,7 +110,7 @@ export default function PostPage() {
           {posts.map((li,idx) => {
             console.log(li); 
             return (
-          <Post view={radioShowType} key={li.postId} id={idx+1} title={li.title} content={li.content}/>
+          <Post view={radioShowType} key={li.postId} id={li.postId} idx={idx+1} title={li.title} content={li.content}/>
             )})}
         </ul>
       </Layout>
