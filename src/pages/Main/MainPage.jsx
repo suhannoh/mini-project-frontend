@@ -92,7 +92,7 @@ export default function MainPage() {
             <ul className='main-card-ul'>
               <li className='main-card' onClick={() =>navigate('/dummy')}>
                 <div className={theme ? "main-card-title" :  "main-card-title-w"}>
-                  <h2>⚙️ API </h2>
+                  <h2>💬 Chat </h2>
                 </div>
                   <div className='main-card-content'>
                   <p>미구현 ,, api 준비중 ,, </p>

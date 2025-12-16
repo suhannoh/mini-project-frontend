@@ -1,12 +1,11 @@
-import React from 'react'
 import BackBtn from '../../components/BackBtn'
 
-export default function DummyApiPage() {
+export default function ChatPage() {
   return (
     <div>
       <BackBtn />
             <br/>
-            <p>dummyApiPage </p>
+            <p>Chat Page </p>
     </div>
   )
 }

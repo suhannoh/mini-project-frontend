@@ -8,12 +8,12 @@ import Private from './pages/Auth/Private';
 import MainPage from './pages/Main/MainPage';
 import PostPage from './pages/Posts/PostPage';
 import MyPage from './pages/My/MyPage';
-import DummyApiPage from './pages/Dummy/dummyApiPage';
 import LinkAddPage from './pages/Links/LinkAddPage';
 import MyEditPage from './pages/My/MyEditPage';
 import AuthStore from './store/AuthStore';
 import { useEffect } from 'react';
 import PostAddPage from './pages/Posts/PostAddPage';
+import ChatPage from './pages/Chat/ChatPage';
 
 function App() {
 
@@ -37,7 +37,7 @@ function App() {
           <Route path='/links/new' element={<LinkAddPage />} />
           <Route path='/posts' element={<PostPage />} />
           <Route path='/posts/new' element={<PostAddPage />} />
-          <Route path='/dummy' element={<DummyApiPage />} />
+          <Route path='/dummy' element={<ChatPage />} />
           <Route path='/my' element={<MyPage />} />
           <Route path="/my/edit" element={<MyEditPage/>} />
         </Route>
