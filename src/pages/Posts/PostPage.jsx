@@ -12,7 +12,8 @@ export default function PostPage() {
   {
     id : 1,
     title : "test title",
-    content : "test content"
+    content : "test content test content test content test content test content test content test content"+  
+              "test content test content test content test content test content test content test content test content test content test content test content test content test content test content test content "
   },
   {
     id : 2,
@@ -55,7 +56,7 @@ export default function PostPage() {
   return (
     <div>
       <Layout postBtn={true}>
-        <ul className='post-list'>
+        <ul className={radioShowType === "list" ? 'post-list-ul' : 'post-card-ul'}>
           <div className='post-search'>
             <form onSubmit={handleSearchPost}>
               <h2> 검색 </h2>

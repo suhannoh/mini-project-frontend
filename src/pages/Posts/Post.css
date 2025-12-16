@@ -1,4 +1,10 @@
-.post-list {
+.post-list-ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+.post-card-ul {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -6,27 +12,37 @@
     gap: 1rem;
 }
 .post-card {
-  border-radius: 10px;  
-  background: rgb(21, 21, 21);
+  /* background: rgba(144, 131, 131, 0.709); */
   width: 100%;
-  height: 250px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem;
+  gap: 1rem;
+  background-color: #b6aca9cc;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+.post-card:hover {
+  background-color: rgba(139, 119, 119, 0.185);
+  cursor: pointer;
+}
+.post {
+  /* border-bottom: 1px solid #cccccca0;   */
+  padding: 1.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   overflow: hidden; 
-  padding: 5rem;
-}
-.post-card-id  {
-  flex: 1;
+  background-color: #b6aca9cc; /* 다크 */
+  border-radius: 10px;
+  box-shadow: inset 0 -1px rgba(0,0,0,0.08);
 }
 
-.post {
-  border-bottom: 1px solid #cccccca0;  
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  overflow: hidden; 
+.post:hover {
+  background-color: rgba(139, 119, 119, 0.185);
+  cursor: pointer;
 }
 .post-id {
   flex: 1;
@@ -51,6 +67,7 @@
   gap: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
               0 8px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
 }
 .post-search form {
   width: 100%;
