@@ -11,7 +11,10 @@
     overflow-y: auto;            
     overflow-x: hidden; 
 }
-
+.layout-top-options {
+    display: flex;
+    justify-content: space-between;
+}
 .layout-options {
     display: flex;
     justify-content: flex-end;

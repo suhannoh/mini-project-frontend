@@ -12,6 +12,9 @@
   margin: 0;
   padding: 0;
 }
+.white {
+  background: #725a5a;
+}
 @media (max-width: 768px) {
   #root {
     width: 100%;

@@ -11,6 +11,11 @@ import Layout from '../../layout/Layout';
 export default function MainPage() {
   const [activeUsers , setActiveUsers] = useState([]);
   const { user , theme } = AuthStore();
+  const [userAPI , setUserAPI] = useState(false);
+  const [activeUserAPI , setActiveUserAPI] = useState(false);
+  const [linkAPI , setLinkAPI] = useState(false);
+  const [postAPI , setPostAPI] = useState(false);
+  
   const navigate = useNavigate();
   
    useEffect(() => {
@@ -27,8 +32,39 @@ export default function MainPage() {
         getActiveUsers();
     }, []);
 
+    useEffect(() => {
+    const check = async (url, setState) => {
+      try {
+        await axios.get(url);
+        setState(true);
+      } catch {
+        setState(false);
+      }
+    };
+
+    check(`${API_BASE}/user/health`, setUserAPI);
+    check(`${API_BASE}/useractive/health`, setActiveUserAPI);
+    check(`${API_BASE}/user/links/health`, setLinkAPI);
+    setPostAPI(false);
+    // check(`${API_BASE}/post/health`, setPostAPI);  // Post도 만들거면 이렇게
+  }, []);
+
+
   return (
     <div>
+      <div className='api'> 
+        <h2> API 상태 </h2>
+        <div className='api-health'>
+          <div>
+            <p> Post API : {postAPI ? "🟢" : "⚪️"} </p>
+            <p> Link API : {linkAPI ? "🟢" : "🔴"}</p>
+          </div>
+          <div>
+            <p> Active User API : {activeUserAPI ? "🟢" : "🔴"}</p>
+            <p> User API : {userAPI ? "🟢" : "🔴"}</p>
+          </div>
+        </div>
+      </div>
         <Layout backbtn={false} >
           <div className='main-wrap'>
             <div className='main-top-layout'>

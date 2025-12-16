@@ -12,7 +12,7 @@ export default function LogoutBtn() {
      }
   return (
     <div className='flexJustfyRight'>
-        <button id='logout-btn'  className={theme ? "" : "options-btn-w" } onClick={handleLogout}>Logout</button>
+        <button id='logout-btn'  className={theme ? "" : "white" } onClick={handleLogout}>Logout</button>
     </div>
   )
 }
