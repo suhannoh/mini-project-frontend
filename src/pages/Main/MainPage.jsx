@@ -76,7 +76,7 @@ export default function MainPage() {
                   <h2>📝 게시판</h2>
                 </div>
                 <div className='main-card-content'>
-                  <p> 구현중 ,,, ~ </p>
+                  <p> 자유 / 질문 / 개발정보</p>
                 </div>
               </li>
               <li className='main-card' onClick={() => navigate('/links')}  >
@@ -96,7 +96,7 @@ export default function MainPage() {
                   <h2>💬 Chat </h2>
                 </div>
                   <div className='main-card-content'>
-                  <p>미구현 ,, api 준비중 ,, </p>
+                  <p> 준비중 , , , </p>
                 </div>
               </li>
               <li className='main-card' onClick={() => navigate('/my')}>
