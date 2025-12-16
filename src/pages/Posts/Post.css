@@ -5,6 +5,20 @@
     padding: 2rem;
     gap: 1rem;
 }
+.card {
+  /* border-bottom: 1px solid #cccccca0; */
+  border-radius: 10px;  
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden; 
+  padding: 5rem;
+}
+.card-id  {
+  flex: 1;
+}
 .post {
   border-bottom: 1px solid #cccccca0;  
   padding: 1rem;
@@ -12,8 +26,6 @@
   align-items: center;
   justify-content: space-between;
   overflow: hidden; 
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
-              0 8px 16px rgba(0, 0, 0, 0.1); */
 }
 .post-id {
   flex: 1;
@@ -29,7 +41,7 @@
 .post-search {
   /* border: 1px solid #ccc; */
   border-radius: 10px;
-  padding: 2rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,8 +111,20 @@ textarea {
     border-bottom: 1px solid #ccc;
     padding: 0.5rem;
   }
+  .input-set {
+  width: 100%;
+  }
+  .input-set input {
+    padding: 1rem
+  }
   .post-search form{
     flex-direction: column;
   }
-   
+  .post {
+    padding: 0;
+  }
+
+  .post-like {
+    flex:2;
+  }
 }

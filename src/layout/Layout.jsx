@@ -3,7 +3,7 @@ import Theme from '../components/theme'
 import LogoutBtn from '../components/LogoutBtn'
 import BackBtn from '../components/BackBtn'
 import PostBtn from '../components/PostBtn'
-export default function Layout({ children , backbtn=true , logoutBtn=true , postBtn=false}) {
+export default function Layout({ children , backbtn=true , logoutBtn=true , postBtn=false }) {
   
   return (
     <>

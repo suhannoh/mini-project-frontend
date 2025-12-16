@@ -23,11 +23,32 @@ export default function PostPage() {
     id : 3,
     title : "test title",
     content : "test content"
+  },
+  {
+    id : 4,
+    title : "test title",
+    content : "test content"
+  },
+  {
+    id : 5,
+    title : "test title",
+    content : "test content"
+  },
+  {
+    id : 6,
+    title : "test title",
+    content : "test content"
+  },
+  {
+    id : 7,
+    title : "test title",
+    content : "test content"
   },  
 ] 
   const [radioType, setRadioType] = useState("title");
   const [radioShowType, setRadioShowType] = useState("list");
   const { theme } = AuthStore();
+
   const handleSearchPost = (e) => {
     e.preventDefault();
   }
@@ -70,7 +91,7 @@ export default function PostPage() {
 
         </div>
           {list.map(li => (
-          <Post key={li.id} id={li.id} title={li.title} content={li.content}/>
+          <Post view={radioShowType} key={li.id} id={li.id} title={li.title} content={li.content}/>
             ))}
         </ul>
       </Layout>
