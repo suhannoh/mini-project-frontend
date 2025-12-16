@@ -5,20 +5,21 @@
     padding: 2rem;
     gap: 1rem;
 }
-.card {
-  /* border-bottom: 1px solid #cccccca0; */
+.post-card {
   border-radius: 10px;  
-  padding: 1rem;
+  background: rgb(21, 21, 21);
   width: 100%;
+  height: 250px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   overflow: hidden; 
   padding: 5rem;
 }
-.card-id  {
+.post-card-id  {
   flex: 1;
 }
+
 .post {
   border-bottom: 1px solid #cccccca0;  
   padding: 1rem;
@@ -123,7 +124,6 @@ textarea {
   .post {
     padding: 0;
   }
-
   .post-like {
     flex:2;
   }
