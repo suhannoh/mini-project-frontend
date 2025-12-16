@@ -20,12 +20,12 @@
   align-items: center;
   padding: 5rem;
   gap: 1rem;
-  background-color: #b6aca9cc;
+  background-color: rgba(139, 119, 119, 0.185);
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
 }
 .post-card:hover {
-  background-color: rgba(139, 119, 119, 0.185);
+  background-color: #b6aca9cc;
   cursor: pointer;
 }
 .post {
@@ -35,8 +35,7 @@
   align-items: center;
   justify-content: space-between;
   overflow: hidden; 
-  background-color: #b6aca9cc; /* 다크 */
-  border-radius: 10px;
+  /* background-color: #b6aca9cc;  */
   box-shadow: inset 0 -1px rgba(0,0,0,0.08);
 }
 
@@ -111,12 +110,75 @@
 
 .post-add-page {
   width: 100%;
+  height: 100%;
+}
+.post-add-page form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  gap: 3rem;
+}
+.post-add-left {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  
+}
+.post-add-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.post-submit-btn{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.post-add-right button{
+  font-size: 0.8rem;
+  width: 4rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+  background: #3B82F6;
+  box-shadow: 0 4px 12px rgba(59,130,246,0.3);
 }
 
+.post-add-left input[type="text"]{
+  width: 90%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+.post-add-author {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
+.post-add-author input[type="radio"]{
+  margin-right: 0.5rem;
+}
+#category {
+  width: 90%;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+
+}
 textarea {
+  width: 100%;
   resize: none;
+  height: 20rem;
+  border-radius: 10px;
+  padding: 1rem;
 }
 .white {
   background: #725a5a;
@@ -139,9 +201,28 @@ textarea {
     flex-direction: column;
   }
   .post {
-    padding: 0;
+    padding: 0.4rem 0;
+    font-size: 12px;
   }
   .post-like {
     flex:2;
   }
+  .post-add-page form {
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0.5rem;
+  }
+  .post-add-left {
+    width: 100%;
+  }
+  .post-add-right {
+    width: 100%;
+  }
+  .post-card-ul {
+    padding: 0.5rem;
+  }
+  .post-card {
+    padding : 2rem;
+  }
+
 }

@@ -3,52 +3,68 @@ import LogoutBtn from '../../components/LogoutBtn'
 import './Post.css'
 import Post from '../../components/Post'
 import Layout from '../../layout/Layout'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AuthStore from '../../store/AuthStore'
+import axios from 'axios'
+import { API_BASE } from '../../config/env'
 
 export default function PostPage() {
 
-  const list = [
-  {
-    id : 1,
-    title : "test title",
-    content : "test content test content test content test content test content test content test content"+  
-              "test content test content test content test content test content test content test content test content test content test content test content test content test content test content test content "
-  },
-  {
-    id : 2,
-    title : "test title",
-    content : "test content"
-  },
-  {
-    id : 3,
-    title : "test title",
-    content : "test content"
-  },
-  {
-    id : 4,
-    title : "test title",
-    content : "test content"
-  },
-  {
-    id : 5,
-    title : "test title",
-    content : "test content"
-  },
-  {
-    id : 6,
-    title : "test title",
-    content : "test content"
-  },
-  {
-    id : 7,
-    title : "test title",
-    content : "test content"
-  },  
-] 
+//   const list = [
+//   {
+//     id : 1,
+//     title : "test title",
+//     content : "test content test content test content test content test content test content test content"+  
+//               "test content test content test content test content test content test content test content test content test content test content test content test content test content test content test content "
+//   },
+//   {
+//     id : 2,
+//     title : "test title",
+//     content : "test content"
+//   },
+//   {
+//     id : 3,
+//     title : "test title",
+//     content : "test content"
+//   },
+//   {
+//     id : 4,
+//     title : "test title",
+//     content : "test content"
+//   },
+//   {
+//     id : 5,
+//     title : "test title",
+//     content : "test content"
+//   },
+//   {
+//     id : 6,
+//     title : "test title",
+//     content : "test content"
+//   },
+//   {
+//     id : 7,
+//     title : "test title",
+//     content : "test content"
+//   },  
+// ] 
+  const [posts , setPosts] = useState([]);
   const [radioType, setRadioType] = useState("title");
   const [radioShowType, setRadioShowType] = useState("list");
   const { theme } = AuthStore();
+
+  useEffect(()=> {
+    const getPosts = async () => {
+      try {
+        const res = await axios.get(`${API_BASE}/posts`);
+        setPosts(res.data)
+      } catch (e) {
+          console.log(e);
+      }
+    }
+    getPosts();
+  }, []);
+
 
   const handleSearchPost = (e) => {
     e.preventDefault();
@@ -91,9 +107,11 @@ export default function PostPage() {
                 </div>
 
         </div>
-          {list.map(li => (
-          <Post view={radioShowType} key={li.id} id={li.id} title={li.title} content={li.content}/>
-            ))}
+          {posts.map((li,idx) => {
+            console.log(li); 
+            return (
+          <Post view={radioShowType} key={li.postId} id={idx+1} title={li.title} content={li.content}/>
+            )})}
         </ul>
       </Layout>
     </div>

@@ -45,6 +45,7 @@ export default function MainPage() {
     check(`${API_BASE}/user/health`, setUserAPI);
     check(`${API_BASE}/useractive/health`, setActiveUserAPI);
     check(`${API_BASE}/user/links/health`, setLinkAPI);
+    check(`${API_BASE}/posts/health`, setPostAPI);
     setPostAPI(false);
     // check(`${API_BASE}/post/health`, setPostAPI);  // Post도 만들거면 이렇게
   }, []);
@@ -56,7 +57,7 @@ export default function MainPage() {
         <h2> API 상태 </h2>
         <div className='api-health'>
           <div>
-            <p> Post API : {postAPI ? "🟢" : "⚪️"} </p>
+            <p> Post API : {postAPI ? "🟢" : "🔴"} </p>
             <p> Link API : {linkAPI ? "🟢" : "🔴"}</p>
           </div>
           <div>

@@ -14,6 +14,7 @@ import AuthStore from './store/AuthStore';
 import { useEffect } from 'react';
 import PostAddPage from './pages/Posts/PostAddPage';
 import ChatPage from './pages/Chat/ChatPage';
+import PostDetailPage from './pages/Posts/PostDetailPage';
 
 function App() {
 
@@ -37,6 +38,8 @@ function App() {
           <Route path='/links/new' element={<LinkAddPage />} />
           <Route path='/posts' element={<PostPage />} />
           <Route path='/posts/new' element={<PostAddPage />} />
+          <Route path="/posts/:id" element={<PostDetailPage />} />
+          
           <Route path='/dummy' element={<ChatPage />} />
           <Route path='/my' element={<MyPage />} />
           <Route path="/my/edit" element={<MyEditPage/>} />
