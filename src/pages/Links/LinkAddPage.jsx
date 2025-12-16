@@ -12,7 +12,7 @@ export default function LinkAddPage() {
   const [notionUrl , setNotion] = useState("");
   const [gitHubUrl , setGithub] = useState("");
   const navigate = useNavigate();
-  const {user} = AuthStore();
+  const {user , theme} = AuthStore();
   const {linkStore} = LinkStore();
 
   useEffect (() => {
@@ -66,7 +66,7 @@ export default function LinkAddPage() {
                 <li>Notion : <input id="notion" type="url" value={notionUrl} placeholder='notion - url' name="notionUrl"
                                onChange={(e) => setNotion(e.target.value)} /></li>
             </ul>
-            <button type='submit'>저장</button>
+            <button className={theme ? '' : 'edit-btn-w'} type='submit'>저장</button>
             </form>
           </div>
         </div>

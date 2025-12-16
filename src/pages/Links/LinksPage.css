@@ -47,6 +47,11 @@
   border: 3px solid #4FD1C5;
   border-radius: 12px;
 } 
+.edit-btn-w {
+  background: #725a5a;
+  color : rgba(255,255,255,0.87);
+  /* border: 1px solid #504b33; */
+}
 
 @media (max-width: 768px) {
   .link-page-wrap {

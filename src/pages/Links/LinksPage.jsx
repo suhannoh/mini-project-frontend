@@ -15,7 +15,7 @@ export default function LinksPage() {
 	const [linkList, setLinkList] = useState([]);
 	const [load, setLoad] = useState(true);
 
-
+// + 서버  , 렉 무엇 ? , 나에게 가끔 피드백을 주시오 
 	const addLink = { id: "add", user_name: "New Link" }
 	const setLink = { id: "set", user_name: "Set My Link" }
 

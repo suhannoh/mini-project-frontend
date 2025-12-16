@@ -95,7 +95,7 @@ export default function LoginPage() {
                         </div>
                         <div className='auth-input-box'>
                             <p> Password </p>
-                            <input type="password" placeholder='비밀번호'
+                            <input type="password" placeholder='비밀번호' autocomplete="current-password"
                                 value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
                         <div className='login-submit'>

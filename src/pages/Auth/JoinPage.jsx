@@ -94,7 +94,7 @@ export default function JoinPage() {
               </div>
               <div className='auth-input-box'>
                 <p><span className='red-text'>*</span> Password </p>
-                <input type="password" placeholder='비밀번호 (필수)'
+                <input type="password" placeholder='비밀번호 (필수)' autoComplete='new-password'
                   value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
               <div className='auth-input-box'>

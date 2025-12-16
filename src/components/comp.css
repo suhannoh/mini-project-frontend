@@ -118,6 +118,8 @@
   /* height: 15rem; */
   background: #151515;
   /* border-radius: 14px; */
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
   overflow: hidden; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),
                 0 8px 16px rgba(0, 0, 0, 0.1);
@@ -133,7 +135,7 @@
 
 .empty-links{
   opacity: .7;
-  padding: 1rem;
+  padding: 3rem;
 }
 
 .options-btn-w {
