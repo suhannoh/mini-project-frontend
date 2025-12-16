@@ -8,7 +8,7 @@ export default function Theme() {
     }
   return (
     <div>
-        <button class={theme ? "" : "white" } onClick={handelToggleTheme}> {theme ? "🌙" : "☀️"} </button>
+        <button className={theme ? "" : "white" } onClick={handelToggleTheme}> {theme ? "🌙" : "☀️"} </button>
     </div>
   )
 }

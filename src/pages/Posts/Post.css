@@ -91,3 +91,16 @@ textarea {
 .white {
   background: #725a5a;
 }
+@media (max-width: 768px) {
+  .post-search {
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 0.5rem;
+  }
+  .post-search form{
+    flex-direction: column;
+  }
+   
+}
