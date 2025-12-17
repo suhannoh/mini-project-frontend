@@ -84,7 +84,8 @@ export default function PostDetailPage() {
                 </div>
                 <div className='post-detail-comment'>
                     <span> 사용자 4</span>
-                    <p>댓글 예제 4 LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL</p> 
+                    <p>댓글 예제 4 LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+                                LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL</p> 
                     <div className='post-detail-comment-createdAt'> 
                        <span>createdAt</span> 
                     </div> 

@@ -221,7 +221,7 @@ textarea {
 }
 .post-detail-comment {
   display: grid;
-  grid-template-columns: 90px 1fr auto;
+  grid-template-columns: 90px minmax(0, max-content) auto;
   align-items: center;
   gap: 0.5rem;
   width: 100%;
@@ -231,6 +231,7 @@ textarea {
   width: max-content;
   overflow-wrap: anywhere;
   word-break: break-word;
+  text-align: start;
 }
 .post-detail-comment span {
    white-space: nowrap;

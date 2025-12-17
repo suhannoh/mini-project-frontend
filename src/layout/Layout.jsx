@@ -7,7 +7,7 @@ export default function Layout({ children , backbtn=true , logoutBtn=true , post
   
   const btn = (e) => {
      e.preventDefault();
-    console.log("1");
+    alert("Comment API 준비중");
   }
 
   return (
