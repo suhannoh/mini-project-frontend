@@ -3,20 +3,25 @@
   --text: #111111;
   --panel: #f4f4f5;
   --btn: #1a1a1a;
+  --option-btn : #725a5a;
+  --white-text : rgba(255,255,255,0.87);
+  --card-link-title : #3B82F6;
+  --point-border : #4FD1C5;
+  --option-input : #9c8e8e93;
+
 
   background-color: var(--bg);
   color: var(--text);
-
-  /* color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424; */
-
 }
 html[data-theme="dark"]{
   --bg: #242424;
   --text: rgba(255,255,255,0.87);
   --panel: #151515;
   --btn: #1a1a1a;
+  --option-btn: #1a1a1a;
+  --card-link-title : #1e1e1e; 
+  --point-border : rgb(32, 111, 107);
+  --option-input : #817d7d84;
 
   color-scheme: dark;
 }
@@ -47,7 +52,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #646cff;  
 }
 button:focus,
 button:focus-visible {

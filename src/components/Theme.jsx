@@ -7,8 +7,9 @@ export default function Theme() {
         toggleTheme();
     }
   return (
-    <div>
-        <button className={theme ? "" : "white" } onClick={handelToggleTheme}> {theme ? "🌙" : "☀️"} </button>
+    <div >
+        <button className='theme-btn' style={{height:"100%"}}
+        onClick={handelToggleTheme}> {theme ? "🌙" : "☀️"} </button>
     </div>
   )
 }

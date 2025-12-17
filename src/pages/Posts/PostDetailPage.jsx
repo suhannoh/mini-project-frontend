@@ -28,21 +28,76 @@ export default function PostDetailPage() {
             </Layout>
         )
     }
+
+    const formatDateTime = (isoString) => {
+        const date = new Date(isoString);
+        return date.toLocaleString('ko-KR', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+        });
+    };
+
   return (
     <div>
-        <Layout>
+        <Layout textInput={true}>
         <div className="post-detail">
-            <h1 style={{
-                color: "red"
-            }}> TEST POST DETAIL</h1>
-            <h1>postid : {post.id}</h1>
-            <h1>post userId : {post.userId}</h1>
-            <h1>title : {post.title}</h1>
-            <h1>content : {post.content}</h1>
-            <h1>category : {post.category}</h1>
-            <h1>author : {post.author}</h1>
-            <h1>created_at : {post.createdAt}</h1>
-            <h1>updated_at : {post.updatedAt}</h1>
+            
+            <div className='post-detail-header'> 
+              {/* <h1> postid : {post.id}</h1> */}
+              <div className='post-detail-header-top'>
+            	<h1> {post.title}</h1>
+              </div>
+              <div className='post-detail-header-btm'>
+                <p>{post.author} / {post.category}</p>
+				<p>{formatDateTime(post.updatedAt)} </p>
+              </div>
+            </div>
+            <div className='post-detail-main'>
+				<p className='post-detail-font-size'>
+                    {post.content}</p>
+            </div>
+            <div className='post-detail-footer'>
+                <div className='post-detail-comment'>
+                    <span> 사용자 1</span>
+                    <p>댓글 예제 1</p>  
+                    <div className='post-detail-comment-createdAt'> 
+                       <span>createdAt</span> 
+                    </div>
+                </div>
+                <div className='post-detail-comment'>
+                    <span> 사용자 2</span>
+                    <p>댓글 예제 222222222222</p>  
+                    <div className='post-detail-comment-createdAt'> 
+                       <span>createdAt</span> 
+                    </div>
+                </div>
+                <div className='post-detail-comment'>
+                    <span> 사용자 3</span>
+                    <p>댓글 예제 333 mmmmmmmmmmmmmmmmmmmmmmmmmmmm</p>  
+                    <div className='post-detail-comment-createdAt'> 
+                       <span>createdAt</span> 
+                    </div>
+                </div>
+                <div className='post-detail-comment'>
+                    <span> 사용자 4</span>
+                    <p>댓글 예제 4 LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL</p> 
+                    <div className='post-detail-comment-createdAt'> 
+                       <span>createdAt</span> 
+                    </div> 
+                </div>
+                <div className='post-detail-comment'>
+                    <span> 사용자 5</span>
+                    <p>댓글 예제 5</p>  
+                    <div className='post-detail-comment-createdAt'> 
+                       <span>createdAt</span> 
+                    </div>
+                </div>
+            </div>
+           
         </div>
         </Layout>
     </div>
