@@ -7,8 +7,10 @@ import { useState } from 'react'
 import axios from 'axios'
 import AuthStore from '../store/AuthStore'
 import { API_BASE } from '../config/env'
+import EditBtn from '../components/EditBtn'
 export default function Layout({ children , backbtn=true , logoutBtn=true , postBtn=false ,
-                                 textInput=false , postId=null , commentMethod}) {
+                                 textInput=false , postId=null , commentMethod , editBtn=false,
+                                 post}) {
   
   const [comment, setComment] = useState("");
   const {user} = AuthStore();
@@ -32,6 +34,7 @@ export default function Layout({ children , backbtn=true , logoutBtn=true , post
       <div className='layout-top-options'>
         {backbtn && <BackBtn />}
         {postBtn && <PostBtn />}
+        {editBtn && <EditBtn post={post}/>}
       </div>
       <div className='layout-wrap' 
            style={{

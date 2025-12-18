@@ -3,11 +3,13 @@ import Layout from '../../layout/Layout'
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import { API_BASE } from '../../config/env';
+import AuthStore from '../../store/AuthStore';
 
 export default function PostDetailPage() {
     const {id} = useParams();
     const [post , setPost] = useState(null);
     const [comments ,setComments] = useState([]);
+    const {user} = AuthStore();
 
     const fetchComments = async () => {
         const resc = await axios.get(`${API_BASE}/post/comment/${id}`);
@@ -20,6 +22,7 @@ export default function PostDetailPage() {
         try {
             const res = await axios.get(`${API_BASE}/posts/${id}`);
             setPost(res.data);
+            console.log(res.data)
             await fetchComments();
         } catch (e) {
             const status = e.response?.status;
@@ -59,9 +62,12 @@ export default function PostDetailPage() {
         });
     };
 
+    const isMyPost = post.userId === user.id;
+
   return (
     <div>
-        <Layout textInput={true} postId={Number(id)} commentMethod={fetchComments}>
+        <Layout editBtn={isMyPost} post={post}
+        textInput={true} postId={Number(id)} commentMethod={fetchComments}>
         <div className="post-detail">
             
             <div className='post-detail-header'> 

@@ -1,17 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../../layout/Layout'
 import axios from 'axios';
 import { API_BASE } from '../../config/env';
 import AuthStore from '../../store/AuthStore';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function PostAddPage() {
+  const {state} = useLocation();
+
   const navigate = useNavigate();
   const {user} = AuthStore();
   const [title , setTitle] = useState(""); // 제목
   const [category , setCategory] = useState(""); //카테고리
   const [author , setAuthor] = useState("author"); // 이름표시
   const [content , setContent] = useState(""); // 내용
+
+  useEffect(() => {
+      if (!state) return;
+      setTitle(state.title ?? "");
+      setContent(state.content ?? "");
+      setCategory(state.category ?? "");
+      setAuthor(state.author === "익명" ? "anon" : "author");
+  },[state])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,10 +32,15 @@ export default function PostAddPage() {
       content,
       category,
       author : author === "author" ? user.name : "익명",
+      postId : state && state.id,
     };
     try {
-      await axios.post(`${API_BASE}/posts`, data);
-      alert("성공적으로 글 작성이 완료되었습니다");
+      if(!state) {
+        await axios.post(`${API_BASE}/posts`, data);
+      } else {
+        await axios.put(`${API_BASE}/posts`, data);
+      }
+      alert(`성공적으로 글 ${!state ? "작성" : "수정"}이 완료되었습니다`);
       navigate(-1);
     } catch (e) {
         const status = e.response?.status;
@@ -37,6 +52,7 @@ export default function PostAddPage() {
     }
   }
 
+
   return (
     <div>
         <Layout >
@@ -45,7 +61,8 @@ export default function PostAddPage() {
               <div className='post-add-left'>
                 <h1>Post Setting</h1>
                 <h3>제목</h3>
-                  <input style={{border : title.trim() !== "" ? "" : "1px solid #EF4444"}}
+                  <input value={title}
+                        style={{border : title.trim() !== "" ? "" : "1px solid #EF4444"}}
                          onChange={(e) => setTitle(e.target.value)} type="text" 
                          placeholder='제목을 입력해주세요 '/>
                 <h3> 카테고리 </h3>
@@ -73,7 +90,9 @@ export default function PostAddPage() {
                           onChange={(e) => setContent(e.target.value)}
                           maxLength={500}></textarea>
                 <div className='post-submit-btn'>
-                  <button type='submit' disabled={!title.trim() || !category.trim() || !content.trim()}>작성</button>
+                  <button type='submit' disabled={!title.trim() || !category.trim() || !content.trim()}>
+                    {state ? "수정" : "작성"}
+                  </button>
                 </div>
               </div>
               </form>
