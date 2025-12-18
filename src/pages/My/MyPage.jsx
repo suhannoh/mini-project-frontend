@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './MyPage.css'
 import LogoutBtn from '../../components/LogoutBtn'
 import BackBtn from '../../components/BackBtn'
 import AuthStore from '../../store/AuthStore'
 import { useNavigate } from 'react-router-dom'
-import Layout from '../../layout/Layout'
 import Theme from '../../components/theme'
 
 export default function MyPage() {

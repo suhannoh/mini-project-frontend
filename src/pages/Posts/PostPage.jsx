@@ -1,5 +1,3 @@
-import BackBtn from '../../components/BackBtn'
-import LogoutBtn from '../../components/LogoutBtn'
 import './Post.css'
 import Post from '../../components/Post'
 import Layout from '../../layout/Layout'
@@ -10,44 +8,6 @@ import { API_BASE } from '../../config/env'
 
 export default function PostPage() {
 
-//   const list = [
-//   {
-//     id : 1,
-//     title : "test title",
-//     content : "test content test content test content test content test content test content test content"+  
-//               "test content test content test content test content test content test content test content test content test content test content test content test content test content test content test content "
-//   },
-//   {
-//     id : 2,
-//     title : "test title",
-//     content : "test content"
-//   },
-//   {
-//     id : 3,
-//     title : "test title",
-//     content : "test content"
-//   },
-//   {
-//     id : 4,
-//     title : "test title",
-//     content : "test content"
-//   },
-//   {
-//     id : 5,
-//     title : "test title",
-//     content : "test content"
-//   },
-//   {
-//     id : 6,
-//     title : "test title",
-//     content : "test content"
-//   },
-//   {
-//     id : 7,
-//     title : "test title",
-//     content : "test content"
-//   },  
-// ] 
   const [posts , setPosts] = useState([]);
   const [radioType, setRadioType] = useState("title");
   const [radioShowType, setRadioShowType] = useState("list");
@@ -59,7 +19,10 @@ export default function PostPage() {
         const res = await axios.get(`${API_BASE}/posts`);
         setPosts(res.data)
       } catch (e) {
-          console.log(e);
+        const status = e.response?.status;
+        const code = e.response?.data?.code;
+        const message = e.response?.data?.msg;
+        console.log(status, code, message);
       }
     }
     getPosts();
@@ -69,6 +32,7 @@ export default function PostPage() {
   const handleSearchPost = (e) => {
     e.preventDefault();
   }
+
   return (
     <div>
       <Layout postBtn={true}>
@@ -108,7 +72,6 @@ export default function PostPage() {
 
         </div>
           {posts.map((li,idx) => {
-            console.log(li); 
             return (
           <Post view={radioShowType} list={li} key={li.postId} id={li.postId} idx={idx+1} title={li.title} content={li.content}/>
             )})}

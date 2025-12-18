@@ -47,7 +47,11 @@ export default function LinkAddPage() {
        alert("Link를 성공적으로 저장하였습니다.")
       }
     } catch (e) {
-        alert("예상치 못한 오류로 저장에 실패하였습니다." + e);
+        const status = e.response?.status;
+        const code = e.response?.data?.code;
+        const message = e.response?.data?.msg;
+        console.log(status, code, message);
+        alert("저장에 실패하였습니다.");
     } finally {
       navigate("/links" ,{ replace: true });
     }

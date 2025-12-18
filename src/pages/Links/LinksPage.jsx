@@ -14,8 +14,6 @@ export default function LinksPage() {
 	const { linkStore, setLinkStore } = LinkStore();
 	const [linkList, setLinkList] = useState([]);
 	const [load, setLoad] = useState(true);
-
-// + 서버  , 렉 무엇 ? , 나에게 가끔 피드백을 주시오 
 	const addLink = { id: "add", user_name: "New Link" }
 	const setLink = { id: "set", user_name: "Set My Link" }
 
@@ -24,7 +22,6 @@ export default function LinksPage() {
 			setLoad(false);
 			return;
 		}
-
 
 		const getList = async () => {
 
@@ -35,9 +32,10 @@ export default function LinksPage() {
 				const myLink = res.data.find(li => li.user_id === user.id);
 				setLinkStore(myLink);
 			} catch (e) {
-				console.log("axios error", e);
-         		console.log("status", e?.response?.status);
-       			console.log("data", e?.response?.data); 
+				const status = e.response?.status;
+				const code = e.response?.data?.code;
+				const message = e.response?.data?.msg;
+				console.log(status, code, message);
 			} finally {
 				setLoad(false);
 			}

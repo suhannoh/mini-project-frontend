@@ -42,14 +42,11 @@ export default function JoinPage() {
       alert("회원가입 성공!");
       navigate("/")
     } catch (e) {
-      if (e.response?.status === 500) {
-
-        alert("중복되는 이메일입니다. ");
-      }
-      else {
-        alert("예상치 못한 오류로 종료되었습니다")
-      }
-      console.log(e);
+        const status = e.response?.status;
+        const code = e.response?.data?.code;
+        const message = e.response?.data?.msg;
+        console.log(status, code, message);
+        alert("회원가입 실패하였습니다")
       setLoad(false);
     }
   };

@@ -35,13 +35,11 @@ export default function LoginPage() {
             login(res.data);
             navigate("/main", { replace: true });
         } catch (e) {
-            // 500 -> 데이터 오류 (서버에서 보내준 오류코드 )
-            if (e.response?.status === 500) {
-                alert("이메일과 비밀번호를 확인해주세요 ");
-            } else {
-                alert("예상치 못한 오류가 발생되어 로그인에 실패하였습니다 ")
-            }
-
+            const status = e.response?.status;
+            const code = e.response?.data?.code;
+            const message = e.response?.data?.msg;
+            console.log(status, code, message);
+            alert("로그인에 실패하였습니다 ")
             setLoad(false);
         }
     }
@@ -70,7 +68,7 @@ export default function LoginPage() {
                     onClick={() => {
                         AuthStore.setState({
                             isLogin: true, user: {
-                                id: 1,
+                                id: null,
                             }
                         });
                         navigate("/main");

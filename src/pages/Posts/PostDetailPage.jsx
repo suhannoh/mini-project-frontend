@@ -14,12 +14,14 @@ export default function PostDetailPage() {
             const res = await axios.get(`${API_BASE}/posts/${id}`);
             setPost(res.data);
         } catch (e) {
-            console.log(e);
+            const status = e.response?.status;
+            const code = e.response?.data?.code;
+            const message = e.response?.data?.msg;
+            console.log(status, code, message);
             alert("게시글을 불러오지 못 했습니다 ");
         }} 
         getPostDetail();
     }, [id])
-    console.log("포스트 : " , post)
 
     if(!post) {
         return (

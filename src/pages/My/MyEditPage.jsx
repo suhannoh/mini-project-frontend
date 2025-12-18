@@ -42,7 +42,10 @@ export default function MyEditPage() {
       alert("수정이 성공적으로 완료되었습니다");
       navigate(-1);
     } catch (e) {
-      console.log(e);
+        const status = e.response?.status;
+        const code = e.response?.data?.code;
+        const message = e.response?.data?.msg;
+        console.log(status, code, message);
     }
     
   }

@@ -24,9 +24,10 @@ export default function MainPage() {
                 const res = await axios.get(`${API_BASE}/useractive`);
                 setActiveUsers(res.data);
             } catch (e) {
-                console.log("axios error", e);
-                console.log("status", e?.response?.status);
-                console.log("data", e?.response?.data); 
+                const status = e.response?.status;
+                const code = e.response?.data?.code;
+                const message = e.response?.data?.msg;
+                console.log(status, code, message);
             } 
         };
         getActiveUsers();
