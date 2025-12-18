@@ -23,6 +23,7 @@ export default function PostPage() {
         const code = e.response?.data?.code;
         const message = e.response?.data?.msg;
         console.log(status, code, message);
+        alert(message);
       }
     }
     getPosts();

@@ -18,7 +18,7 @@ export default function PostDetailPage() {
             const code = e.response?.data?.code;
             const message = e.response?.data?.msg;
             console.log(status, code, message);
-            alert("게시글을 불러오지 못 했습니다 ");
+            alert(message);
         }} 
         getPostDetail();
     }, [id])

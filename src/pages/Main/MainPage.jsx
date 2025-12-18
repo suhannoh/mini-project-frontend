@@ -38,7 +38,8 @@ export default function MainPage() {
       try {
         await axios.get(url);
         setState(true);
-      } catch {
+      } catch (e) {
+        alert(e.response.data.msg);
         setState(false);
       }
     };

@@ -39,7 +39,7 @@ export default function LoginPage() {
             const code = e.response?.data?.code;
             const message = e.response?.data?.msg;
             console.log(status, code, message);
-            alert("로그인에 실패하였습니다 ")
+            alert(message);
             setLoad(false);
         }
     }

@@ -51,7 +51,7 @@ export default function LinkAddPage() {
         const code = e.response?.data?.code;
         const message = e.response?.data?.msg;
         console.log(status, code, message);
-        alert("저장에 실패하였습니다.");
+        alert(message);
     } finally {
       navigate("/links" ,{ replace: true });
     }
