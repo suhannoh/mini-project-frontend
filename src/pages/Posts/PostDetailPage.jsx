@@ -80,7 +80,6 @@ export default function PostDetailPage() {
             </div>
             <div className='post-detail-footer'>
                 {comments.map((comment) => {
-                    console.log(comment);
                     return (
                     <div className='post-detail-comment' key={comment.id}>
                     <span> {comment.name}</span>
