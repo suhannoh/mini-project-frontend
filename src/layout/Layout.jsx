@@ -3,11 +3,28 @@ import Theme from '../components/theme'
 import LogoutBtn from '../components/LogoutBtn'
 import BackBtn from '../components/BackBtn'
 import PostBtn from '../components/PostBtn'
-export default function Layout({ children , backbtn=true , logoutBtn=true , postBtn=false , textInput=false}) {
+import { useState } from 'react'
+import axios from 'axios'
+import AuthStore from '../store/AuthStore'
+import { API_BASE } from '../config/env'
+export default function Layout({ children , backbtn=true , logoutBtn=true , postBtn=false ,
+                                 textInput=false , postId=null , commentMethod}) {
   
-  const btn = (e) => {
+  const [comment, setComment] = useState("");
+  const {user} = AuthStore();
+  const commentSubmitHandler = async (e) => {
      e.preventDefault();
-    alert("Comment API 준비중");
+     try {
+          await axios.post(`${API_BASE}/post/comment` , {
+          postId,
+          userId : user.id,
+          comment
+        })
+        setComment("");
+        commentMethod();
+     } catch {
+        console.log("error 발생 !!")
+     }
   }
 
   return (
@@ -27,8 +44,9 @@ export default function Layout({ children , backbtn=true , logoutBtn=true , post
         borderRadius : textInput ? "10px" : "",
         }}>
         {textInput && <div className='layout-option-input'>
-          <form className='layout-option-input-wrap' onSubmit={btn}>
-            <input type="text" placeholder='댓글을 입력해주세요' /> 
+          <form className='layout-option-input-wrap' onSubmit={commentSubmitHandler}>
+            <input onChange={(e) => setComment(e.target.value)} 
+                   value={comment} type="text" placeholder='댓글을 입력해주세요' /> 
             <button type='submit' className='layout-option-submit'> ▷ </button> 
           </form> 
         </div>}

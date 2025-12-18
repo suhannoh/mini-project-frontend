@@ -11,6 +11,7 @@ export default function PostPage() {
   const [posts , setPosts] = useState([]);
   const [radioType, setRadioType] = useState("title");
   const [radioShowType, setRadioShowType] = useState("list");
+  const [searchText , setSearchText] = useState("");
   const { theme } = AuthStore();
 
   useEffect(()=> {
@@ -30,8 +31,25 @@ export default function PostPage() {
   }, []);
 
 
-  const handleSearchPost = (e) => {
+  const handleSearchPost = async (e) => {
     e.preventDefault();
+
+    try {
+        const res = await axios.get(`${API_BASE}/posts/search` , {
+             params: {
+                type : radioType,
+                text : searchText
+              }
+        })
+        setPosts(res.data);
+        
+    } catch (e) {
+        const status = e.response?.status;
+        const code = e.response?.data?.code;
+        const message = e.response?.data?.msg;
+        console.log(status, code, message);
+        alert(message);
+    }
   }
 
   return (
@@ -42,11 +60,12 @@ export default function PostPage() {
             <form onSubmit={handleSearchPost}>
               <h2> 검색 </h2>
               <div className='input-set'>
-              <input style={{border : theme ? 
-                                      "" : "1px solid #725a5a"
+              <input onChange={(e) => setSearchText(e.target.value)}
+              style={{border : theme ? 
+                         "" : "1px solid #725a5a"
               }} className="post-search-input" type="text"
                       placeholder='검색할 내용을 입력하세요 '/>
-              <button className={theme ? "" : "white"}type='submit'>🔍</button>
+              <button className={theme ? "" : "white"} type='submit'>🔍</button>
               </div>
               <div className='post-radios'>
                 <div>
@@ -57,7 +76,7 @@ export default function PostPage() {
                                 value="content" checked={radioType === "content"}
                                 onChange={(e) => setRadioType(e.target.value)}/> 내용 </label>
                   <label><input type='radio' name="searchPost" 
-                                value="user_name" checked={radioType === "user_name"}
+                                value="author" checked={radioType === "author"}
                                 onChange={(e) => setRadioType(e.target.value)}/> 작성자 </label>
                 </div>
               </div>

@@ -203,6 +203,7 @@ textarea {
   flex: 7;
   white-space: pre-wrap;
   padding: 1rem 5rem;
+  min-height: 10rem;
 }
 .post-detail-footer {
   padding: 1rem;
