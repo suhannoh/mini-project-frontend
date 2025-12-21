@@ -93,12 +93,13 @@ export default function MainPage() {
           </div>
           <div className='main-bottom-layout'>
             <ul className='main-card-ul'>
-              <li className='main-card' onClick={() =>navigate('/dummy')}>
+              <li className='main-card' onClick={() =>navigate('/mini-tools')}>
                 <div className={theme ? "main-card-title" :  "main-card-title-w"}>
-                  <h2>💬 Chat </h2>
+                  <h2>🧪 실험실</h2>
                 </div>
                   <div className='main-card-content'>
-                  <p> 준비중 , , , </p>
+                  <p> 개발하며 구현한 작은 기능들을<br />
+                      직접 체험해보세요</p>
                 </div>
               </li>
               <li className='main-card' onClick={() => navigate('/my')}>
