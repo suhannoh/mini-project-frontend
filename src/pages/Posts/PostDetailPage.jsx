@@ -10,11 +10,13 @@ export default function PostDetailPage() {
     const [post , setPost] = useState(null);
     const [comments ,setComments] = useState([]);
     const {user} = AuthStore();
+
     const navigate = useNavigate();
 
     const fetchComments = async () => {
         const resc = await axios.get(`${API_BASE}/post/comment/${id}`);
         setComments(resc.data);
+        console.log("댓글" , resc.data);
     };
     useEffect (() => {
         
@@ -63,7 +65,11 @@ export default function PostDetailPage() {
         });
     };
 
-    const isMyPost = post.userId === user.id;
+    const handleDeleteComment = () => {
+        alert("준비중입니다")
+    }
+
+    const isMyPost = user && post.userId === user.id;
 
   return (
     <div>
@@ -72,7 +78,6 @@ export default function PostDetailPage() {
         <div className="post-detail">
             
             <div className='post-detail-header'> 
-              {/* <h1> postid : {post.id}</h1> */}
               <div className='post-detail-header-top'>
             	<h1> {post.title}</h1>
               </div>
@@ -92,10 +97,20 @@ export default function PostDetailPage() {
                     <span> {comment.name}</span>
                     <p> {comment.comment}</p>  
                     <div className='post-detail-comment-createdAt'> 
+                        {/* <button className='comment-delete-btn'>❌</button> */}
                        <span>{formatDateTimeDay(comment.createdAt)}</span> 
                     </div>
+                    {/* { isMyPost && ( */}
+                        <button 
+                        className='comment-delete-btn'
+                        onClick={handleDeleteComment}
+                        aria-label="댓글 삭제"
+                        >
+                        ×
+                        </button>
+                    {/* )} */}
                 </div>
-                )})}
+                    )})}
             </div>
            
         </div>
