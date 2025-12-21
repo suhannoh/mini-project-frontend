@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './MyPage.css'
 import AuthStore from '../../store/AuthStore';
-import BackBtn from '../../components/BackBtn';
+import BackBtn from '../../components/button/BackBtn';
 import axios from 'axios';
 import { API_BASE } from '../../config/env';
 import { useNavigate } from 'react-router-dom';

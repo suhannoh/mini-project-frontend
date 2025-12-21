@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../../layout/Layout'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import { API_BASE } from '../../config/env';
 import AuthStore from '../../store/AuthStore';
@@ -10,12 +10,12 @@ export default function PostDetailPage() {
     const [post , setPost] = useState(null);
     const [comments ,setComments] = useState([]);
     const {user} = AuthStore();
+    const navigate = useNavigate();
 
     const fetchComments = async () => {
         const resc = await axios.get(`${API_BASE}/post/comment/${id}`);
         setComments(resc.data);
     };
-
     useEffect (() => {
         
     const getPostDetail = async () => {
@@ -30,6 +30,7 @@ export default function PostDetailPage() {
             const message = e.response?.data?.msg;
             console.log(status, code, message);
             alert(message);
+            navigate("/posts");
         }} 
         getPostDetail();
     }, [id])

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AuthStore from '../../store/AuthStore';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import BackBtn from '../../components/BackBtn';
+import BackBtn from '../../components/button/BackBtn';
 import { API_BASE } from '../../config/env';
 import LinkStore from '../../store/LinkStore';
 

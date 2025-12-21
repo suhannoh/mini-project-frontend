@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './MainPage.css'
 import AuthStore from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
-import LogoutBtn from '../../components/LogoutBtn';
+import LogoutBtn from '../../components/button/LogoutBtn';
 import axios from 'axios';
 import { API_BASE } from '../../config/env';
 import Theme from '../../components/theme';

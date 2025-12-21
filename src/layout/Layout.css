@@ -73,6 +73,9 @@
     display: flex;
     background: var(--option-btn);
 }
+.layout__post--buttons {
+    display: flex;
+}
 @media (max-width: 768px) {
   .layout-wrap {
       max-width: 100%;

@@ -1,5 +1,5 @@
-import './comp.css'
-import AuthStore from '../store/AuthStore'
+import '../comp.css'
+import AuthStore from '../../store/AuthStore'
 import { useNavigate } from 'react-router-dom';
 
 export default function LogoutBtn() {

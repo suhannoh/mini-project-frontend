@@ -1,7 +1,7 @@
 import React from 'react'
 import AuthStore from '../../store/AuthStore';
 import { Outlet } from 'react-router-dom';
-import LogoutBtn from '../../components/LogoutBtn';
+import LogoutBtn from '../../components/button/LogoutBtn';
 
 export default function Private() {
     const isLogin = AuthStore.getState().isLogin;
