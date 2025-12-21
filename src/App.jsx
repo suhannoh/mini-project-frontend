@@ -13,8 +13,10 @@ import MyEditPage from './pages/My/MyEditPage';
 import AuthStore from './store/AuthStore';
 import { useEffect } from 'react';
 import PostAddPage from './pages/Posts/PostAddPage';
-import ChatPage from './pages/Chat/ChatPage';
+import ChatPage from './pages/Tools/Tools';
 import PostDetailPage from './pages/Posts/PostDetailPage';
+import Tools from './pages/Tools/Tools';
+import ToolsDetail from './pages/Tools/ToolsDetail';
 
 function App() {
 
@@ -39,7 +41,8 @@ function App() {
           <Route path='/posts' element={<PostPage />} />
           <Route path='/posts/new' element={<PostAddPage />} />
           <Route path="/posts/:id" element={<PostDetailPage />} />
-          <Route path='/dummy' element={<ChatPage />} />
+          <Route path='/mini-tools' element={<Tools />} />
+          <Route path="/tools/:type" element={<ToolsDetail/>} />
           <Route path='/my' element={<MyPage />} />
           <Route path="/my/edit" element={<MyEditPage/>} />
         </Route>

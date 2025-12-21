@@ -1,0 +1,45 @@
+.calc-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--option-btn);
+}
+.calc-clear {
+    position: absolute;
+    border-radius: 20px;
+    right: 1px;
+    bottom: 0;
+    height: 100%;
+
+
+}
+.calc-display {
+    width: 100%;
+    height: 3rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 1rem;
+    position: relative;
+}
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.calc-grid button {
+  height: 56px;
+  font-size: 1.2rem;
+  background: var(--option-btn);
+  color: var(--white-text);
+  border-radius: 12px;
+  
+}
+
+.calc-grid .zero {
+  grid-column: span 2; /* 0 버튼 넓게 */
+}
