@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* padding: 2rem; */
+    padding: 2rem;
 }
 .post-card-ul {
     width: 100%;
@@ -246,6 +246,29 @@ textarea {
 }
 .post-detail-font-size {
   font-size: 1.5rem;
+}
+
+.view-toggle {
+  display: flex;
+  background: #1f1f1f;
+  border-radius: 12px;
+  padding: 4px;
+  width: fit-content;
+}
+
+.view-toggle button {
+  border: none;
+  background: transparent;
+  color: #aaa;
+  padding: 8px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.view-toggle button.active {
+  background: #3b82f6;
+  color: white;
 }
 @media (max-width: 768px) {
   .post-search {
