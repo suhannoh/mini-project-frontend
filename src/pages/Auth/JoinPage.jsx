@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE } from '../../config/env';
-import BackBtn from '../../components/BackBtn';
+import BackBtn from '../../components/button/BackBtn';
 import Layout from '../../layout/Layout';
 
 export default function JoinPage() {

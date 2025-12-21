@@ -1,16 +1,17 @@
 import './Layout.css'
 import Theme from '../components/theme'
-import LogoutBtn from '../components/LogoutBtn'
-import BackBtn from '../components/BackBtn'
-import PostBtn from '../components/PostBtn'
+import LogoutBtn from '../components/button/LogoutBtn'
+import BackBtn from '../components/button/BackBtn'
+import PostBtn from '../components/button/PostBtn'
 import { useState } from 'react'
 import axios from 'axios'
 import AuthStore from '../store/AuthStore'
 import { API_BASE } from '../config/env'
-import EditBtn from '../components/EditBtn'
+import EditBtn from '../components/button/EditBtn'
+import PostDeleteBtn from '../components/button/PostDeleteBtn'
 export default function Layout({ children , backbtn=true , logoutBtn=true , postBtn=false ,
                                  textInput=false , postId=null , commentMethod , editBtn=false,
-                                 post}) {
+                                 post , backNavi=null,}) {
   
   const [comment, setComment] = useState("");
   const {user} = AuthStore();
@@ -29,12 +30,15 @@ export default function Layout({ children , backbtn=true , logoutBtn=true , post
      }
   }
 
-  return (
+  return (  
     <>
       <div className='layout-top-options'>
-        {backbtn && <BackBtn />}
-        {postBtn && <PostBtn />}
-        {editBtn && <EditBtn post={post}/>}
+        {backbtn && <BackBtn navi={backNavi}/>}
+        <div className='layout__post--buttons'>
+          {postBtn && <PostBtn />}
+          {editBtn && <EditBtn post={post}/>}
+          {editBtn && <PostDeleteBtn />}
+        </div>
       </div>
       <div className='layout-wrap' 
            style={{

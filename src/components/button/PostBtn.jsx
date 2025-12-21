@@ -1,6 +1,6 @@
-import './comp.css'
+import '../comp.css'
 import { useNavigate } from 'react-router-dom'
-import AuthStore from '../store/AuthStore';
+import AuthStore from '../../store/AuthStore';
 
 export default function PostBtn() {
   const navigate = useNavigate();

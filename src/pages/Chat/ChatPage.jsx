@@ -1,4 +1,4 @@
-import BackBtn from '../../components/BackBtn'
+import BackBtn from '../../components/button/BackBtn'
 
 export default function ChatPage() {
   return (

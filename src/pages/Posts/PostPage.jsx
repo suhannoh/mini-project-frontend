@@ -54,7 +54,7 @@ export default function PostPage() {
 
   return (
     <div>
-      <Layout postBtn={true}>
+      <Layout postBtn={true} backNavi={"/main"}>
         <ul className={radioShowType === "list" ? 'post-list-ul' : 'post-card-ul'}>
           <div className='post-search'>
             <form onSubmit={handleSearchPost}>

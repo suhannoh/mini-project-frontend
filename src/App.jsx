@@ -39,7 +39,6 @@ function App() {
           <Route path='/posts' element={<PostPage />} />
           <Route path='/posts/new' element={<PostAddPage />} />
           <Route path="/posts/:id" element={<PostDetailPage />} />
-          
           <Route path='/dummy' element={<ChatPage />} />
           <Route path='/my' element={<MyPage />} />
           <Route path="/my/edit" element={<MyEditPage/>} />
