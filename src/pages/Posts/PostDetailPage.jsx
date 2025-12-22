@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Layout from '../../layout/Layout'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
 import { API_BASE } from '../../config/env';
 import AuthStore from '../../store/AuthStore';
@@ -11,11 +11,13 @@ export default function PostDetailPage() {
     const [comments ,setComments] = useState([]);
     const {user} = AuthStore();
 
+    const navigate = useNavigate();
+
     const fetchComments = async () => {
         const resc = await axios.get(`${API_BASE}/post/comment/${id}`);
         setComments(resc.data);
+        // console.log("댓글" , resc.data);
     };
-
     useEffect (() => {
         
     const getPostDetail = async () => {
@@ -30,6 +32,7 @@ export default function PostDetailPage() {
             const message = e.response?.data?.msg;
             console.log(status, code, message);
             alert(message);
+            navigate("/posts");
         }} 
         getPostDetail();
     }, [id])
@@ -62,7 +65,11 @@ export default function PostDetailPage() {
         });
     };
 
-    const isMyPost = post.userId === user.id;
+    const handleDeleteComment = () => {
+        alert("준비중입니다")
+    }
+
+    const isMyPost = user && post.userId === user.id;
 
   return (
     <div>
@@ -71,7 +78,6 @@ export default function PostDetailPage() {
         <div className="post-detail">
             
             <div className='post-detail-header'> 
-              {/* <h1> postid : {post.id}</h1> */}
               <div className='post-detail-header-top'>
             	<h1> {post.title}</h1>
               </div>
@@ -91,10 +97,20 @@ export default function PostDetailPage() {
                     <span> {comment.name}</span>
                     <p> {comment.comment}</p>  
                     <div className='post-detail-comment-createdAt'> 
+                        {/* <button className='comment-delete-btn'>❌</button> */}
                        <span>{formatDateTimeDay(comment.createdAt)}</span> 
                     </div>
+                    {/* { isMyPost && ( */}
+                        <button 
+                        className='comment-delete-btn'
+                        onClick={handleDeleteComment}
+                        aria-label="댓글 삭제"
+                        >
+                        ×
+                        </button>
+                    {/* )} */}
                 </div>
-                )})}
+                    )})}
             </div>
            
         </div>

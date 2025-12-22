@@ -1,10 +1,9 @@
-import axios from 'axios';
 import AuthStore from '../../store/AuthStore';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css'
-import { API_BASE } from '../../config/env';
 import Layout from '../../layout/Layout';
+import { api } from '../../api/auth';
 
 export default function LoginPage() {
 
@@ -26,14 +25,12 @@ export default function LoginPage() {
         setLoad(true);
 
         try {
-            const res = await axios.post(`${API_BASE}/user/login`,
-                {
-                    email,
-                    password,
-                }
-            );
-            login(res.data);
+            await api.post("/user/login",{ email, password,});
+            const { data } = await api.get("/user/me");
+            login(data);
             navigate("/main", { replace: true });
+
+            // console.log("전달받은 로그인 객체" , data)
         } catch (e) {
             const status = e.response?.status;
             const code = e.response?.data?.code;

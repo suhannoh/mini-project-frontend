@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './MainPage.css'
 import AuthStore from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
-import LogoutBtn from '../../components/LogoutBtn';
+import LogoutBtn from '../../components/button/LogoutBtn';
 import axios from 'axios';
 import { API_BASE } from '../../config/env';
 import Theme from '../../components/theme';
@@ -93,12 +93,13 @@ export default function MainPage() {
           </div>
           <div className='main-bottom-layout'>
             <ul className='main-card-ul'>
-              <li className='main-card' onClick={() =>navigate('/dummy')}>
+              <li className='main-card' onClick={() =>navigate('/mini-tools')}>
                 <div className={theme ? "main-card-title" :  "main-card-title-w"}>
-                  <h2>💬 Chat </h2>
+                  <h2>🧪 실험실</h2>
                 </div>
                   <div className='main-card-content'>
-                  <p> 준비중 , , , </p>
+                  <p> 개발하며 구현한 작은 기능들을<br />
+                      직접 체험해보세요</p>
                 </div>
               </li>
               <li className='main-card' onClick={() => navigate('/my')}>

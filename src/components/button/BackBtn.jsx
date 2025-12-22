@@ -1,7 +1,5 @@
-import React from 'react'
-import './comp.css'
+import '../comp.css'
 import { useNavigate } from 'react-router-dom'
-import AuthStore from '../store/AuthStore';
 
 export default function BackBtn({navi}) {
     const navigate = useNavigate();
