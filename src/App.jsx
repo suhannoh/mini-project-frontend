@@ -20,7 +20,7 @@ import { api } from './api/auth';
 
 function App() {
 
-  const { login , theme , logout} = AuthStore(); // theme: true/false 또는 'dark'/'light'
+  const { login , theme , logout } = AuthStore(); // theme: true/false 또는 'dark'/'light'
 
   useEffect(() => {
     document.documentElement.setAttribute(
@@ -30,15 +30,17 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    try { 
-
-    const {data} = api.get("/user/me");
-    login(data);
-    console.log("자동 로그인 처리");
-    } catch {
-      logout();
-      console.log("자동 로그아웃 처리");
+    const checkSession = async () => {
+      try { 
+        const {data} = await api.get("/user/me");
+        login(data);
+        console.log("자동 로그인 처리");
+      } catch {
+        logout();
+        console.log("자동 로그아웃 처리");
     }
+  }
+  checkSession();
   },[]);
 
   return (
