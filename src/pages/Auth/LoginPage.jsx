@@ -63,7 +63,7 @@ export default function LoginPage() {
     return (
         <div>
             <p>version 1.1</p>
-						{/* 개발 편의를 위한 버튼 */}
+			{/* 개발 편의를 위한 버튼 */}
             {import.meta.env.DEV && (
                 <button
                     onClick={() => {
@@ -73,39 +73,39 @@ export default function LoginPage() {
                 </button>
             )}
             <Layout backbtn={false} logoutBtn={false}>
-                <form onSubmit={handleLogin} className='auth-wrap'>
+                <form onSubmit={handleLogin} className='auth__wrap'>
 									{/* 로그인 안내 */}
-                    <div className='auth-wrap-left'>
+                    <div className='auth__info'>
                         <h1> 안녕하세요 </h1>
                         <br />
                         <p>서비스 이용을 위해 로그인을 해주세요. </p>   
                         <br />
-                        <div className='notice'>
+                        <div className='auth__notice'>
                             <p>공지</p>
-                            <h3 style={{color : "rgba(158, 83, 83, 0.74)"}}> 세션에 저장하는 방식으로 개선 후 <br />
+                            <h3> 세션에 저장하는 방식으로 개선 후 <br />
                                 모바일 환경에서 로그인 되지 않습니다 ... <br />
                                 PC 환경에서 접속 부탁드리겠습니다 </h3>
                         </div>
                     </div>
 										{/* 로그인 입력 폼 */}
-                    <div className='auth-wrap-right'>
-                        <div className='auth-input-box'>
+                    <div className='auth__form'>
+                        <div className='auth__field'>
                             <p> Email </p>
                             <input type="email" placeholder='이메일'
                                 value={email} onChange={(e) => setEmail(e.target.value)} />
 
                         </div>
-                        <div className='auth-input-box'>
+                        <div className='auth__field'>
                             <p> Password </p>
                             <input type="password" placeholder='비밀번호' autoComplete="current-password"
                                 value={password} onChange={(e) => setPassword(e.target.value)} />
                         </div>
-                        <div className='login-submit'>
-                            <button type='submit' style={{ color: "rgba(255,255,255,0.87)" }}>Login</button>
-                            <ul className='login-options-menu'>
+                        <div className='auth__actions'>
+                            <button type='submit'>Login</button>
+                            <ul className='auth__options-menu'>
                                 <li onClick={() => alert("api 준비중")}  >아이디 찾기</li>
                                 <li onClick={() => alert("api 준비중")}  >비밀번호 찾기</li>
-                                <li onClick={() => navigate("/join")} className='point-b'> 회원가입 </li>
+                                <li onClick={() => navigate("/join")} className='is-point'> 회원가입 </li>
                             </ul>
                             <br />
                         </div>

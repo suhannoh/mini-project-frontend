@@ -57,8 +57,8 @@ export default function LinksPage() {
 	return (
 		<div>
 			<Layout>
-					<div className='links-wrap'>
-						<ul className='link-card-ul' >
+					<div className='link__wrap'>
+						<ul className='link__card-ul' >
 							{/* 링크 추가 및 설정 카드 */}
 							<div className="point-border">
 								{!linkStore ? <LinkCard onClick={() => navigate("/links/new")} key={addLink.id} link={addLink} />

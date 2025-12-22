@@ -53,17 +53,17 @@ export default function LinkAddPage() {
   return (
     <div>
       <BackBtn />
-      <div className='link-add-page-wrap'>
+      <div className='link__add-wrap'>
         <div>
-          <div className='main-left-top add-link'>
+          <div className='link__add-card'>
             <form onSubmit={handleAdd}>
-            <ul className='link-add-ul' >
+            <ul className='link__add-ul' >
                 <li>GitHub : <input id="git" type="url" value={gitHubUrl} placeholder='github - url' name="gitHubUrl"
                                onChange={(e) => setGithub(e.target.value)}/></li>
                 <li>Notion : <input id="notion" type="url" value={notionUrl} placeholder='notion - url' name="notionUrl"
                                onChange={(e) => setNotion(e.target.value)} /></li>
             </ul>
-            <button className="post-edit-submit-btn" type='submit'>저장</button>
+            <button className="link__edit-btn" type='submit'>저장</button>
             </form>
           </div>
         </div>

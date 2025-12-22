@@ -63,10 +63,10 @@ export default function MainPage() {
 
   return (
     <div>
-      <div className='api'> 
+      <div className='main__api'> 
         <h2> API 상태 </h2>
         {/* API 상태 표시 */}
-        <div className='api-health'>
+        <div className='main__api-health'>
           <div>
             <p> Post API : {postAPI ? "🟢" : "🔴"} </p>
             <p> Link API : {linkAPI ? "🟢" : "🔴"}</p>
@@ -78,45 +78,46 @@ export default function MainPage() {
         </div>
       </div>
         <Layout backbtn={false} >
-          <div className='main-wrap'>
-            <div className='main-top-layout'>
+          <div className='main__wrap'>
+            <div className='main__top-layout'>
             {/* grid로 변경 예정 */}
-             <ul className='main-card-ul'>
-              <li className='main-card ' onClick={() => navigate('/posts')} >
-                <div className={theme ? "main-card-title" :  "main-card-title-w"}>
+             <ul className='main__card-ul'>
+              <li className='main__card-li ' onClick={() => navigate('/posts')} >
+                <div className={theme ? "main__card-title" :  "main__card-title-w"}>
                   <h2>📝 게시판</h2>
                 </div>
-                <div className='main-card-content'>
+                <div className='main__card-content'>
                   <p> 자유 / 질문 / 개발정보</p>
                 </div>
               </li>
-              <li className='main-card' onClick={() => navigate('/links')}  >
-                <div className={theme ? "main-card-title" :  "main-card-title-w"} style={{color:"greenYellow"}}>
+              <li className='main__card-li' onClick={() => navigate('/links')}  >
+                <div className={theme ? "main__card-title" :  "main__card-title-w"} style={{color:"greenYellow"}}>
                   <h2>🔗 Links</h2>
                 </div>
-                 <div className='main-card-content'>
+                 <div className='main__card-content'>
                   <p> Notion / GitHub 주소 공유</p>
                 </div>
               </li>
              </ul>
           </div>
-          <div className='main-bottom-layout'>
-            <ul className='main-card-ul'>
-              <li className='main-card' onClick={() =>navigate('/mini-tools')}>
-                <div className={theme ? "main-card-title" :  "main-card-title-w"}>
+
+          <div className='main__bottom-layout'>
+            <ul className='main__card-ul'>
+              <li className='main__card-li' onClick={() =>navigate('/mini-tools')}>
+                <div className={theme ? "main__card-title" :  "main__card-title-w"}>
                   <h2>🧪 실험실</h2>
                 </div>
-                  <div className='main-card-content'>
+                  <div className='main__card-content'>
                     <p> 기능 미구현 ... UI 만 ,,,</p>
                   {/* <p> 개발하며 구현한 작은 기능들을<br />
                       직접 체험해보세요</p> */}
                 </div>
               </li>
-              <li className='main-card' onClick={() => navigate('/my')}>
-                <div className={theme ? "main-card-title" :  "main-card-title-w"}>
+              <li className='main__card-li' onClick={() => navigate('/my')}>
+                <div className={theme ? "main__card-title" :  "main__card-title-w"}>
                   <h2>👤 마이페이지</h2>
                 </div>
-                  <div className='main-card-content'>
+                  <div className='main__card-content'>
                   <p>  {user ? `${user.name}님, 안녕하세요` : "loading,,,"}</p>
                 </div>
               </li>

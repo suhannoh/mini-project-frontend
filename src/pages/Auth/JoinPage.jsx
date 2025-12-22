@@ -59,45 +59,45 @@ export default function JoinPage() {
     <div>
       <Layout logoutBtn={false}>
         {/* 회원가입 폼 */}
-        <div className='auth-wrap join-wrap'>
-          <div className='auth-wrap-left'>
+        <div className='auth__wrap auth__join-wrap'>
+          <div className='auth__info'>
             <h1> 회원가입 </h1>
             <br />
             <p>서비스 이용을 위해 계정을 생성해주세요. </p>
             <br />
             <p>⚠️ 이 웹 사이트는 학습용입니다 <br /><span className='red-text'> 실제 개인정보를 이용하지 마세요 </span></p>
           </div>
-          
-          <div className='auth-wrap-right'>
+
+          <div className='auth__form'>
             <form onSubmit={handleJoin} >
-              <div className='auth-input-box'>
+              <div className='auth__field'>
                 <p><span className='red-text'>*</span> Email </p>
                 <input type="email" placeholder='이메일 (필수)'
                   value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
-              <div className='auth-input-box'>
+              <div className='auth__field'>
                 <p><span className='red-text'>*</span> Name </p>
                 <input type="text" placeholder='이름 (필수)'
                   value={name} onChange={(e) => setName(e.target.value)} />
               </div>
-              <div className='auth-input-box'>
+              <div className='auth__field'>
                 <p> Phone </p>
                 <input type="tel" placeholder='전화번호 (선택)'
                   value={phone} onChange={(e) => setPhone(e.target.value)} />
               </div>
-              <div className='auth-input-box'>
+              <div className='auth__field'>
                 <p><span className='red-text'>*</span> Password </p>
                 <input type="password" placeholder='비밀번호 (필수)' autoComplete='new-password'
                   value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
-              <div className='auth-input-box'>
+              <div className='auth__field'>
                 <p><span className='red-text'>*</span> Password Confirm {isMatch ? "🟢" : "🔴"} </p>
                 <input type="password" placeholder='비밀번호 재확인 (필수)'
                   value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} />
               </div>
-              <div className='join-btn-wrap'>
+              <div className='auth__join-actions'>
               <button style={{ background: isMatch ? "" : "gray" }}
-                type='submit' disabled={!isMatch} id='join-btn'> 전송 </button>
+                type='submit' disabled={!isMatch} id='auth__join-btn'> 전송 </button>
               </div>
             </form>
           </div>

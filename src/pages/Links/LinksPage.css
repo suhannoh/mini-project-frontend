@@ -1,8 +1,9 @@
-.links-wrap {
+/* Links Page */
+.link__wrap {
   width: 100%;
 }
 
-.link-card-ul {
+.link__card-ul {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
@@ -10,14 +11,15 @@
     padding-left: 1.8rem;
     padding-bottom: 1.8rem;
 }
-.link-card-ul li{
+.link__card-ul li{
     background: none;
     display: flex;
     flex-direction: column;
     align-items: center;
 } 
-  
-.link-add-page-wrap {
+
+/* Links Add Page */
+.link__add-wrap {
     padding: 2rem;
     border-radius: 10px;
      display: flex;
@@ -25,15 +27,15 @@
     0 4px 10px rgba(0, 0, 0, 0.35),
     0 8px 30px rgba(0, 0, 0, 0.25);
 }
-.add-link {
+.link__add-card {
   display: flex;
   gap: 1rem;
 }
-.add-link ul {
+.link__add-card ul {
   display: flex;
   flex-direction: column;
 }
-.add-link input {
+.link__add-card input {
   width: 20rem;
   padding : 1rem;
 }
@@ -41,31 +43,31 @@
   border: 3px solid var(--point-border);
   border-radius: 12px;
 } 
-.post-edit-submit-btn {
+.link__edit-btn {
   color: var(--white-text);
   background: var(--option-btn);
 }
-.link-add-ul {
+.link__add-ul {
   margin-bottom: 1rem;
   gap: 0.5rem;
 }
 
 @media (max-width: 768px) {
-  .link-page-wrap {
+  .link__wrap {
     width: 100%;
     
   }
-  .link-add-page-wrap {
+  .link__add-wrap {
     padding: 2rem 1rem;
   }
 
-  .link-card-ul {
+  .link__card-ul {
     display: flex;
     justify-content: center;
     padding: 0;
     padding-bottom: 1.5rem;
   }
-  .link-card-ul li{
+  .link__card-ul li{
     height: auto;
 } 
 }

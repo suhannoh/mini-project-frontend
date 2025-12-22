@@ -1,22 +1,20 @@
-.auth-wrap{
+/* Login Page */
+.auth__wrap{
   width: 50rem;
   padding: 2rem;
   display: flex;
-  /* justify-content: flex-end; */
-  /* align-items: center; */
-
-  align-items: stretch;      /* ✅ center 제거 */
+  align-items: stretch;
   justify-content: flex-start;
   gap: 1rem;  
 }
-.notice {
+.auth__notice {
   width: auto;
   border: 1px solid var(--text);
   border-radius: 10px;
   padding: 2rem 1rem;
   position: relative;
 }
-.notice p{
+.auth__notice p{
   left: 0;
   top: 0;
   color: red;
@@ -26,10 +24,16 @@
   border-radius: 5px;
   position: absolute;
 }
-.auth-wrap Button {
+.auth__notice h3{
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 1.5rem;
+  color : rgba(158, 83, 83, 0.74);
+}
+.auth__wrap Button {
   margin-top: 2rem;
 }
-.auth-wrap-left{
+.auth__info{
   width: 100%;
   height: 100%;
   margin: 0;
@@ -38,7 +42,7 @@
   justify-content: center;
   flex: 1;
 }
-.auth-wrap-right{
+.auth__form{
   flex: 1;
   width: 100%;
   height: 100%;
@@ -49,24 +53,27 @@
   gap: 10px;
   padding: 2rem;
 }
-.auth-wrap-right form {
+.auth__form form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   transform: scale(0.9);
 }
-.auth-wrap-right Button {
+.auth__form Button {
   width: 90%;
 }
-.auth-input-box{
+.auth__field{
   width: 100%;
   text-align: start;
 }
-.auth-input-box input {
+.auth__field input {
   width: 100%;
   padding: 1rem;
 }
-.login-options-menu {
+.auth__actions button{
+ color: rgba(255,255,255,0.87);
+}
+.auth__options-menu {
   list-style: none;
   display: flex;
   gap: 0.9rem;
@@ -75,68 +82,53 @@
   align-content: center;
   margin-top: 2rem;
 }
-.login-options-menu li {
+.auth__options-menu li {
   display: flex;
   align-items: center ;
   font-size: 14px;
 }
-.login-options-menu li:hover {
+.auth__options-menu li:hover {
   text-decoration: underline;
 }
-.point-b {
+.is-point {
   border: 1px solid rgb(87, 87, 219);
   padding: 0.8rem   1rem;
   border-radius: 1rem;
 }
-
-.point-b:hover {
+.is-point:hover {
   transition: 0.5s;
   cursor: pointer;
   background: rgb(87, 87, 219);
 }
+
+/* Join Page */
 .red-text {
     color: red;
 }
-.join-btn-wrap {
+.auth__join-actions {
   height: 100%;
   align-items: flex-end;
   padding: 1rem; 
   }
-#join-btn {
+#auth__join-btn {
     margin: 0;
     border: 1px solid rgb(87, 87, 219);
     width: 5rem;
 }
-.join-footer {
-    display: flex;
-    justify-content: flex-end;
-}
+
+/* Loading Animation */
+
 .loading-text::after {
   content: "";
   animation: dots 1.2s steps(3, end) infinite;
 }
-
-
-
-/* .join-form-top {
-    margin-top: 2rem;
-} */
-
-
-
-/* .flex-box {
-  width: 100%;
-  display: flex;
-  justify-content: left;
-} */
-
-
 @keyframes dots { 
   0%   { content: ""; } 
   33%  { content: "."; }
   66%  { content: ".."; }
   100% { content: "..."; }
 }
+
 /* PC (기본) */
 @media (min-width: 1024px) {}
 
@@ -145,53 +137,36 @@
 
 /* 모바일 */
 @media (max-width: 768px) {
-
-
-  .auth-wrap {
-  /* width: 100%;
-  height: 100dvh;
-  min-height: unset;
-  margin: 0 auto;
-  border: none;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: 3rem 1rem; */
-   width: 100%;
+  .auth__wrap {
+    width: 100%;
     margin: 0;
     padding: 2rem 1rem;
-
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-
     overflow: visible; 
-}
-.join-wrap {
-  overflow: scroll;
-}
-.auth-wrap-left{
-  margin: 0;
-  justify-content: flex-end;
-}
-.auth-wrap-right{
-  flex: 2;
-  margin: 0;
-  justify-content: left;
-  padding: 0 1rem;
-}
-input {
-  font-size: 16px;
-}
-.loading {
-  padding: 2rem;
-}
-.loading-desc {
-  font-size: 14px;
-}
-
+  }
+  .auth__join-wrap {
+    overflow: scroll;
+  }
+  .auth__info{
+    margin: 0;
+    justify-content: flex-end;
+  }
+  .auth__form{
+    flex: 2;
+    margin: 0;
+    justify-content: left;
+    padding: 0 1rem;
+  }
+  input {
+    font-size: 16px;
+  }
+  .loading {
+    padding: 2rem;
+  }
+  .loading-desc {
+    font-size: 14px;
+  }
 }
