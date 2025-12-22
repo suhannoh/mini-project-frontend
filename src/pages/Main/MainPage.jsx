@@ -118,7 +118,7 @@ export default function MainPage() {
         <div className='bar'>&nbsp;</div>
         
         <div className='online-list'>
-          <h2 className='online-title'> 최근 1시간 이내 접속 </h2>
+          <h3 className='online-title'> 최근 1시간 이내 접속 </h3>
           <ul className='online-users'>
             {activeUsers.map((user) => (
               <li className="online-li" key={user.userId}>🟢 <span style={{paddingLeft:"5px"}}>{user.userName}</span></li>
