@@ -24,7 +24,7 @@ export default function PostDetailPage() {
         try {
             const res = await axios.get(`${API_BASE}/posts/${id}`);
             setPost(res.data);
-            console.log(res.data)
+            // console.log(res.data)
             await fetchComments();
         } catch (e) {
             const status = e.response?.status;
