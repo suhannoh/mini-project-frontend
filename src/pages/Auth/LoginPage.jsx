@@ -4,55 +4,58 @@ import { useNavigate } from 'react-router-dom';
 import './LoginPage.css'
 import Layout from '../../layout/Layout';
 import { api } from '../../api/auth';
+import { logError } from '../../components/logError';
 
 export default function LoginPage() {
 
-
-
+    // 사용자 입력 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    // 로딩 상태
     const [load, setLoad] = useState(false);
-
+    // 전역 상태
     const login = AuthStore((state) => state.login);
+    // 네비게이트
     const navigate = useNavigate();
 
 
-
+    // 로그인 처리
     const handleLogin = async (e) => {
+        // 배포 및 개발 환경 출력
         console.log("API")
         console.log(import.meta.env.MODE);
+
         e.preventDefault();
+        // 로딩 시작
         setLoad(true);
 
         try {
             await api.post("/user/login",{ email, password,});
             const { data } = await api.get("/user/me");
+            // 전역 상태에 로그인 정보 반영
             login(data);
+            // 메인 페이지로 이동
             navigate("/main", { replace: true });
-
-            // console.log("전달받은 로그인 객체" , data)
         } catch (e) {
-            const status = e.response?.status;
-            const code = e.response?.data?.code;
-            const message = e.response?.data?.msg;
-            console.log(status, code, message);
-            alert(message);
+            logError(e);
+            // 로딩 종료
             setLoad(false);
         }
     }
-    if (load) {
-        return (
-            <>
-                <h2 className='loading'>
-                    <span className='loading-text'>Loading </span>
-                    <br /><br />
-                    <span>
-                        첫 로그인 시 최대 1~2분 정도<br />
-                        소요될 수 있습니다.</span></h2>
-                <br /><br />
 
-                <p className='loading-desc'> 원인 ✅ 서버가 일정 시간 미접속 시 절전 상태로 전환됩니다. </p>
-            </>
+    // 로딩 중일 때
+    if (load) {
+      return (
+        <>
+          <h2 className='loading'>
+            <span className='loading-text'>Loading </span>
+              <br /><br />
+              <span>
+                첫 로그인 시 최대 1~2분 정도<br />
+                소요될 수 있습니다.</span></h2>
+              <br /><br />
+						<p className='loading-desc'> 원인 ✅ 서버가 일정 시간 미접속 시 절전 상태로 전환됩니다. </p>
+          </>
         )
     }
 
@@ -60,22 +63,18 @@ export default function LoginPage() {
     return (
         <div>
             <p>version 1.1</p>
+						{/* 개발 편의를 위한 버튼 */}
             {import.meta.env.DEV && (
                 <button
                     onClick={() => {
-                        AuthStore.setState({
-                            isLogin: true, user: {
-                                id: null,
-                            }
-                        });
+                        AuthStore.setState({isLogin: true, user: {id: null,}});
                         navigate("/main");
-                    }}
-                >
-                    DEV: 바로 입장
+                    }}> DEV: 바로 입장
                 </button>
             )}
             <Layout backbtn={false} logoutBtn={false}>
                 <form onSubmit={handleLogin} className='auth-wrap'>
+									{/* 로그인 안내 */}
                     <div className='auth-wrap-left'>
                         <h1> 안녕하세요 </h1>
                         <br />
@@ -88,6 +87,7 @@ export default function LoginPage() {
                                 PC 환경에서 접속 부탁드리겠습니다 </h3>
                         </div>
                     </div>
+										{/* 로그인 입력 폼 */}
                     <div className='auth-wrap-right'>
                         <div className='auth-input-box'>
                             <p> Email </p>

@@ -2,9 +2,10 @@ import { useNavigate } from 'react-router-dom'
 import Layout from '../../layout/Layout'
 import './MiniTools.css'
 export default function Tools() {
-
+  // 페이지 네비게이트
   const navigate = useNavigate()
 
+  // 툴 목록
   const TOOLS = [
     { type: "calculator", title: "계산기", desc: "간단 계산 / %", icon: "🧮" },
     { type: "exchange", title: "환율 계산", desc: "KRW ↔ USD", icon: "💱"  , disabled: true},
@@ -20,6 +21,7 @@ export default function Tools() {
           <h2 className="tools-title">🧪 실험실</h2>
 
           <ul className="tools-grid">
+            {/* 툴 목록 */}
             {TOOLS.map(t => (
               <li
                 key={t.type}

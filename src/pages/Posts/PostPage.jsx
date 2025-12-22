@@ -3,52 +3,47 @@ import Post from '../../components/Post'
 import Layout from '../../layout/Layout'
 import { useEffect, useState } from 'react'
 import AuthStore from '../../store/AuthStore'
-import axios from 'axios'
-import { API_BASE } from '../../config/env'
+import { api } from '../../api/auth'
+import { logError } from '../../components/logError'
 
 export default function PostPage() {
-
+  // 게시글
   const [posts, setPosts] = useState([]);
+  // 검색 관련 상태
   const [radioType, setRadioType] = useState("title");
+  // 뷰 관련 상태
   const [radioShowType, setRadioShowType] = useState("list");
+  // 검색어 
   const [searchText, setSearchText] = useState("");
+  // 테마
   const { theme } = AuthStore();
 
   useEffect(() => {
+    // 전체 게시글 조회
     const getPosts = async () => {
       try {
-        const res = await axios.get(`${API_BASE}/posts`);
+        const res = await api.get(`/posts`);
+        // 게시글 상태 업데이트
         setPosts(res.data)
       } catch (e) {
-        const status = e.response?.status;
-        const code = e.response?.data?.code;
-        const message = e.response?.data?.msg;
-        console.log(status, code, message);
-        alert(message);
+        logError(e);
       }
     }
+    // 초기 전체 게시글 로드
     getPosts();
   }, []);
 
 
   const handleSearchPost = async (e) => {
     e.preventDefault();
-
+    // 검색 API 호출
     try {
-      const res = await axios.get(`${API_BASE}/posts/search`, {
-        params: {
-          type: radioType,
-          text: searchText
-        }
-      })
+      const res = await api.get(`/posts/search`, 
+                                { params: { type: radioType, text: searchText}});
+      // 검색된 게시글 상태 업데이트
       setPosts(res.data);
-
     } catch (e) {
-      const status = e.response?.status;
-      const code = e.response?.data?.code;
-      const message = e.response?.data?.msg;
-      console.log(status, code, message);
-      alert(message);
+      logError(e);
     }
   }
 

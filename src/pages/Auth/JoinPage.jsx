@@ -1,56 +1,50 @@
-import React, { useState } from 'react'
-import axios from 'axios';
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { API_BASE } from '../../config/env';
-import BackBtn from '../../components/button/BackBtn';
 import Layout from '../../layout/Layout';
+import { api } from '../../api/auth';
+import { logError } from '../../components/logError';
 
 export default function JoinPage() {
-
+  // 사용자 입력 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  // 네비게이트
   const navigate = useNavigate();
+  // 로딩 상태
   const [load, setLoad] = useState(false);
+  // 비밀번호 일치 여부
   const isMatch = password.length > 0 && passwordConfirm.length > 0 &&
-    password === passwordConfirm;
+                  password === passwordConfirm;
 
-
+  // 회원가입 처리
   const handleJoin = async (e) => {
     e.preventDefault();
 
+    // 입력 검증
     if (!email || !password || !name) {
       return alert("공백은 입력할 수 없습니다");
     }
     if (password.length < 5) {
       return alert("비밀번호는 5자리 이상입니다");
     }
+    // 로딩 시작
     setLoad(true);
 
-    try {
-      await axios.post(
-        `${API_BASE}/user/join`,
-        {
-          email,
-          password,
-          name,
-          phone,
-        }
-      );
+    try {// 회원가입 요청
+      await api.post(`/user/join`,{ email, password, name, phone,});
       alert("회원가입 성공!");
+      // 로그인 페이지로 이동
       navigate("/")
     } catch (e) {
-        const status = e.response?.status;
-        const code = e.response?.data?.code;
-        const message = e.response?.data?.msg;
-        console.log(status, code, message);
-        alert(message);
+      logError(e);
       setLoad(false);
     }
   };
-
+  
+  // 로딩 중일 때
   if (load) {
     return (
       <h2 className='loading'>
@@ -64,6 +58,7 @@ export default function JoinPage() {
   return (
     <div>
       <Layout logoutBtn={false}>
+        {/* 회원가입 폼 */}
         <div className='auth-wrap join-wrap'>
           <div className='auth-wrap-left'>
             <h1> 회원가입 </h1>
@@ -72,6 +67,7 @@ export default function JoinPage() {
             <br />
             <p>⚠️ 이 웹 사이트는 학습용입니다 <br /><span className='red-text'> 실제 개인정보를 이용하지 마세요 </span></p>
           </div>
+          
           <div className='auth-wrap-right'>
             <form onSubmit={handleJoin} >
               <div className='auth-input-box'>

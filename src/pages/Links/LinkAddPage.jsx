@@ -1,58 +1,51 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import AuthStore from '../../store/AuthStore';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import BackBtn from '../../components/button/BackBtn';
-import { API_BASE } from '../../config/env';
 import LinkStore from '../../store/LinkStore';
+import { api } from '../../api/auth';
+import { logError } from '../../components/logError';
+
 
 
 export default function LinkAddPage() {
 
+  // 입력
   const [notionUrl , setNotion] = useState("");
   const [gitHubUrl , setGithub] = useState("");
+  // 네비게이트
   const navigate = useNavigate();
+  // 전역 상태
   const {user } = AuthStore();
   const {linkStore} = LinkStore();
 
   useEffect (() => {
+    // 수정 모드일 때 기존 값 불러오기
     if (linkStore) {
-      setNotion(linkStore.notionUrl ?? "");
+      // 기존 값 세팅
+      setNotion(linkStore.notionUrl ?? ""); 
       setGithub(linkStore.gitHubUrl ?? "");
     }
   }, [linkStore]);
 
   const handleAdd = async (e) => {
     e.preventDefault();
-
+    // 링크 추가 or 수정
     try {
       if(linkStore) {
-        await axios.put(`${API_BASE}/user/links`,
-           {
-             notionUrl,
-             gitHubUrl,
-             userId : linkStore.user_id
-           }
-       );
-       alert("Link를 성공적으로 수정하였습니다.")
-
+        // 수정 모드
+        await api.put(`/user/links`,{ notionUrl, gitHubUrl, userId : linkStore.user_id });
+        alert("Link를 성공적으로 수정하였습니다.")
       } else {
-        await axios.post(`${API_BASE}/user/links`,
-           {
-             notionUrl,
-             gitHubUrl,
-             userId : user.id
-           }
-       );
-       alert("Link를 성공적으로 저장하였습니다.")
+        // 추가 모드
+        await api.post(`/user/links`, { notionUrl, gitHubUrl, userId : user.id });
+        alert("Link를 성공적으로 저장하였습니다.")
       }
     } catch (e) {
-        const status = e.response?.status;
-        const code = e.response?.data?.code;
-        const message = e.response?.data?.msg;
-        console.log(status, code, message);
-        alert(message);
+      // 오류 로그
+        logError(e);
     } finally {
+      // 링크 목록으로 이동
       navigate("/links" ,{ replace: true });
     }
   }

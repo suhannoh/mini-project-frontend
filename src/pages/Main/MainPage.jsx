@@ -1,55 +1,63 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './MainPage.css'
 import AuthStore from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
-import LogoutBtn from '../../components/button/LogoutBtn';
-import axios from 'axios';
-import { API_BASE } from '../../config/env';
-import Theme from '../../components/theme';
 import Layout from '../../layout/Layout';
+import { api } from '../../api/auth';
 
 export default function MainPage() {
+  // 활성 사용자 목록
   const [activeUsers , setActiveUsers] = useState([]);
+  // 인증 정보
   const { user , theme } = AuthStore();
+  // API 상태
   const [userAPI , setUserAPI] = useState(false);
   const [activeUserAPI , setActiveUserAPI] = useState(false);
   const [linkAPI , setLinkAPI] = useState(false);
   const [postAPI , setPostAPI] = useState(false);
-  
+  //  네비게이트
   const navigate = useNavigate();
-  
+
+
+  // 활성 사용자 목록 불러오기
    useEffect(() => {
         const getActiveUsers = async () => {
             try {
-                const res = await axios.get(`${API_BASE}/useractive`);
+                const res = await api.get(`/useractive`);
+                // 정상 응답 후 상태 업데이트
                 setActiveUsers(res.data);
             } catch (e) {
+              // 로그 에러 처리
                 const status = e.response?.status;
                 const code = e.response?.data?.code;
                 const message = e.response?.data?.msg;
                 console.log(status, code, message);
             } 
         };
+        // 호출
         getActiveUsers();
     }, []);
 
+    // 각 API 헬스체크
     useEffect(() => {
     const check = async (url, setState) => {
       try {
-        await axios.get(url);
+        await api.get(url);
+        // 정상 응답
         setState(true);
       } catch (e) {
         alert(e.response.data.msg);
+        // 오류 응답
         setState(false);
       }
     };
 
-    check(`${API_BASE}/user/health`, setUserAPI);
-    check(`${API_BASE}/useractive/health`, setActiveUserAPI);
-    check(`${API_BASE}/user/links/health`, setLinkAPI);
-    check(`${API_BASE}/posts/health`, setPostAPI);
-    setPostAPI(false);
-    // check(`${API_BASE}/post/health`, setPostAPI);  // Post도 만들거면 이렇게
+    // 헬스체크 호출
+    check(`/user/health`, setUserAPI);
+    check(`/useractive/health`, setActiveUserAPI);
+    check(`/user/links/health`, setLinkAPI);
+    check(`/posts/health`, setPostAPI);
+    
   }, []);
 
 
@@ -57,6 +65,7 @@ export default function MainPage() {
     <div>
       <div className='api'> 
         <h2> API 상태 </h2>
+        {/* API 상태 표시 */}
         <div className='api-health'>
           <div>
             <p> Post API : {postAPI ? "🟢" : "🔴"} </p>
@@ -116,7 +125,6 @@ export default function MainPage() {
         </div>
         
         <div className='bar'>&nbsp;</div>
-        
         <div className='online-list'>
           <h3 className='online-title'> 최근 1시간 이내 접속 </h3>
           <ul className='online-users'>

@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import Layout from '../../layout/Layout'
-import axios from 'axios';
-import { API_BASE } from '../../config/env';
 import AuthStore from '../../store/AuthStore';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { api } from '../../api/auth';
+import { logError } from '../../components/logError';
 
 export default function PostAddPage() {
+  // 이전 페이지에서 전달된 상태
   const {state} = useLocation();
-
+  // 페이지 이동
   const navigate = useNavigate();
+  // 사용자 정보
   const {user} = AuthStore();
+
+  // 입력 데이터
   const [title , setTitle] = useState(""); // 제목
   const [category , setCategory] = useState(""); //카테고리
   const [author , setAuthor] = useState("author"); // 이름표시
   const [content , setContent] = useState(""); // 내용
 
+
+  // 수정 모드일 때 기존 데이터 불러오기
   useEffect(() => {
       if (!state) return;
       setTitle(state.title ?? "");
@@ -23,9 +29,11 @@ export default function PostAddPage() {
       setAuthor(state.author === "익명" ? "anon" : "author");
   },[state])
 
+  // 글 작성 및 수정 처리
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    // 서버로 전송할 데이터 구성
     const data = {
       userId : user.id,
       title ,
@@ -34,21 +42,18 @@ export default function PostAddPage() {
       author : author === "author" ? user.name : "익명",
       postId : state && state.id,
     };
+
     try {
+      // 작성 또는 수정 API 호출
       if(!state) {
-        await axios.post(`${API_BASE}/posts`, data);
+        await api.post(`/posts`, data);
       } else {
-        await axios.put(`${API_BASE}/posts`, data);
+        await api.put(`/posts`, data);
       }
       alert(`성공적으로 글 ${!state ? "작성" : "수정"}이 완료되었습니다`);
       navigate(-1);
     } catch (e) {
-        const status = e.response?.status;
-        const code = e.response?.data?.code;
-        const message = e.response?.data?.msg;
-        console.log(status, code, message);
-        alert(message);
-
+        logError(e);
     }
   }
 

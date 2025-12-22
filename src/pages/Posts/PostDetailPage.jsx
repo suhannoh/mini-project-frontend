@@ -1,42 +1,50 @@
 import { useEffect, useState } from 'react'
 import Layout from '../../layout/Layout'
 import { useNavigate, useParams } from 'react-router-dom'
-import axios from 'axios';
-import { API_BASE } from '../../config/env';
 import AuthStore from '../../store/AuthStore';
+import { api } from '../../api/auth';
+import { logError } from '../../components/logError';
 
 export default function PostDetailPage() {
+    // URL 파라미터에서 id 가져오기
     const {id} = useParams();
+    // 게시글 상세 정보
     const [post , setPost] = useState(null);
+    // 댓글 리스트 
     const [comments ,setComments] = useState([]);
+    // 전역 상태 관리에서 사용자 정보 가져오기 
     const {user} = AuthStore();
-
+    // 네비게이트
     const navigate = useNavigate();
 
+
+    // 댓글 불러오기
     const fetchComments = async () => {
-        const resc = await axios.get(`${API_BASE}/post/comment/${id}`);
+        const resc = await api.get(`/post/comment/${id}`);
+        // 댓글 상태 업데이트
         setComments(resc.data);
-        // console.log("댓글" , resc.data);
     };
+
+
     useEffect (() => {
-        
+    // 게시글 상세 정보 불러오기
     const getPostDetail = async () => {
         try {
-            const res = await axios.get(`${API_BASE}/posts/${id}`);
+            const res = await api.get(`/posts/${id}`);
+            // 상태 업데이트
             setPost(res.data);
-            // console.log(res.data)
+            // 게시글 댓글 불러오기
             await fetchComments();
         } catch (e) {
-            const status = e.response?.status;
-            const code = e.response?.data?.code;
-            const message = e.response?.data?.msg;
-            console.log(status, code, message);
-            alert(message);
+            logError(e);
+            // 에러 시 게시글 목록 페이지로 이동
             navigate("/posts");
         }} 
+        // 함수 호출
         getPostDetail();
     }, [id])
 
+    // 로딩 중일 때
     if(!post) {
         return (
             <Layout>
@@ -45,6 +53,7 @@ export default function PostDetailPage() {
         )
     }
 
+    // 날짜 및 시간 포맷 함수
     const formatDateTime = (isoString) => {
         const date = new Date(isoString);
         return date.toLocaleString('ko-KR', {
@@ -65,10 +74,12 @@ export default function PostDetailPage() {
         });
     };
 
+    // 댓글 삭제 함수 (준비중)
     const handleDeleteComment = () => {
         alert("준비중입니다")
     }
 
+    // 현재 사용자가 작성한 게시글인지 확인
     const isMyPost = user && post.userId === user.id;
 
   return (
@@ -91,6 +102,7 @@ export default function PostDetailPage() {
                     {post.content}</p>
             </div>
             <div className='post-detail-footer'>
+                {/* 댓글 목록 */}
                 {comments.map((comment) => {
                     return (
                     <div className='post-detail-comment' key={comment.id}>

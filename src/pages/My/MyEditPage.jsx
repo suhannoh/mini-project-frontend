@@ -5,21 +5,28 @@ import BackBtn from '../../components/button/BackBtn';
 import axios from 'axios';
 import { API_BASE } from '../../config/env';
 import { useNavigate } from 'react-router-dom';
+import { logError } from '../../components/logError';
 
 export default function MyEditPage() {
+  // 테마 상태
   const {theme} = AuthStore();
+  // 사용자 정보
   const {user , login} = AuthStore();
   const navigate = useNavigate();
+
+  // 정보 수정 폼 상태
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [name, setName] = useState("");
   const [phone , setPhone ] = useState("");
   
+  // 비밀번호 일치 여부
   const isMatch = password.length > 0 && passwordConfirm.length > 0 &&
                 password === passwordConfirm;
 
   useEffect(() => {
+    // 기존 사용자 정보로 폼 초기화
     if (!user) return;
     setEmail(user.email ?? "");
     setName(user.name ?? "");
@@ -30,30 +37,25 @@ export default function MyEditPage() {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
+    // 정보 수정 요청
     try {
-      const res = await axios.post(`${API_BASE}/user/${user.id}/edit`,
-      {
-        email,
-        name,
-        password,
-        phone,
-      })
+      const res = await axios.post(`${API_BASE}/user/${user.id}/edit`, 
+                                   { email, name, password, phone, });          
+      // 수정된 사용자 정보로 상태 업데이트                                            
       login(res.data);
       alert("수정이 성공적으로 완료되었습니다");
+      // 이전 페이지로 이동
       navigate(-1);
     } catch (e) {
-        const status = e.response?.status;
-        const code = e.response?.data?.code;
-        const message = e.response?.data?.msg;
-        console.log(status, code, message);
-        alert(message);
+        logError(e);
     }
-    
+
   }
   return (
     <div>
          <BackBtn />
                   <div className='my-page-wrap'>
+                    {/* 수정 폼 */}
                         <form onSubmit={handleUpdate} className={theme ? '' : 'mpw-w'} >
                             <ul >
                               <li><span>이름 : </span><input type="text" value={name} 
