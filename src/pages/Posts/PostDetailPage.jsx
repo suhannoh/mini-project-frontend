@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Layout from '../../layout/Layout'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios';
@@ -16,7 +16,7 @@ export default function PostDetailPage() {
     const fetchComments = async () => {
         const resc = await axios.get(`${API_BASE}/post/comment/${id}`);
         setComments(resc.data);
-        console.log("댓글" , resc.data);
+        // console.log("댓글" , resc.data);
     };
     useEffect (() => {
         

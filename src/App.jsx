@@ -13,14 +13,14 @@ import MyEditPage from './pages/My/MyEditPage';
 import AuthStore from './store/AuthStore';
 import { useEffect } from 'react';
 import PostAddPage from './pages/Posts/PostAddPage';
-import ChatPage from './pages/Tools/Tools';
 import PostDetailPage from './pages/Posts/PostDetailPage';
 import Tools from './pages/Tools/Tools';
 import ToolsDetail from './pages/Tools/ToolsDetail';
+import { api } from './api/auth';
 
 function App() {
 
-  const { theme } = AuthStore(); // theme: true/false 또는 'dark'/'light'
+  const { login , theme , logout} = AuthStore(); // theme: true/false 또는 'dark'/'light'
 
   useEffect(() => {
     document.documentElement.setAttribute(
@@ -28,6 +28,18 @@ function App() {
       theme ? "dark" : "light"
     );
   }, [theme]);
+
+  useEffect(() => {
+    try { 
+
+    const {data} = api.get("/user/me");
+    login(data);
+    console.log("자동 로그인 처리");
+    } catch {
+      logout();
+      console.log("자동 로그아웃 처리");
+    }
+  },[]);
 
   return (
     <>
