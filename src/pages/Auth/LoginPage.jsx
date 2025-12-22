@@ -79,7 +79,14 @@ export default function LoginPage() {
                     <div className='auth-wrap-left'>
                         <h1> 안녕하세요 </h1>
                         <br />
-                        <p>서비스 이용을 위해 로그인을 해주세요. </p>
+                        <p>서비스 이용을 위해 로그인을 해주세요. </p>   
+                        <br />
+                        <div className='notice'>
+                            <p>공지</p>
+                            <h3 style={{color : "rgba(158, 83, 83, 0.74)"}}> 세션에 저장하는 방식으로 개선 후 <br />
+                                모바일 환경에서 로그인 되지 않습니다 ... <br />
+                                PC 환경에서 접속 부탁드리겠습니다 </h3>
+                        </div>
                     </div>
                     <div className='auth-wrap-right'>
                         <div className='auth-input-box'>

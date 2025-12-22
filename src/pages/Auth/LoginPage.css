@@ -9,6 +9,23 @@
   justify-content: flex-start;
   gap: 1rem;  
 }
+.notice {
+  width: auto;
+  border: 1px solid var(--text);
+  border-radius: 10px;
+  padding: 2rem 1rem;
+  position: relative;
+}
+.notice p{
+  left: 0;
+  top: 0;
+  color: red;
+  background: #242424;
+  border: 1px solid var(--text);
+  padding: 0 0.5rem;
+  border-radius: 5px;
+  position: absolute;
+}
 .auth-wrap Button {
   margin-top: 2rem;
 }
