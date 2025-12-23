@@ -7,7 +7,7 @@ export default function LogoutBtn() {
      const {logout} = AuthStore();
      const navigate = useNavigate();
      const handleLogout = async () => {
-      await api.post("/user/logout");
+      await api.post("/auth/logout");
       logout();
       navigate("/");
      }

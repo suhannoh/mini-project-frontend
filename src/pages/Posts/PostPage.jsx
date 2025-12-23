@@ -22,7 +22,7 @@ export default function PostPage() {
     // 전체 게시글 조회
     const getPosts = async () => {
       try {
-        const res = await api.get(`/posts`);
+        const res = await api.get(`/post`);
         // 게시글 상태 업데이트
         setPosts(res.data)
       } catch (e) {
@@ -38,7 +38,7 @@ export default function PostPage() {
     e.preventDefault();
     // 검색 API 호출
     try {
-      const res = await api.get(`/posts/search`, 
+      const res = await api.get(`/post/search`, 
                                 { params: { type: radioType, text: searchText}});
       // 검색된 게시글 상태 업데이트
       setPosts(res.data);

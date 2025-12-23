@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { API_BASE } from '../config/env';
-import axios from 'axios';
+import { api } from '../api/auth';
 
 export default function Post({id, idx , view , list}) {
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ export default function Post({id, idx , view , list}) {
   useEffect(() => {
      const run = async () => {
       try {
-        const resc = await axios.get(`${API_BASE}/post/comment/${id}`);
+        const resc = await api.get(`/post/${id}/comment`);
         setCommentCount(resc.data.length);
       } catch {
         setCommentCount(0);

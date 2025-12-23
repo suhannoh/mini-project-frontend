@@ -20,7 +20,7 @@ export default function PostDetailPage() {
 
     // 댓글 불러오기
     const fetchComments = async () => {
-        const resc = await api.get(`/post/comment/${id}`);
+        const resc = await api.get(`/post/${id}/comment`);
         // 댓글 상태 업데이트
         setComments(resc.data);
     };
@@ -30,7 +30,7 @@ export default function PostDetailPage() {
     // 게시글 상세 정보 불러오기
     const getPostDetail = async () => {
         try {
-            const res = await api.get(`/posts/${id}`);
+            const res = await api.get(`/post/${id}`);
             // 상태 업데이트
             setPost(res.data);
             // 게시글 댓글 불러오기
@@ -75,9 +75,16 @@ export default function PostDetailPage() {
     };
 
     // 댓글 삭제 함수 (준비중)
-    const handleDeleteComment = () => {
-        alert("준비중입니다")
-    }
+    const handleDeleteComment = async (commentId) => {
+        try {
+            await api.delete(`/post/comment/${commentId}`);
+            
+        } catch (e) {
+            logError(e);
+        }
+        // 댓글 다시 불러오기
+        fetchComments();
+    };
 
     // 현재 사용자가 작성한 게시글인지 확인
     const isMyPost = user && post.userId === user.id;
@@ -109,18 +116,16 @@ export default function PostDetailPage() {
                     <span> {comment.name}</span>
                     <p> {comment.comment}</p>  
                     <div className='post-detail-comment-createdAt'> 
-                        {/* <button className='comment-delete-btn'>❌</button> */}
                        <span>{formatDateTimeDay(comment.createdAt)}</span> 
                     </div>
-                    {/* { isMyPost && ( */}
+                    { ( isMyPost || comment.userId === user?.id) && (
                         <button 
                         className='comment-delete-btn'
-                        onClick={handleDeleteComment}
-                        aria-label="댓글 삭제"
+                        onClick={() => handleDeleteComment(comment.id)}
                         >
                         ×
                         </button>
-                    {/* )} */}
+                    )}
                 </div>
                     )})}
             </div>

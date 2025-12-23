@@ -34,11 +34,11 @@ export default function LinkAddPage() {
     try {
       if(linkStore) {
         // 수정 모드
-        await api.put(`/user/links`,{ notionUrl, gitHubUrl, userId : linkStore.user_id });
+        await api.put(`/link`,{ notionUrl, gitHubUrl, userId : linkStore.user_id });
         alert("Link를 성공적으로 수정하였습니다.")
       } else {
         // 추가 모드
-        await api.post(`/user/links`, { notionUrl, gitHubUrl, userId : user.id });
+        await api.post(`/link`, { notionUrl, gitHubUrl, userId : user.id });
         alert("Link를 성공적으로 저장하였습니다.")
       }
     } catch (e) {
