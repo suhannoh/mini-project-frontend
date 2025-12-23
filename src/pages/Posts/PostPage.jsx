@@ -90,14 +90,6 @@ export default function PostPage() {
               >
                 카드
               </button>
-
-
-              {/* <label><input type='radio' name="searchPostView"
-                value="list" checked={radioShowType === "list"}
-                onChange={(e) => setRadioShowType(e.target.value)} /> 리스트 </label>
-              <label><input type='radio' name="searchPostView"
-                value="card" checked={radioShowType === "card"}
-                onChange={(e) => setRadioShowType(e.target.value)} /> 카드 </label> */}
             </div>
 
           </div>

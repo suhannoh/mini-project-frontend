@@ -8,8 +8,8 @@ export default function Tools() {
   // 툴 목록
   const TOOLS = [
     { type: "calculator", title: "계산기", desc: "간단 계산 / %", icon: "🧮" },
+    { type: "weather", title: "현재 날씨", desc: "내 위치 기준", icon: "🌦️" },
     { type: "exchange", title: "환율 계산", desc: "KRW ↔ USD", icon: "💱"  , disabled: true},
-    { type: "weather", title: "현재 날씨", desc: "내 위치 기준", icon: "🌦️" , disabled: true},
     { type: "coming", title: "준비중", desc: "곧 추가됩니다", icon: "⏳", disabled: true },
   ];
 

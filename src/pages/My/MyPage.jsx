@@ -13,7 +13,7 @@ export default function MyPage() {
   const [isMask, setIsMask] = useState(true);
   // 마스킹된 비밀번호 생성
   const maskedPassword = '*'.repeat(user?.password?.length ?? 0);
-  // 네비게이트
+  // 페이지 네비게이트
   const navigate = useNavigate();
   return (
     <div>
