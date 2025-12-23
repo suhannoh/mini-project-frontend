@@ -7,6 +7,13 @@
   justify-content: flex-start;
   gap: 1rem;  
 }
+.auth__header {
+  padding: 0 1rem;
+  display: flex;
+  margin-bottom: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
 .auth__notice {
   width: auto;
   background: #645e5e;

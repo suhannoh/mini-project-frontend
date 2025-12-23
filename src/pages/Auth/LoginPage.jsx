@@ -1,5 +1,5 @@
 import AuthStore from '../../store/AuthStore';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css'
 import Layout from '../../layout/Layout';
@@ -42,6 +42,25 @@ export default function LoginPage() {
             setLoad(false);
         }
     }
+    const [API , setAPI] = useState(false);
+    const [APIload , setAPILoad] = useState(true);
+    useEffect(() => {
+        const apiPingCheck = async () => {
+            try {
+                // 세션 확인
+                await api.get("/auth/api/ping");
+                // 세션 유효
+                setAPI(true);
+            } catch {
+                // 세션 무효
+
+                setAPI(false);  
+            } finally {
+                setAPILoad(false);
+            }
+        }
+        apiPingCheck();
+    }, []);
 
     // 로딩 중일 때
     if (load) {
@@ -62,7 +81,16 @@ export default function LoginPage() {
 
     return (
         <div>
-            <p>version 1.1</p>
+            <div className='auth__header'>
+                    <p>version 1.1.0</p>
+                <div className='main__api-health'>
+                    <h2> API(서버연결) 상태 :     {APIload ? " 로딩 중..."
+                                                : API
+                                                ? " 🟢 정상"
+                                                : " 🔴 비정상 - 배포 및 수정 중"}
+                     </h2>
+            </div>
+            </div>
 			{/* 개발 편의를 위한 버튼 */}
             {import.meta.env.DEV && (
                 <button
