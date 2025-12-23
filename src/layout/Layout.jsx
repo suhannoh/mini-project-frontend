@@ -9,9 +9,10 @@ import AuthStore from '../store/AuthStore'
 import { API_BASE } from '../config/env'
 import EditBtn from '../components/button/EditBtn'
 import PostDeleteBtn from '../components/button/PostDeleteBtn'
+import LikeBtn from '../components/button/LikeBtn'
 export default function Layout({ children , backbtn=true , logoutBtn=true , postBtn=false ,
                                  textInput=false , postId=null , commentMethod , editBtn=false,
-                                 post , backNavi=null,}) {
+                                 post , backNavi=null, likeBtn=false }) {
   
   const [comment, setComment] = useState("");
   const {user} = AuthStore();
@@ -36,6 +37,7 @@ export default function Layout({ children , backbtn=true , logoutBtn=true , post
         {backbtn && <BackBtn navi={backNavi}/>}
         <div className='layout__post--buttons'>
           {postBtn && <PostBtn />}
+          {likeBtn && <LikeBtn post={post}/>}
           {editBtn && <EditBtn post={post}/>}
           {editBtn && <PostDeleteBtn />}
         </div>

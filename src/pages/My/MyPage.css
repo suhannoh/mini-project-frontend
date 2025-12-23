@@ -27,6 +27,11 @@
     align-items: center;
     justify-content: space-between;
 }
+.my-info-list li button {
+    height: auto;
+    padding: 0.5rem 1rem;
+    
+}
 .my-page-wrap form {
     width: 80%;
     display: flex;

@@ -4,6 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 import AuthStore from '../../store/AuthStore';
 import { api } from '../../api/auth';
 import { logError } from '../../components/logError';
+import { formatDateTimeDay } from '../../components/date/dateTimeDay';
+import { formatDateTime } from '../../components/date/dateTime';
+
 
 export default function PostDetailPage() {
     // URL 파라미터에서 id 가져오기
@@ -53,26 +56,6 @@ export default function PostDetailPage() {
         )
     }
 
-    // 날짜 및 시간 포맷 함수
-    const formatDateTime = (isoString) => {
-        const date = new Date(isoString);
-        return date.toLocaleString('ko-KR', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-        });
-    };
-    const formatDateTimeDay = (isoString) => {
-        const date = new Date(isoString);
-        return date.toLocaleString('ko-KR', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-        });
-    };
 
     // 댓글 삭제 함수 (준비중)
     const handleDeleteComment = async (commentId) => {
@@ -91,7 +74,7 @@ export default function PostDetailPage() {
 
   return (
     <div>
-        <Layout editBtn={isMyPost} post={post}
+        <Layout editBtn={isMyPost} post={post} likeBtn={true}
         textInput={true} postId={Number(id)} commentMethod={fetchComments}>
         <div className="post-detail">
             
