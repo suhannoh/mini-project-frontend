@@ -59,7 +59,12 @@ export default function MainPage() {
     check(`/post/health`, setPostAPI);
     
   }, []);
-
+  
+  // 전체 API 상태 계산
+  const states = [userAPI, activeUserAPI, linkAPI, postAPI];
+  const statesCount = states.filter(state => state === true).length;
+  const overallStatus = statesCount === states.length ?
+                           "green" : statesCount > 0 ? "orange" : "red";
 
   return (
     <div>
@@ -67,14 +72,9 @@ export default function MainPage() {
         <h2> API 상태 </h2>
         {/* API 상태 표시 */}
         <div className='main__api-health'>
-          <div>
-            <p> Post API : {postAPI ? "🟢" : "🔴"} </p>
-            <p> Link API : {linkAPI ? "🟢" : "🔴"}</p>
-          </div>
-          <div>
-            <p> Active User API : {activeUserAPI ? "🟢" : "🔴"}</p>
-            <p> User API : {userAPI ? "🟢" : "🔴"}</p>
-          </div>
+            <p className={overallStatus === "green" ? "is-active" : "is-disabled"}>🟢 정상 작동 중 </p>
+            <p className={overallStatus === "orange" ? "is-active" : "is-disabled"}>🟠 일부 기능에 문제가 있어요</p>
+            <p className={overallStatus === "red" ? "is-active" : "is-disabled"}>🔴 서버 연결 불가</p>
         </div>
       </div>
         <Layout backbtn={false} >
