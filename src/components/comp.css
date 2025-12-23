@@ -38,7 +38,10 @@
   background: var(--option-btn);
 }
 
-
+.post-delete-btn {
+  background: var(--option-btn);
+  color: var(--white-text);
+}
 /*  */
 .flex-link-box {
   width: 100%;

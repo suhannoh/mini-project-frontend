@@ -17,6 +17,7 @@ import PostDetailPage from './pages/Posts/PostDetailPage';
 import Tools from './pages/Tools/Tools';
 import ToolsDetail from './pages/Tools/ToolsDetail';
 import { api } from './api/auth';
+import FindAccountPage from './pages/Auth/find/FindAccountPage';
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
       <Routes>
         <Route path='/' element={<LoginPage />} />
         <Route path='/join' element={<JoinPage />} />
+        <Route path='/find-password' element={<FindAccountPage />} />
         <Route element={<Private />}>
           <Route path='/main' element={<MainPage />} />
           <Route path='/links' element={<LinksPage/>} />

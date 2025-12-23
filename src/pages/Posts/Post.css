@@ -279,7 +279,8 @@ textarea {
 
 .view-toggle {
   display: flex;
-  background: #1f1f1f;
+  /* background: #1f1f1f; */
+  background-color: var(--option-btn);
   border-radius: 12px;
   padding: 4px;
   width: fit-content;

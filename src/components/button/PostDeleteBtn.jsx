@@ -28,7 +28,7 @@ export default function PostDeleteBtn() {
 
   return (
     <div>
-      <button onClick={deleteHandler}>삭제</button>
+      <button className='post-delete-btn' onClick={deleteHandler}>삭제</button>
     </div>
   )
 }

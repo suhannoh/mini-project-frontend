@@ -79,12 +79,13 @@ export default function LoginPage() {
     }
 
 
+
     return (
         <div>
             <div className='auth__header'>
                     <p>version 1.1.0</p>
                 <div className='main__api-health'>
-                    <h2> API(서버연결) 상태 :     {APIload ? " 로딩 중..."
+                    <h2> API(서버연결) 상태 :     {APIload ? " 로딩 중 (서버 깨우는 중)..."
                                                 : API
                                                 ? " 🟢 정상"
                                                 : " 🔴 비정상 - 배포 및 수정 중"}
@@ -132,7 +133,7 @@ export default function LoginPage() {
                             <button type='submit'>Login</button>
                             <ul className='auth__options-menu'>
                                 <li onClick={() => alert("api 준비중")}  >아이디 찾기</li>
-                                <li onClick={() => alert("api 준비중")}  >비밀번호 찾기</li>
+                                <li onClick={() => navigate("/find-password")}  >비밀번호 찾기</li>
                                 <li onClick={() => navigate("/join")} className='is-point'> 회원가입 </li>
                             </ul>
                             <br />
