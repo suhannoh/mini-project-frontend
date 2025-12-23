@@ -34,7 +34,7 @@ export default function LinksPage() {
 		const getList = async () => {
 			// 링크 목록 조회
 			try {
-				const res = await api.get(`/user/links`);
+				const res = await api.get(`/link	`);
 				setLinkList(res.data);// 전체 링크 목록 저장
 
 				// 내 링크 정보 저장

@@ -34,7 +34,7 @@ export default function JoinPage() {
     setLoad(true);
 
     try {// 회원가입 요청
-      await api.post(`/user/join`,{ email, password, name, phone,});
+      await api.post(`/auth/join`,{ email, password, name, phone,});
       alert("회원가입 성공!");
       // 로그인 페이지로 이동
       navigate("/")

@@ -46,9 +46,9 @@ export default function PostAddPage() {
     try {
       // 작성 또는 수정 API 호출
       if(!state) {
-        await api.post(`/posts`, data);
+        await api.post(`/post`, data);
       } else {
-        await api.put(`/posts`, data);
+        await api.put(`/post`, data);
       }
       alert(`성공적으로 글 ${!state ? "작성" : "수정"}이 완료되었습니다`);
       navigate(-1);

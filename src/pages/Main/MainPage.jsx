@@ -53,10 +53,10 @@ export default function MainPage() {
     };
 
     // 헬스체크 호출
-    check(`/user/health`, setUserAPI);
+    check(`/auth/health`, setUserAPI);
     check(`/useractive/health`, setActiveUserAPI);
-    check(`/user/links/health`, setLinkAPI);
-    check(`/posts/health`, setPostAPI);
+    check(`/link/health`, setLinkAPI);
+    check(`/post/health`, setPostAPI);
     
   }, []);
 
