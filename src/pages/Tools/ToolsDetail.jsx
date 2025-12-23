@@ -1,15 +1,11 @@
 
 import { useParams } from 'react-router-dom';
-import Calculator from './tools-dev/Calculator';
 import Layout from '../../layout/Layout';
-import Weather from './tools-dev/Weather';
 
 
 // 도구 타입과 해당 컴포넌트를 매핑하는 객체
 const TOOL_MAP = {
-	calculator: <Calculator />,
-	//   exchange: <Exchange />,
-	  weather: <Weather />,
+
 };
 
 
