@@ -81,8 +81,8 @@ export default function LoginPage() {
                         <p>서비스 이용을 위해 로그인을 해주세요. </p>   
                         <br />
                         <div className='auth__notice'>
-                            <p>공지</p>
-                            <h3> 세션에 저장하는 방식으로 개선 후 <br />
+                            {/* <p>공지</p> */}
+                            <h3>📢 세션에 저장하는 방식으로 개선 후 <br />
                                 모바일 환경에서 로그인 되지 않습니다 ... <br />
                                 PC 환경에서 접속 부탁드리겠습니다 </h3>
                         </div>

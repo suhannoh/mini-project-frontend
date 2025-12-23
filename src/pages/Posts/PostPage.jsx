@@ -13,6 +13,8 @@ export default function PostPage() {
   const [radioType, setRadioType] = useState("title");
   // 뷰 관련 상태
   const [radioShowType, setRadioShowType] = useState("list");
+  // 카테고리
+  const [category, setCategory] = useState("all");
   // 검색어 
   const [searchText, setSearchText] = useState("");
   // 테마
@@ -22,7 +24,7 @@ export default function PostPage() {
     // 전체 게시글 조회
     const getPosts = async () => {
       try {
-        const res = await api.get(`/post`);
+        const res = await api.get(`/post`, { params: { category } });
         // 게시글 상태 업데이트
         setPosts(res.data)
       } catch (e) {
@@ -31,7 +33,7 @@ export default function PostPage() {
     }
     // 초기 전체 게시글 로드
     getPosts();
-  }, []);
+  }, [category]);
 
 
   const handleSearchPost = async (e) => {
@@ -39,7 +41,7 @@ export default function PostPage() {
     // 검색 API 호출
     try {
       const res = await api.get(`/post/search`, 
-                                { params: { type: radioType, text: searchText}});
+                                { params: {type: radioType, text: searchText , category : category} });
       // 검색된 게시글 상태 업데이트
       setPosts(res.data);
     } catch (e) {
@@ -52,6 +54,33 @@ export default function PostPage() {
       <Layout postBtn={true} backNavi={"/main"}>
         <ul className={radioShowType === "list" ? 'post-list-ul' : 'post-card-ul'}>
           <div className='post-search'>
+            <div className="view-toggle">
+              <button
+                className={category === "all" ? "active" : ""}
+                onClick={() => setCategory("all")} value="all">
+                전체
+              </button>
+
+              <button
+                className={category === "자유게시판" ? "active" : ""}
+                onClick={() => setCategory("자유게시판")} value="자유게시판">
+                자유게시판
+              </button>
+
+              <button
+                className={category === "개발정보" ? "active" : ""}
+                onClick={() => setCategory("개발정보")}  value="개발정보"
+              >
+                개발정보
+              </button>
+
+              <button
+                className={category === "질문" ? "active" : ""}
+                onClick={() => setCategory("질문")}  value="질문"
+              >
+                질문
+              </button>
+            </div>
             <form onSubmit={handleSearchPost}>
               <h2> 검색 </h2>
               <div className='input-set'>
@@ -93,11 +122,12 @@ export default function PostPage() {
             </div>
 
           </div>
-          {posts.map((li, idx) => {
+          {posts.length > 0 ?
+          posts.map((li, idx) => {
             return (
               <Post view={radioShowType} list={li} key={li.postId} id={li.postId} idx={idx + 1} title={li.title} content={li.content} />
             )
-          })}
+          }) : <h2> 게시글이 없습니다. </h2> }
         </ul>
       </Layout>
     </div>
