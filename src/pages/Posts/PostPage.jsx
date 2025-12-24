@@ -9,6 +9,9 @@ import { logError } from '../../components/logError'
 export default function PostPage() {
   // 게시글
   const [posts, setPosts] = useState([]);
+  const [anonPosts, setAnonPosts] = useState([]);
+  //
+  const [randomAnonPosts, setRandomAnonPosts] = useState(null);
   // 검색 관련 상태
   const [radioType, setRadioType] = useState("title");
   // 뷰 관련 상태
@@ -31,7 +34,17 @@ export default function PostPage() {
     // 전체 게시글 조회
     const getPosts = async () => {
       try {
-        // 검색 중이 아닐 때 전체 게시글 불러오기
+        // CARD 뷰일 때 익명 게시글 불러오기
+        if (radioShowType === "card") {
+          const res = await api.get(`/post/anonymous`, {
+                params: {
+                  category ,
+                } });
+            setAnonPosts(res.data); 
+            setRandomAnonPosts(pickRandomPost(res.data))
+            } 
+        else {
+        // LIST + 검색 중이 아닐 때 전체 게시글 불러오기
         if(!isSearching) {
           const res = await api.get(`/post`, { 
                 params: {
@@ -57,6 +70,9 @@ export default function PostPage() {
             setPosts(res.data.content);
             setTotalPages(res.data.totalPages);
             }
+                      
+        }  
+
     } catch (e) {
         logError(e);
     } 
@@ -64,8 +80,13 @@ export default function PostPage() {
     // 초기 전체 게시글 로드
     getPosts();
     // 카테고리 또는 페이지가 변경될 때마다 게시글 다시 로드
-  }, [category, page , isSearching]);
+  }, [category, page , isSearching , radioShowType ]);
 
+  const pickRandomPost = (list) => {
+     if (!list || list.length === 0) return null; 
+     const idx = Math.floor(Math.random() * list.length); 
+     return list[idx]; 
+  };
 
   // 검색 핸들러
   const handleSearchPost = async (e) => {
@@ -73,6 +94,11 @@ export default function PostPage() {
     setPage(0);  // 검색 시 첫 페이지로 이동
     setIsSearching(true); // 검색 중 상태로 설정
   }
+  
+  const handleRandomAnon = () => {
+    setRandomAnonPosts(pickRandomPost(anonPosts));
+  };
+  
 
   return (
     <div>
@@ -133,23 +159,22 @@ export default function PostPage() {
               <button
                 className={radioShowType === "list" ? "active" : ""}
                 onClick={() => setRadioShowType("list")} value="list"
-                > 리스트 </button>
+                > 게시글 </button>
 
               <button
                 className={radioShowType === "card" ? "active" : ""}
                 onClick={() => setRadioShowType("card")}  value="card"
-              > 카드 </button>
+              > 익명카드 </button>
             </div>
           </div>
 
           {/* 게시글 목록 */}
-          {posts.length > 0  ?
+          {radioShowType === "list" ?
           posts.map((li, idx) => {
             return (
               <Post view={radioShowType} list={li} key={li.postId} id={li.postId} idx={idx + 1} title={li.title} content={li.content} />
             )
-          }) :  <h2> 게시글이 없습니다. </h2> }
-
+          }) : posts.length == 0 &&  <h2> 게시글이 없습니다. </h2> }
           {/* pagination */}
           {(page < totalPages && radioShowType === "list") && <div className="pagination">
             <button
@@ -157,7 +182,6 @@ export default function PostPage() {
               disabled={page === 0}
               onClick={() => setPage(page => page - 1)}
             > 이전 </button>
-
            {/* 페이지 번호 표시 */}
             <span>{page + 1} / {totalPages}</span>
 
@@ -166,6 +190,27 @@ export default function PostPage() {
               onClick={() => setPage(page => page + 1)}
             > 다음 </button>
           </div>}
+
+
+
+
+          {/* 익명 카드  */}
+          { radioShowType === "card" ? (
+              randomAnonPosts ? (
+              <Post view={radioShowType} list={randomAnonPosts} key={randomAnonPosts.postId ?? randomAnonPosts.id} 
+                    id={randomAnonPosts.postId ?? randomAnonPosts.id} 
+                    title={randomAnonPosts.title} content={randomAnonPosts.content} 
+                />
+              ) : (
+                <h2> 게시글이 없습니다. </h2> 
+              )
+            ) :  null}
+        
+        { radioShowType === "card" && (
+          <button className="random-btn" onClick={handleRandomAnon}>
+            🎲 다른 익명글 보기
+          </button> )}
+
         </ul>
         
       </Layout>

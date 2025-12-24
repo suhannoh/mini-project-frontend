@@ -19,8 +19,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5rem;
+  padding: 7rem 5rem;
   gap: 1rem;
+  position: relative;
   background-color: rgba(139, 119, 119, 0.185);
   border-radius: 16px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.15);
@@ -29,8 +30,13 @@
   background-color: #b6aca9cc;
   cursor: pointer;
 }
+.post-footer {
+  display:  flex;
+  gap: 1rem;
+}
 .post {
   height: 4rem;
+  min-height: 3.5rem;
   padding: 1.2rem;
   display: flex;
   align-items: center;
@@ -51,9 +57,7 @@
   flex: 8;
   text-align: start;
 }
-.post-like {
-  flex : 1;
-}
+
 .post-search {
   /* border: 1px solid #ccc; */
   border-radius: 10px;
@@ -307,6 +311,12 @@ textarea {
   justify-content: center;
   align-items: center;
 }
+@media (max-height: 875px) {
+  .post-list-ul {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+}
 @media (max-width: 768px) {
   .post-search {
     width: 100%;
@@ -328,9 +338,7 @@ textarea {
     padding: 0.4rem 0;
     font-size: 12px;
   }
-  .post-like {
-    flex:2;
-  }
+
   .post-add-page form {
   flex-direction: column;
   justify-content: flex-start;
@@ -345,9 +353,7 @@ textarea {
   .post-card-ul {
     padding: 0.5rem;
   }
-  .post-card {
-    padding : 2rem;
-  }
+ */
   .post-detail-comment {
     flex-wrap: wrap;
   }

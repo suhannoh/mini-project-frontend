@@ -37,10 +37,14 @@ export default function Post({id, idx , view , list}) {
               <h2 className='post-id'> {idx} </h2>
             </div>}
             <h2 className='post-title'> {list.title} </h2>
+            {(new Date(list.createdAt).getTime() > Date.now() - 3 * 60 * 60 * 1000 && view === "card") && <span className='new-post-card'>New</span>}
             {view === 'card' && 
             <h2> {list.content} </h2>}
-            <h3 className='post-like'> 💬 {commentCount} </h3>
-            <h3 className='post-like'> ♥ {likeCount} </h3>
+            <div className='post-footer'>
+              <h3 className='post-like'> 💬 {commentCount} </h3>
+              <h3 className='post-like'> ♥ {likeCount} </h3>
+            </div>
+
         </div>
   )
 }

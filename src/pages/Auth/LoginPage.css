@@ -86,7 +86,9 @@
 }
 .auth__options-menu li:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
+
 .is-point {
   border: 1px solid rgb(87, 87, 219);
   padding: 0.8rem   1rem;
