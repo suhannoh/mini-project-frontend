@@ -172,7 +172,7 @@ export default function PostPage() {
           {radioShowType === "list" ?
           posts.map((li, idx) => {
             return (
-              <Post view={radioShowType} list={li} key={li.postId} id={li.postId} idx={idx + 1} title={li.title} content={li.content} />
+              <Post view={radioShowType} list={li} key={li.postId} id={li.postId} idx={(idx + 1 ) + (page * size)}  title={li.title} content={li.content} />
             )
           }) : posts.length == 0 &&  <h2> 게시글이 없습니다. </h2> }
           {/* pagination */}

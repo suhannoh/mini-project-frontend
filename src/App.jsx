@@ -18,6 +18,7 @@ import Tools from './pages/Tools/Tools';
 import ToolsDetail from './pages/Tools/ToolsDetail';
 import { api } from './api/auth';
 import FindAccountPage from './pages/Auth/find/FindAccountPage';
+import LinkDetailPage from './pages/Links/LinkDetailPage';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
           <Route path='/main' element={<MainPage />} />
           <Route path='/links' element={<LinksPage/>} />
           <Route path='/links/new' element={<LinkAddPage />} />
+          <Route path='/links/:id' element={<LinkDetailPage />} />
           <Route path='/posts' element={<PostPage />} />
           <Route path='/posts/new' element={<PostAddPage />} />
           <Route path="/posts/:id" element={<PostDetailPage />} />

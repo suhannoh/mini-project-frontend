@@ -18,6 +18,10 @@
     align-items: center;
 } 
 
+.flex-link-box {
+  border: 1px solid var(--text);
+  border-radius: 10px;
+}
 /* Links Add Page */
 .link__add-wrap {
     padding: 2rem;

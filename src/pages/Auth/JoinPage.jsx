@@ -82,12 +82,12 @@ export default function JoinPage() {
               </div>
               <div className='auth__field'>
                 <p> Phone </p>
-                <input type="tel" placeholder='전화번호 (선택)'
+                <input type="tel" placeholder='전화번호 010-1234-5678 (선택)'
                   value={phone} onChange={(e) => setPhone(e.target.value)} />
               </div>
               <div className='auth__field'>
                 <p><span className='red-text'>*</span> Password </p>
-                <input type="password" placeholder='비밀번호 (필수)' autoComplete='new-password'
+                <input type="password" placeholder='비밀번호 5자리 이상 (필수) ' autoComplete='new-password'
                   value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
               <div className='auth__field'>

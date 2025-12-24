@@ -92,6 +92,9 @@
 #notion-link:hover {
   color: #e9d5ff;
 }
+.link-box {
+  padding: 2rem;
+}
 .link-box a {
   width: 100%;
   padding: 2rem;  
@@ -119,17 +122,19 @@
 }
 
 .card-content { 
-  width: 100%;
+  width: 50%;
   height: 100%;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   transform  : 0.2s ease, box-shadow 0.3s ease;
   flex-direction: column;
+  overflow: hidden; 
 }
 .card {
   width: 270px;
-  height: 250px;
+  height: 220px;
   background: #151515;
   border-radius: 9px;
   overflow: hidden; 
@@ -143,11 +148,15 @@
   box-shadow:
     0 8px 20px rgba(0,0,0,0.35),
     0 12px 40px rgba(0,0,0,0.25);
+  border: 1px solid var(--text);
 }
 
 .empty-links{
   opacity: .7;
   padding: 3rem;
+}
+.profile-img {
+  height: 100%;
 }
 
 
