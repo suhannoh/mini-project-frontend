@@ -19,70 +19,90 @@ export default function PostPage() {
   const [searchText, setSearchText] = useState("");
   // 테마
   const { theme } = AuthStore();
+  // 페이지네이션 관련 상태 
+  const [page, setPage] = useState(0);
+  // 전체 페이지 수 상태
+  const [totalPages, setTotalPages] = useState(0);
+  const size = 8;
+  // 검색 중 상태
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     // 전체 게시글 조회
     const getPosts = async () => {
       try {
-        const res = await api.get(`/post`, { params: { category } });
-        // 게시글 상태 업데이트
-        setPosts(res.data)
-      } catch (e) {
+        // 검색 중이 아닐 때 전체 게시글 불러오기
+        if(!isSearching) {
+          const res = await api.get(`/post`, { 
+                params: {
+                  category ,
+                  page,
+                  size,
+                } });
+
+            // 검색 API 호출
+            setPosts(res.data.content);
+            setTotalPages(res.data.totalPages);
+
+        }
+        // 검색 중일 때 검색된 게시글 불러오기
+        else {
+            const res = await api.get(`/post/search`, 
+                          { params: {
+                              type: radioType, text: searchText , category : category,
+                              page, size,
+                            } 
+                          });
+            // 검색된 게시글 상태 업데이트
+            setPosts(res.data.content);
+            setTotalPages(res.data.totalPages);
+            }
+    } catch (e) {
         logError(e);
-      }
-    }
+    } 
+  }
     // 초기 전체 게시글 로드
     getPosts();
-  }, [category]);
+    // 카테고리 또는 페이지가 변경될 때마다 게시글 다시 로드
+  }, [category, page , isSearching]);
 
 
+  // 검색 핸들러
   const handleSearchPost = async (e) => {
     e.preventDefault();
-    // 검색 API 호출
-    try {
-      const res = await api.get(`/post/search`, 
-                                { params: {type: radioType, text: searchText , category : category} });
-      // 검색된 게시글 상태 업데이트
-      setPosts(res.data);
-    } catch (e) {
-      logError(e);
-    }
+    setPage(0);  // 검색 시 첫 페이지로 이동
+    setIsSearching(true); // 검색 중 상태로 설정
   }
 
   return (
     <div>
-      <Layout postBtn={true} backNavi={"/main"}>
+      <Layout layoutType="post" postBtn={true} backNavi={"/main"}>
         <ul className={radioShowType === "list" ? 'post-list-ul' : 'post-card-ul'}>
           <div className='post-search'>
             <div className="view-toggle">
+              ️{/* 카테고리 선택 버튼 */}
               <button
                 className={category === "all" ? "active" : ""}
-                onClick={() => setCategory("all")} value="all">
-                전체
-              </button>
-
+                onClick={() =>{ setCategory("all"); setPage(0); 
+                  setIsSearching(false);}} value="all
+                "> 전체 </button>
               <button
                 className={category === "자유게시판" ? "active" : ""}
-                onClick={() => setCategory("자유게시판")} value="자유게시판">
-                자유게시판
-              </button>
-
+                onClick={() => {setCategory("자유게시판"); setPage(0); setIsSearching(false);}} value="자유게시판"
+                > 자유게시판 </button>
               <button
                 className={category === "개발정보" ? "active" : ""}
-                onClick={() => setCategory("개발정보")}  value="개발정보"
-              >
-                개발정보
-              </button>
-
+                onClick={() => { setCategory("개발정보"); setPage(0); setIsSearching(false); }}  value="개발정보"
+              > 개발정보 </button>
               <button
                 className={category === "질문" ? "active" : ""}
-                onClick={() => setCategory("질문")}  value="질문"
-              >
-                질문
-              </button>
+                onClick={() => { setCategory("질문"); setPage(0); setIsSearching(false); }}  value="질문"
+              > 질문 </button>
             </div>
+
             <form onSubmit={handleSearchPost}>
               <h2> 검색 </h2>
+              {/* 검색 입력 필드 */}
               <div className='input-set'>
                 <input onChange={(e) => setSearchText(e.target.value)}
                   style={{
@@ -92,6 +112,7 @@ export default function PostPage() {
                   placeholder='검색할 내용을 입력하세요 ' />
                 <button className={theme ? "" : "white"} type='submit'>🔍</button>
               </div>
+              {/* 검색 타입 선택 */}
               <div className='post-radios'>
                 <div>
                   <label><input type='radio' name="searchPost"
@@ -106,29 +127,47 @@ export default function PostPage() {
                 </div>
               </div>
             </form>
+
+            {/* 뷰 전환 버튼 */}
             <div className="view-toggle">
               <button
                 className={radioShowType === "list" ? "active" : ""}
-                onClick={() => setRadioShowType("list")} value="list">
-                리스트
-              </button>
+                onClick={() => setRadioShowType("list")} value="list"
+                > 리스트 </button>
 
               <button
                 className={radioShowType === "card" ? "active" : ""}
                 onClick={() => setRadioShowType("card")}  value="card"
-              >
-                카드
-              </button>
+              > 카드 </button>
             </div>
-
           </div>
-          {posts.length > 0 ?
+
+          {/* 게시글 목록 */}
+          {posts.length > 0  ?
           posts.map((li, idx) => {
             return (
               <Post view={radioShowType} list={li} key={li.postId} id={li.postId} idx={idx + 1} title={li.title} content={li.content} />
             )
-          }) : <h2> 게시글이 없습니다. </h2> }
+          }) :  <h2> 게시글이 없습니다. </h2> }
+
+          {/* pagination */}
+          {(page < totalPages && radioShowType === "list") && <div className="pagination">
+            <button
+            // 이전 버튼 비활성화 조건: 현재 페이지가 첫 페이지일 때
+              disabled={page === 0}
+              onClick={() => setPage(page => page - 1)}
+            > 이전 </button>
+
+           {/* 페이지 번호 표시 */}
+            <span>{page + 1} / {totalPages}</span>
+
+            <button disabled={page + 1 >= totalPages}
+            // 다음 버튼 비활성화 조건: 현재 페이지가 마지막 페이지일 때
+              onClick={() => setPage(page => page + 1)}
+            > 다음 </button>
+          </div>}
         </ul>
+        
       </Layout>
     </div>
   )

@@ -12,7 +12,7 @@ import PostDeleteBtn from '../components/button/PostDeleteBtn'
 import LikeBtn from '../components/button/LikeBtn'
 export default function Layout({ children , backbtn=true , logoutBtn=true , postBtn=false ,
                                  textInput=false , postId=null , commentMethod , editBtn=false,
-                                 post , backNavi=null, likeBtn=false }) {
+                                 post , backNavi=null, likeBtn=false , layoutType=""}) {
   
   const [comment, setComment] = useState("");
   const {user} = AuthStore();
@@ -42,7 +42,7 @@ export default function Layout({ children , backbtn=true , logoutBtn=true , post
           {editBtn && <PostDeleteBtn />}
         </div>
       </div>
-      <div className='layout-wrap' 
+      <div className={layoutType === "post" ? "layout-wrap-post" : "layout-wrap"} 
            style={{
             borderBottomLeftRadius : textInput ? "none" : "10px",
             borderBottomRightRadius : textInput ? "none" : "10px"
