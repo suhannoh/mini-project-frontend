@@ -17,6 +17,7 @@ const AuthStore = create(
       user: null,
       isLogin: false,
     }),
+    
   toggleTheme: () =>
     set((state) => ({
       theme : !state.theme,

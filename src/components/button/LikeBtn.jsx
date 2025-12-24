@@ -17,7 +17,7 @@ export default function LikeBtn({post}) {
                 });
                 setLikeCount(res.data.likeCount); 
                 setLiked(res.data.liked);
-                console.log("좋아요 상태 확인 :" , liked);
+                // console.log("좋아요 상태 확인 :" , liked);
             }
             catch (e) {
                 logError(e);

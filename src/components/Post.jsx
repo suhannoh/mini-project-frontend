@@ -21,15 +21,21 @@ export default function Post({id, idx , view , list}) {
         });
         setLikeCount(resl.data.likeCount);
       } catch {
+        // 오류시 댓글수 0으로 초기화
         setCommentCount(0);
       }
     };
     run();
   }, [id, user.id]);
+
   return (
         <div className={view === "list" ? 'post' : "post-card"} onClick={() => navigate(`/posts/${id}`)} >
             {view === "list" &&
-            <h2 className='post-id'> {idx} </h2>}
+            <div className='post-header'>
+              {/* 3시간 이내  */}
+              {new Date(list.createdAt).getTime() > Date.now() - 3 * 60 * 60 * 1000 && <span className='new-post'>New</span>}
+              <h2 className='post-id'> {idx} </h2>
+            </div>}
             <h2 className='post-title'> {list.title} </h2>
             {view === 'card' && 
             <h2> {list.content} </h2>}
