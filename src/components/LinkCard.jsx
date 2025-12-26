@@ -5,6 +5,11 @@ import LinkStore from '../store/LinkStore';
 export default function LinkCard({ link , url }) {
     const navigate = useNavigate();
     const {linkStore} = LinkStore();
+    const badgeColor = link.gender === "none" ? "#9ca3af" :
+                        link.gender === "male" ? "#3b82f6" : "#ff4fa3";
+        
+    // console.log("조회 -> 성별 " ,link.gender)
+
     return (
         <li className='card'
         onClick={url ? () => navigate(`${url}`)   : () => navigate(`/links/${link.id}` , {
@@ -35,16 +40,15 @@ export default function LinkCard({ link , url }) {
                         <path d="M8 12h8"/>
                         </svg>
             :
-               
-                <svg
-                className="profile-img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                width="100%" height="100%">
-                <circle cx="12" cy="8" r="4" />
-                <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
-                </svg>}
+                <svg viewBox="0 0 24 24" className="profile-img">
+                <g fill="currentColor">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 21c0-4 4-6 8-6s8 2 8 6v1H4z"/>
+                </g>
+                <circle cx="18.5" cy="18.5" r="2.3" fill={badgeColor} />
+                </svg>
+                }
+
             </div>
              
         </li>

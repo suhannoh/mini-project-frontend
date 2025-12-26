@@ -22,6 +22,11 @@ const AuthStore = create(
     set((state) => ({
       theme : !state.theme,
     })),
+
+  setDarkTheme : () => 
+    set({
+      theme : true
+    })
 }));
 
 export default AuthStore;

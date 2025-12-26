@@ -32,6 +32,7 @@ export default function LinksPage() {
 				const res = await api.get(`/link`);
 				setLinkList(res.data);// 전체 링크 목록 저장
 				// 내 링크 정보 저장
+				console.log("조회" ,res.data)
 				const myLink = res.data.find(li => li.user_id === user.id);
 				//전역 상태에 내 링크 정보 반영
 				setLinkStore(myLink);

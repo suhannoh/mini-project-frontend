@@ -1,3 +1,4 @@
+
 .tools-section {
   width: 100%;
   padding: 2rem;
@@ -58,38 +59,78 @@
   background: rgba(255,255,255,0.05);
   box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
-
-/* .tool-card {
-  height: 120px;
-
+.admin__wrap {  
   display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  font-size: 1.1rem;
-  font-weight: 500;
-
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  min-height: 100vh;
+  width: 100%;
+}
+.admin__sidebar {
+  width: 240px;
+  flex: 0 0 240px;
+  padding-right: 1rem;
+  border-right: 1px solid rgba(255,255,255,0.12);
+}
+.admin__detail {
+  flex: 1;
+  min-width: 0;  /* ⭐ 가로 스크롤 방지 핵심 */
+  padding: 24px;
 }
 
-.tool-card:hover {
-  background: rgba(59, 130, 246, 0.25);
-  transform: translateY(-4px);
-} */
+.full__display {
+  width: 99vw;
+  /* 2) 가운데 정렬된 root를 무력화 */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: 2rem;
+  padding-right: 2rem;
 
-/* .tool-card.disabled {
-  opacity: 0.4;
-  cursor: default;
+  overflow-x: clip;
+}
+.aside-bar {
+  width: 100%;
+  height: 1px;
+  background : gray;
+  margin: 0;
+  margin: 10px 0;
+}
+.admin__sidebar button{
+  width: 100%;
+  background: none;
+}
+.active {
+  border: 1px solid rgb(105, 105, 216);
+}
+.tr-active {
+  border: 1px solid rgb(105, 105, 216);
+}
+tbody tr:hover {
+  background: rgb(98, 98, 204);
+}
+table {
+  border: 1px solid #ccc;
+  width: 100%;
+}
+table thead {
+  background: #000;
 }
 
-.tool-card.disabled:hover {
-  transform: none;
-  background: rgba(255, 255, 255, 0.05);
-} */
+.user__info-table-gray {
+  background: rgb(109, 99, 99);
+}
+.user__status {
+  border: none;
+  width: 100%;
+  height: 100%;
+  padding: 0.4rem;
+}
+#table__submit {
+  width: 100%;
+  height: 100%;
+  background: none;
+}
+#table__submit:hover {
+  color: red;
+}
 
 @media (max-width: 768px) {
   .tools-section {

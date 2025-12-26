@@ -11,6 +11,7 @@ export default function JoinPage() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [gender , setGender] = useState("none");
   // 네비게이트
   const navigate = useNavigate();
   // 로딩 상태
@@ -34,7 +35,7 @@ export default function JoinPage() {
     setLoad(true);
 
     try {// 회원가입 요청
-      await api.post(`/auth/join`,{ email, password, name, phone,});
+      await api.post(`/auth/join`,{ email, password, name, phone, gender});
       alert("회원가입 성공!");
       // 로그인 페이지로 이동
       navigate("/")
@@ -60,7 +61,7 @@ export default function JoinPage() {
       <Layout logoutBtn={false}>
         {/* 회원가입 폼 */}
         <div className='auth__wrap auth__join-wrap'>
-          <div className='auth__info'>
+          <div className='auth__info auth__info-join'>
             <h1> 회원가입 </h1>
             <br />
             <p>서비스 이용을 위해 계정을 생성해주세요. </p>
@@ -68,13 +69,14 @@ export default function JoinPage() {
             <p>⚠️ 이 웹 사이트는 학습용입니다 <br /><span className='red-text'> 실제 개인정보를 이용하지 마세요 </span></p>
           </div>
 
-          <div className='auth__form'>
+          <div className='auth__form auth__form-join'>        
             <form onSubmit={handleJoin} >
               <div className='auth__field'>
                 <p><span className='red-text'>*</span> Email </p>
                 <input type="email" placeholder='이메일 (필수)'
                   value={email} onChange={(e) => setEmail(e.target.value)} />
               </div>
+              <div className='auth__field-flex'>
               <div className='auth__field'>
                 <p><span className='red-text'>*</span> Name </p>
                 <input type="text" placeholder='이름 (필수)'
@@ -82,13 +84,27 @@ export default function JoinPage() {
               </div>
               <div className='auth__field'>
                 <p> Phone </p>
-                <input type="tel" placeholder='전화번호 010-1234-5678 (선택)'
+                <input type="tel" placeholder='010-1234-5678 (선택)'
                   value={phone} onChange={(e) => setPhone(e.target.value)} />
               </div>
+              </div>
+              <div className='auth__field-flex'>
               <div className='auth__field'>
                 <p><span className='red-text'>*</span> Password </p>
                 <input type="password" placeholder='비밀번호 5자리 이상 (필수) ' autoComplete='new-password'
                   value={password} onChange={(e) => setPassword(e.target.value)} />
+              </div>
+              <div className='auth__field auth__field-radio'>
+                <p> Gender </p>
+                <div className='auth__radio-box'>
+                  <label><input type='radio' name='gender' value="null" 
+                  onChange={(e) => setGender(e.target.value)} checked={gender == "none"}/> 없음 </label>
+                  <label><input type='radio' name='gender' value="male"
+                   onChange={(e) => setGender(e.target.value)} checked={gender == "male"} /> 남자 </label>
+                  <label><input type='radio' name='gender' value="female" 
+                  onChange={(e) => setGender(e.target.value)} checked={gender == "female"} /> 여자 </label>
+                </div>
+              </div>
               </div>
               <div className='auth__field'>
                 <p><span className='red-text'>*</span> Password Confirm {isMatch ? "🟢" : "🔴"} </p>

@@ -24,9 +24,10 @@ export default function MyPage() {
       <div className='my-page-wrap'>
         {/* 사용자 정보 표시 */}
         <ul className='my-info-list'>
-          <li> 이름 : {user.name} </li>
+          <li> 이름 : {user.name } </li>
           <li> 이메일 : {user.email}</li>
-          <li> 전화번호 : {user.phone}</li>
+          <li> 전화번호 : {user.phone=="" ? "비어있습니다" : user.phone}</li>
+          <li> 성별 : {user.gender == "none" ? "선택 없음" : user.gender=="male" ? "남자" : "여자"}</li>
           <li> 비밀번호 : {isMask ? maskedPassword : user.password}
             <button onClick={() => setIsMask(!isMask)}>보기</button></li>
         </ul>

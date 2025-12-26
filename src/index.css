@@ -8,8 +8,6 @@
   --card-link-title : #3B82F6;
   --point-border : #4FD1C5;
   --option-input : #9c8e8e93;
-
-
   background-color: var(--bg);
   color: var(--text);
 }

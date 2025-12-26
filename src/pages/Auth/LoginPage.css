@@ -39,6 +39,9 @@
   justify-content: center;
   flex: 1;
 }
+.auth__info-join {
+  flex: 1.1;
+}
 .auth__form{
   flex: 1;
   width: 100%;
@@ -48,6 +51,9 @@
   justify-content: center;
   gap: 10px;
   padding: 2rem;
+}
+.auth__form-join {
+  flex: 1.5;
 }
 .auth__form form {
   display: flex;
@@ -62,10 +68,32 @@
   width: 100%;
   text-align: start;
 }
+.auth__field-flex {
+  display: flex;
+  gap: 1rem;
+}
+
 .auth__field input {
+  border: 1px solid #ccc;
   margin-top: 0.3rem;
   width: 100%;
   padding: 1rem;
+}
+.auth__field-radio {
+  display: flex ;
+  flex-direction: column;
+}
+.auth__radio-box {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  word-break : normal;
+}
+.auth__field-radio input{
+  width: auto;
+  gap: 1rem;
 }
 .auth__actions button{
  color: rgba(255,255,255,0.87);
@@ -112,7 +140,9 @@
   }
 #auth__join-btn {
     margin: 0;
-    border: 1px solid rgb(87, 87, 219);
+    background: var(--option-btn);
+    color: var(--white-text);
+    /* border: 1px solid rgb(87, 87, 219); */
     width: 5rem;
 }
 
