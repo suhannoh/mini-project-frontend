@@ -5,7 +5,7 @@ import LinkStore from '../store/LinkStore';
 export default function LinkCard({ link , url }) {
     const navigate = useNavigate();
     const {linkStore} = LinkStore();
-    const badgeColor = link.gender === "none" ? "#9ca3af" :
+    const badgeColor = link.gender === "none" || link.gender === "NONE" ? "#9ca3af" :
                         link.gender === "male" ? "#3b82f6" : "#ff4fa3";
         
     // console.log("조회 -> 성별 " ,link.gender)
