@@ -13,9 +13,9 @@ export default function AdminPage() {
   const {user} = AuthStore();
 
   const gender = {
-    male : "남자",
-    female : "여자",
-    none : "선택 없음"
+    MALE : "남자",
+    FEMALE : "여자",
+    NONE : "선택 없음"
   }
 
   useEffect (() => {

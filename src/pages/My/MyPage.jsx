@@ -17,6 +17,11 @@ export default function MyPage() {
   // 페이지 네비게이트
   const navigate = useNavigate();
 
+  const gender = {
+    MALE : "남자",
+    FEMALE : "여자",
+    NONE : "선택 없음"
+  }
   
   return (
     <div>
@@ -27,7 +32,7 @@ export default function MyPage() {
           <li> 이름 : {user.name } </li>
           <li> 이메일 : {user.email}</li>
           <li> 전화번호 : {user.phone=="" ? "비어있습니다" : user.phone}</li>
-          <li> 성별 : {user.gender == "none" ? "선택 없음" : user.gender=="male" ? "남자" : "여자"}</li>
+          <li> 성별 : {gender[user.gender]}</li>
           <li> 비밀번호 : {isMask ? maskedPassword : user.password}
             <button onClick={() => setIsMask(!isMask)}>보기</button></li>
         </ul>

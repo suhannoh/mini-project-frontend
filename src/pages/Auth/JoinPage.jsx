@@ -11,7 +11,7 @@ export default function JoinPage() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [gender , setGender] = useState("none");
+  const [gender , setGender] = useState("NONE");
   // 네비게이트
   const navigate = useNavigate();
   // 로딩 상태
@@ -97,12 +97,12 @@ export default function JoinPage() {
               <div className='auth__field auth__field-radio'>
                 <p> Gender </p>
                 <div className='auth__radio-box'>
-                  <label><input type='radio' name='gender' value="null" 
-                  onChange={(e) => setGender(e.target.value)} checked={gender == "none"}/> 없음 </label>
-                  <label><input type='radio' name='gender' value="male"
-                   onChange={(e) => setGender(e.target.value)} checked={gender == "male"} /> 남자 </label>
-                  <label><input type='radio' name='gender' value="female" 
-                  onChange={(e) => setGender(e.target.value)} checked={gender == "female"} /> 여자 </label>
+                  <label><input type='radio' name='gender' value="NONE" 
+                  onChange={(e) => setGender(e.target.value)} checked={gender == "NONE"}/> 없음 </label>
+                  <label><input type='radio' name='gender' value="MALE"
+                   onChange={(e) => setGender(e.target.value)} checked={gender == "MALE"} /> 남자 </label>
+                  <label><input type='radio' name='gender' value="FEMALE" 
+                  onChange={(e) => setGender(e.target.value)} checked={gender == "FEMALE"} /> 여자 </label>
                 </div>
               </div>
               </div>
