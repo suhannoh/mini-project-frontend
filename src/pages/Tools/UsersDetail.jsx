@@ -66,7 +66,7 @@ export default function AdminPage() {
     <div>
       <h3 style={{
         margin: "1rem",
-      }}> 관리자페이지 공개하였습니다 , 수정은 불가합니다 ! <br /> 게시판에 admin 요청하시면 드리겠습니다 ! </h3>
+      }}> User는 접근이 안 되지만 일부러 오픈하였습니다 , User는 수정 불가합니다 ! <br /> 게시판에 admin 요청하시면 드리겠습니다 ! </h3>
       <table>
         <thead>
         <tr>
