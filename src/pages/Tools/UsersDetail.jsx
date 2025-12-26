@@ -6,29 +6,29 @@ import { formatDateTime } from "../../components/date/dateTime";
 import AuthStore from "../../store/AuthStore";
 
 export default function AdminPage() {
-  
+  // 전역 상태 사용자 정보 가져오기
   const [users, setUsers] = useState([]);
   const [accountStatus , setAccountStatus] = useState({});
   const [role, setRole] = useState({});
   const {user} = AuthStore();
 
+  // 성별
   const gender = {
     MALE : "남자",
     FEMALE : "여자",
     NONE : "선택 없음"
   }
 
+  // 사용자 정보 가져오기
   useEffect (() => {
       const handleGetUsers = async () => {
     try {
       const res = await api.get("/admin/users");
-
-      console.log(res.data);
-
       setUsers(res.data);
 
       const roles = {};
       const accountStatus = {};
+      // 상태 업데이트
       res.data.forEach((u) => {
         roles[u.id] = u.role;
       })
@@ -43,6 +43,7 @@ export default function AdminPage() {
   handleGetUsers();
   }, [])
 
+  // 사용자 정보 수정
   const handleUpdateUser = async (userId) => {
     if(user.role !== "ADMIN") {
       return alert("admin 만 수정할 수 있습니다.");

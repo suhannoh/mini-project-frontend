@@ -1,8 +1,10 @@
 .my-page-wrap {
     width: 60rem;
+    height: 32rem;
     padding: 1rem;
     border-radius: 10px;
     display: flex;
+    align-items: center;
     justify-content: center;
      box-shadow:
     0 4px 10px rgba(0, 0, 0, 0.35),
@@ -26,6 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid var(--text);
 }
 .my-info-list li button {
     height: auto;
@@ -48,6 +51,7 @@
     justify-content: flex-end;
     
 }
+
 .my-page-wrap form ul li span {
         padding-right: 1rem;
 

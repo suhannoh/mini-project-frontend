@@ -22,7 +22,7 @@ import LinkDetailPage from './pages/Links/LinkDetailPage';
 
 function App() {
 
-  const { login , theme , logout } = AuthStore(); // theme: true/false 또는 'dark'/'light'
+  const { login , theme , logout , user } = AuthStore(); // theme: true/false 또는 'dark'/'light'
 
   useEffect(() => {
     document.documentElement.setAttribute(
@@ -33,6 +33,7 @@ function App() {
 
   useEffect(() => {
     const checkSession = async () => {
+      if (!user) return;
       try { 
         const {data} = await api.get("/user/me");
         login(data);

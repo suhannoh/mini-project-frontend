@@ -6,6 +6,7 @@ import AuthStore from '../../store/AuthStore'
 import { useNavigate } from 'react-router-dom'
 import Theme from '../../components/theme'
 import { formatDateTime } from '../../components/date/dateTime'
+import { maskPassword } from '../../components/maskPw'
 export default function MyPage() {
   
   // 전역 상태 사용자 정보 가져오기
@@ -14,6 +15,7 @@ export default function MyPage() {
   const [isMask, setIsMask] = useState(true);
   // 마스킹된 비밀번호 생성
   const maskedPassword = '*'.repeat(user?.password?.length ?? 0);
+  const maskedPw = maskPassword(user?.password);
   // 페이지 네비게이트
   const navigate = useNavigate();
 
@@ -23,6 +25,7 @@ export default function MyPage() {
     NONE : "선택 없음"
   }
   
+  maskedPassword
   return (
     <div>
       <BackBtn />
@@ -32,8 +35,8 @@ export default function MyPage() {
           <li> 이름 : {user.name } </li>
           <li> 이메일 : {user.email}</li>
           <li> 전화번호 : {user.phone=="" ? "비어있습니다" : user.phone}</li>
-          <li> 성별 : {gender[user.gender]}</li>
-          <li> 비밀번호 : {isMask ? maskedPassword : user.password}
+          <li> 성별 : { gender[user.gender] } </li>
+          <li> 비밀번호 : {isMask ? maskedPassword : maskedPw}
             <button onClick={() => setIsMask(!isMask)}>보기</button></li>
         </ul>
         <ul className='my-info-list my-log'>

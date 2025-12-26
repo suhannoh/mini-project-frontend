@@ -20,7 +20,7 @@ export default function MyEditPage() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [name, setName] = useState("");
   const [phone , setPhone ] = useState("");
-  const [gender , setGender] = useState(user.gender);
+  const [gender , setGender] = useState("");
   
   // 비밀번호 일치 여부
   const isMatch = password.length > 0 && passwordConfirm.length > 0 &&
@@ -33,6 +33,7 @@ export default function MyEditPage() {
     setName(user.name ?? "");
     setPhone(user.phone ?? "");
     setPassword(user.password ?? "");
+    setGender(user.gender ?? "");
   }, [user]);
 
   const handleUpdate = async (e) => {
@@ -42,7 +43,8 @@ export default function MyEditPage() {
     try {
       const res = await axios.post(`${API_BASE}/user/${user.id}/edit`, 
                                    { email, name, password, phone, gender });          
-      // 수정된 사용자 정보로 상태 업데이트                                            
+      // 수정된 사용자 정보로 상태 업데이트                           
+      console.log(res);                 
       login(res.data);
       alert("수정이 성공적으로 완료되었습니다");
       // 이전 페이지로 이동
@@ -64,20 +66,19 @@ export default function MyEditPage() {
                               <li> <span>이메일 : </span> <input type="email" value={email}
                                           onChange={(e) => setEmail(e.target.value)}/></li>
                               <li><span> 전화번호 : </span> <input type="tel" value={phone}
-                                            onChange={(e) => setPhone(e.target.value)}/> </li>            
+                                            onChange={(e) => setPhone(e.target.value)}/> </li> 
+                                <div className='auth__radio-box' style={{padding:"1rem" , justifyContent: "right"}}>
+                                <p> Gender : </p>
+                                  <label><input type='radio' name='gender' value="NONE" 
+                                  onChange={(e) => setGender(e.target.value)} checked={gender == "NONE"}/> 없음 </label>
+                                  <label><input type='radio' name='gender' value="MALE"
+                                  onChange={(e) => setGender(e.target.value)} checked={gender == "MALE"} /> 남자 </label>
+                                  <label><input type='radio' name='gender' value="FEMALE" 
+                                  onChange={(e) => setGender(e.target.value)} checked={gender == "FEMALE"} /> 여자 </label>
+                                </div>
                             </ul>
                             <ul>
-                               <div className='auth__field auth__field-radio'>
-                                <p> Gender </p>
-                                <div className='auth__radio-box'>
-                                  <label><input type='radio' name='gender' value="none" 
-                                  onChange={(e) => setGender(e.target.value)} checked={gender == "none"}/> 없음 </label>
-                                  <label><input type='radio' name='gender' value="male"
-                                  onChange={(e) => setGender(e.target.value)} checked={gender == "male"} /> 남자 </label>
-                                  <label><input type='radio' name='gender' value="female" 
-                                  onChange={(e) => setGender(e.target.value)} checked={gender == "female"} /> 여자 </label>
-                                </div>
-                              </div>
+                               
                               <li> <span>비밀번호 : </span>  <input type="password" value={password}
                                             onChange={(e) => setPassword(e.target.value)}/> </li>
                               <li> <span>비밀번호 재확인 : </span>  <input type="password" value={passwordConfirm}

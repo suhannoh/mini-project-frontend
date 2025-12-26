@@ -113,7 +113,7 @@ export default function JoinPage() {
               </div>
               <div className='auth__join-actions'>
               <button style={{ background: isMatch ? "" : "gray" }}
-                type='submit' disabled={!isMatch} id='auth__join-btn'> 전송 </button>
+                type='submit' disabled={!isMatch} id='auth__join-btn'> 가입 </button>
               </div>
             </form>
           </div>
