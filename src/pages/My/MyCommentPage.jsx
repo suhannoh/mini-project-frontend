@@ -57,7 +57,7 @@ export default function MyCommentPage() {
                 )
                 : <tr>
                     <td colSpan={5}>
-                        <h2> 댓글이 없습니다</h2>
+                        <h2> 작성한 댓글이 없습니다</h2>
                     </td>
                 </tr>}
                 </tbody>

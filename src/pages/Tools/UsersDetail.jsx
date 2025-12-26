@@ -9,6 +9,8 @@ export default function AdminPage() {
   // 전역 상태 사용자 정보 가져오기
   const [users, setUsers] = useState([]);
   const [accountStatus , setAccountStatus] = useState({});
+  // 정지사유 
+  const [blockComment, setBlockComment] = useState("");
   const [role, setRole] = useState({});
   const {user} = AuthStore();
 
@@ -35,6 +37,7 @@ export default function AdminPage() {
       res.data.forEach ( (u) => {
         accountStatus[u.id] = u.status;
       })
+      setBlockComment("TEST BLOCK COMMENT");
       setRole(roles);
       setAccountStatus(accountStatus)
     } catch (e) {
@@ -50,12 +53,20 @@ export default function AdminPage() {
     }
     const conf = confirm("정말 수정하시겠습니까 ?");
     if(!conf) return;
-    
+
+    let blockComment = "";
+    if(accountStatus[userId] === "BLOCKED") {
+      blockComment = prompt("정지 사유를 작성해주세요");
+    }
     try {
       await api.patch(`/admin/user/${userId}` , 
-        { role : role[userId] , status : accountStatus[userId] });
+        { role : role[userId] ,
+          status : accountStatus[userId],
+          // blockComment : blockComment
+        }
+      );
 
-      alert("수정 완료되었습니다.");
+      alert("구현중 확인용 [" + blockComment + "] 수정 완료되었습니다.");
 
     } catch (e) {
       logError(e);
@@ -64,9 +75,8 @@ export default function AdminPage() {
   
   return (
     <div>
-      <h3 style={{
-        margin: "1rem",
-      }}> admin이 아니라면 사용자 정보는 수정은 불가합니다 ! <br /><br /> 게시판에 admin 요청하시면 드리겠습니다 ! </h3>
+      <h3 className="admin-desc"> 게시판에 admin 요청하시면 드리겠습니다 ! <br></br> 🔍 <span style={{color:"red"}}>정지(status)</span> 인 경우 마우스를 올리면 정지사유를 확인할 수 있습니다.</h3>
+
       <table>
         <thead>
         <tr>
@@ -79,7 +89,9 @@ export default function AdminPage() {
           <th>생성일</th>
           <th>종료일</th>
           <th>마지막 접속일</th>
-          <th>Status</th>
+          <th>Status  
+             <span className="info-icon"> ⓘ</span>
+          </th>
           <th>수정</th>
         </tr>
         </thead>
@@ -103,13 +115,13 @@ export default function AdminPage() {
       <td>{formatDateTime(u.updatedAt)}</td>
       <td>준비중</td>
       <td> 
-        <select name="" className={accountStatus[u.id] === "ACTIVE" ? "user__status" : "user__status blocked"} onChange={(e) => setAccountStatus({...accountStatus , [u.id] : e.target.value})} value={accountStatus[u.id]}>
+        <select title={accountStatus[u.id] === "BLOCKED" ? blockComment : undefined} className={accountStatus[u.id] === "ACTIVE" ? "user__status" : "user__status blocked"} onChange={(e) => setAccountStatus({...accountStatus , [u.id] : e.target.value})} value={accountStatus[u.id]}>
           <option value="ACTIVE"> 정상 </option>
           <option value="BLOCKED"> 정지 </option>
         </select>
       </td>
       <td>
-        <button id="table__submit" onClick={() => handleUpdateUser(u.id)} >
+        <button title="변경사항 저장" id="table__submit" onClick={() => handleUpdateUser(u.id)} >
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="9" />
             <path d="M8.5 12.5l2.2 2.2L16.5 9" />

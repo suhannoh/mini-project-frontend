@@ -10,7 +10,7 @@
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 3rem;
     padding: 1.8rem;
-  list-style: none;
+    list-style: none;
     /* flex-wrap: wrap; */
     /* gap: 1.5rem;
     justify-content: flex-start;

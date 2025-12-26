@@ -30,11 +30,11 @@ export default function MyPostPage() {
     <div>
         <Layout layoutType="post">
             <div className="my__post-list">
-                {posts 
-                ? posts.map((post,idx) =>              
+                {posts.length === 0
+                ?  (<h2> 작성한 게시글이 없습니다</h2>) : (
+                posts.map((post,idx) =>              
                     <Post key={post.postId} id={post.postId} idx={(idx + 1 )} title={post.title} 
-                          content={post.content} view="list" list={post} />)
-                : <h2> 게시글이 없습니다</h2>}
+                    content={post.content} view="list" list={post} />))}
             </div>
 
         </Layout>

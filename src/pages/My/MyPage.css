@@ -24,14 +24,18 @@
     flex: 1;
 }
 .my-log-btn {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
-    font-size: 15px;
+    display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2열 */
+  gap: 12px; /* 버튼 간격 */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
 }
+
 .my-log-title {
     text-align: left;
-    padding-top: 1.5rem;
+    padding: 2rem 0;
 }
 .my-info-list li{
     padding: 1rem;
@@ -40,10 +44,15 @@
     justify-content: space-between;
     border-bottom: 1px solid var(--text);
 }
+.my-log-btn li {
+    display: contents; 
+}
 .my-info-list li button {
     height: auto;
-    padding: 0.5rem 1rem;
-    
+    padding: 0.5rem 1rem;   
+}
+#delete-account {
+    color: red;
 }
 .my-page-wrap form {
     width: 80%;
