@@ -13,13 +13,14 @@ export default function MyEditPage() {
   // 사용자 정보
   const {user , login} = AuthStore();
   const navigate = useNavigate();
-
+  
   // 정보 수정 폼 상태
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [name, setName] = useState("");
   const [phone , setPhone ] = useState("");
+  const [gender , setGender] = useState(user.gender);
   
   // 비밀번호 일치 여부
   const isMatch = password.length > 0 && passwordConfirm.length > 0 &&
@@ -40,7 +41,7 @@ export default function MyEditPage() {
     // 정보 수정 요청
     try {
       const res = await axios.post(`${API_BASE}/user/${user.id}/edit`, 
-                                   { email, name, password, phone, });          
+                                   { email, name, password, phone, gender });          
       // 수정된 사용자 정보로 상태 업데이트                                            
       login(res.data);
       alert("수정이 성공적으로 완료되었습니다");
@@ -66,6 +67,17 @@ export default function MyEditPage() {
                                             onChange={(e) => setPhone(e.target.value)}/> </li>            
                             </ul>
                             <ul>
+                               <div className='auth__field auth__field-radio'>
+                                <p> Gender </p>
+                                <div className='auth__radio-box'>
+                                  <label><input type='radio' name='gender' value="none" 
+                                  onChange={(e) => setGender(e.target.value)} checked={gender == "none"}/> 없음 </label>
+                                  <label><input type='radio' name='gender' value="male"
+                                  onChange={(e) => setGender(e.target.value)} checked={gender == "male"} /> 남자 </label>
+                                  <label><input type='radio' name='gender' value="female" 
+                                  onChange={(e) => setGender(e.target.value)} checked={gender == "female"} /> 여자 </label>
+                                </div>
+                              </div>
                               <li> <span>비밀번호 : </span>  <input type="password" value={password}
                                             onChange={(e) => setPassword(e.target.value)}/> </li>
                               <li> <span>비밀번호 재확인 : </span>  <input type="password" value={passwordConfirm}

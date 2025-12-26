@@ -69,15 +69,16 @@ export default function AdminPage() {
       <table>
         <thead>
         <tr>
-          <th>아이디</th>
-          <th>로컬</th>
+          <th>순서</th>
+          <th>PK</th>
+          <th>Role</th>
           <th>이름</th>
           <th>성별</th>
           <th>이메일</th>
           <th>생성일</th>
           <th>종료일</th>
           <th>마지막 접속일</th>
-          <th>계정상태</th>
+          <th>Status</th>
           <th>수정</th>
         </tr>
         </thead>
@@ -86,6 +87,7 @@ export default function AdminPage() {
       {users.map((u ,idx) => 
       <tr key={u.id} className={idx % 2 === 0 ? "user__info-table" : "user__info-table-gray"}
 > 
+      <td>{idx + 1}</td>  
       <td>{u.id}</td>
       <td>
         <select name="" className="user__status" onChange={(e) => setRole({...role , [u.id] : e.target.value})} value={role[u.id]}>
@@ -100,7 +102,7 @@ export default function AdminPage() {
       <td>{formatDateTime(u.updatedAt)}</td>
       <td>준비중</td>
       <td> 
-        <select name="" className="user__status" onChange={(e) => setAccountStatus({...accountStatus , [u.id] : e.target.value})} value={accountStatus[u.id]}>
+        <select name="" className={accountStatus[u.id] === "ACTIVE" ? "user__status" : "user__status blocked"} onChange={(e) => setAccountStatus({...accountStatus , [u.id] : e.target.value})} value={accountStatus[u.id]}>
           <option value="ACTIVE"> 정상 </option>
           <option value="BLOCKED"> 정지 </option>
         </select>

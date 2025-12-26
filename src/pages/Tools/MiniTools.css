@@ -131,6 +131,10 @@ table thead {
 #table__submit:hover {
   color: red;
 }
+.blocked{
+  background: red;
+}
+
 
 @media (max-width: 768px) {
   .tools-section {
