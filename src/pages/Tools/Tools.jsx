@@ -7,7 +7,7 @@ export default function Tools() {
 
   // 툴 목록
   const TOOLS = [
-    { type: "adminPage", title: "관리자 페이지", desc: "구현 전", icon: "👨🏻‍💼" },
+    { type: "adminPage", title: "관리자 페이지", desc: "", icon: "👨🏻‍💼" },
     { type: "coming", title: "준비중", desc: "곧 추가됩니다", icon: "⏳", disabled: true },
   ];
 

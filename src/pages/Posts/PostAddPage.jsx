@@ -60,7 +60,7 @@ export default function PostAddPage() {
 
   return (
     <div>
-        <Layout >
+        <Layout layoutType='post' >
             <div className='post-add-page'> 
               <form onSubmit={handleSubmit}>
               <div className='post-add-left'>

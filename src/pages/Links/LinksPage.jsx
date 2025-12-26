@@ -50,14 +50,14 @@ export default function LinksPage() {
 	if (load) return <p> Loading...</p>;
 	return (
 		<div>
-			<Layout>
+			<Layout layoutType='post'>
 					<div className='link__wrap'>
 						<ul className='link__card-ul' >
 							{/* 링크 추가 및 설정 카드 */}
-							<div className="point-border">
+							<li className="point-border">
 								{!linkStore ? <LinkCard url={"/links/new"} key={addLink.id} link={addLink} />
 											: <LinkCard url={"/links/new"} key={setLink.id} link={setLink} />}
-							</div> 
+							</li> 
 							{/* 링크 목록 */}
 							{linkList.map(link => (
 								<LinkCard key={link.id} link={link} />

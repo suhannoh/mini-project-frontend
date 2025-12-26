@@ -14,8 +14,8 @@
     overflow-x: hidden; 
 }
 .layout-wrap-post {
-    width: 60rem;
-    height: 90vh;
+    width: 70vw;
+    height: 85vh;
     padding: 1rem;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -33,7 +33,7 @@
     justify-content: space-between;
 }
 .layout-options {
-    width: 60rem;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     height: 100%;
