@@ -44,7 +44,7 @@ export default function MyEditPage() {
       const res = await axios.post(`${API_BASE}/user/${user.id}/edit`, 
                                    { email, name, password, phone, gender });          
       // 수정된 사용자 정보로 상태 업데이트                           
-      console.log(res);                 
+      // console.log(res);                 
       login(res.data);
       alert("수정이 성공적으로 완료되었습니다");
       // 이전 페이지로 이동
