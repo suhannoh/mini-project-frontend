@@ -108,7 +108,7 @@ export default function MainPage() {
                   <h2>🧪 실험실</h2>
                 </div>
                   <div className='main__card-content'>
-                    <p> 기능 미구현 ... UI 만 ,,,</p>
+                    <p> 관리자페이지 / 기능 테스트 </p>
                   {/* <p> 개발하며 구현한 작은 기능들을<br />
                       직접 체험해보세요</p> */}
                 </div>

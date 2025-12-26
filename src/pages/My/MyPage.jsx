@@ -42,9 +42,15 @@ export default function MyPage() {
         <ul className='my-info-list my-log'>
           <li> 회원가입 날짜 : {formatDateTime(user.createdAt)}</li>
           <li> 최근 수정한 날짜 : {formatDateTime(user.updatedAt)}</li>
+          
+          <h2 className='my-log-title'> 보기 옵션 </h2>
+          <div className='my-log-btn'>
+              <button onClick={() => navigate('/my/post')}> 내가 쓴 글 </button>
+              <button onClick={() => navigate('/my/comment')}> 내가 쓴 댓글 </button>
+              <button onClick={() => navigate('/my/edit')}>내 정보 수정 </button>
+          </div>
         </ul>
-        {/* 수정 버튼 */}
-        <button onClick={() => navigate('/my/edit')}> 수정 </button>
+  
       </div>
       {/* 테마 및 로그아웃 버튼 */}
       <div className='layout-options'>

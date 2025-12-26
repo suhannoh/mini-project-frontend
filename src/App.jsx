@@ -19,6 +19,8 @@ import ToolsDetail from './pages/Tools/ToolsDetail';
 import { api } from './api/auth';
 import FindAccountPage from './pages/Auth/find/FindAccountPage';
 import LinkDetailPage from './pages/Links/LinkDetailPage';
+import MyPostPage from './pages/My/MyPostPage';
+import MyCommentPage from './pages/My/MyCommentPage';
 
 function App() {
 
@@ -64,6 +66,8 @@ function App() {
           <Route path="/tools/:type" element={<ToolsDetail/>} />
           <Route path='/my' element={<MyPage />} />
           <Route path="/my/edit" element={<MyEditPage/>} />
+          <Route path="/my/post" element={<MyPostPage/>} />
+          <Route path='/my/comment' element={<MyCommentPage />} />
         </Route>
       </Routes>
     </>

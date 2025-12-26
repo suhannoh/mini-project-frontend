@@ -66,7 +66,7 @@ export default function AdminPage() {
     <div>
       <h3 style={{
         margin: "1rem",
-      }}> 관리자페이지 공개하였습니다 , 수정은 불가합니다 ! <br /> 게시판에 admin 요청하시면 드리겠습니다 ! </h3>
+      }}> admin이 아니라면 사용자 정보는 수정은 불가합니다 ! <br /><br /> 게시판에 admin 요청하시면 드리겠습니다 ! </h3>
       <table>
         <thead>
         <tr>
@@ -110,7 +110,7 @@ export default function AdminPage() {
       </td>
       <td>
         <button id="table__submit" onClick={() => handleUpdateUser(u.id)} >
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="9" />
             <path d="M8.5 12.5l2.2 2.2L16.5 9" />
           </svg>

@@ -311,6 +311,14 @@ textarea {
   justify-content: center;
   align-items: center;
 }
+.pagination button {
+  background: var(--option-btn);
+  color: var(--white-text);
+}
+.random-btn {
+  background: var(--option-btn);
+  color: var(--white-text);
+}
 @media (max-height: 875px) {
   .post-list-ul {
     overflow-y: auto;
@@ -318,12 +326,18 @@ textarea {
   }
 }
 @media (max-width: 768px) {
+  .post-list-ul {
+    padding: 0 1rem;
+  }
   .post-search {
     width: 100%;
     box-shadow: none;
     border-radius: 0;
     border-bottom: 1px solid #ccc;
     padding: 0.5rem;
+  }
+  .view-toggle button{
+    font-size: 0.7rem;
   }
   .input-set {
   width: 100%;

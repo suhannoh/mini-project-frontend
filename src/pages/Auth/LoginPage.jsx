@@ -34,7 +34,7 @@ export default function LoginPage() {
             const { data } = await api.get("/auth/me");
             // 전역 상태에 로그인 정보 반영
             login(data);
-            console.log("로그인 처리" , data);
+            // console.log("로그인 처리" , data);
             // 메인 페이지로 이동
             navigate("/main", { replace: true });
         } catch (e) {
