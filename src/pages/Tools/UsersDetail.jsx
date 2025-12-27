@@ -37,7 +37,7 @@ export default function AdminPage() {
       res.data.forEach ( (u) => {
         accountStatus[u.id] = u.status;
       })
-      setBlockComment("TEST BLOCK COMMENT");
+      // setBlockComment("TEST BLOCK COMMENT");
       setRole(roles);
       setAccountStatus(accountStatus)
     } catch (e) {
@@ -49,8 +49,8 @@ export default function AdminPage() {
   // 사용자 정보 수정
   const handleUpdateUser = async (userId) => {
     if(user.role !== "ADMIN") {
-      return alert("admin 만 수정할 수 있습니다.");
-    }
+            return alert("어드민 권한이 없습니다.");
+        }   
     const conf = confirm("정말 수정하시겠습니까 ?");
     if(!conf) return;
 
@@ -65,7 +65,7 @@ export default function AdminPage() {
           // blockComment : blockComment
         }
       );
-
+      setBlockComment(blockComment);
       alert("구현중 확인용 [" + blockComment + "] 수정 완료되었습니다.");
 
     } catch (e) {
@@ -115,7 +115,10 @@ export default function AdminPage() {
       <td>{formatDateTime(u.updatedAt)}</td>
       <td>준비중</td>
       <td> 
-        <select title={accountStatus[u.id] === "BLOCKED" ? blockComment : undefined} className={accountStatus[u.id] === "ACTIVE" ? "user__status" : "user__status blocked"} onChange={(e) => setAccountStatus({...accountStatus , [u.id] : e.target.value})} value={accountStatus[u.id]}>
+        <select title={accountStatus[u.id] === "BLOCKED" ? blockComment : undefined} 
+                className={accountStatus[u.id] === "ACTIVE" ? "user__status" : "user__status blocked"} 
+                onChange={(e) => setAccountStatus({...accountStatus , [u.id] : e.target.value})} 
+                value={accountStatus[u.id]}>
           <option value="ACTIVE"> 정상 </option>
           <option value="BLOCKED"> 정지 </option>
         </select>
