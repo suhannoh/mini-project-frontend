@@ -13,9 +13,10 @@ export default function AdminPage() {
   const [users, setUsers] = useState([]);
   const [accountStatus , setAccountStatus] = useState({});
   // 정지사유 
-  const [blockComment, setBlockComment] = useState("");
+  const [blockComment, setBlockComment] = useState({});
   const [role, setRole] = useState({});
   const {user} = AuthStore();
+  const [hoverId, setHoverId] = useState(null);
 
   // 성별
   const gender = {
@@ -30,17 +31,17 @@ export default function AdminPage() {
     try {
       const res = await api.get("/admin/users");
       setUsers(res.data);
-      console.log(res.data)
+      // console.log(res.data)
       const roles = {};
       const accountStatus = {};
+      const blockReason = {};
       // 상태 업데이트
       res.data.forEach((u) => {
         roles[u.id] = u.role;
-      })
-      res.data.forEach ( (u) => {
         accountStatus[u.id] = u.status;
+        blockReason[u.id] = u.reason;
       })
-      setBlockComment("TEST BLOCK COMMENT");
+      setBlockComment(blockReason);
       setRole(roles);
       setAccountStatus(accountStatus)
     } catch (e) {
@@ -61,15 +62,19 @@ export default function AdminPage() {
     if(accountStatus[userId] === "BLOCKED") {
       blockComment = prompt("정지 사유를 작성해주세요");
     }
+    setBlockComment(blockComment);
+    alert("정지사유 [" + blockComment + "] 수정 완료되었습니다.");
     try {
-      await api.patch(`/admin/user/${userId}` , 
-        { role : role[userId] ,
+      await api.patch(`/admin/user` , 
+        { 
+          userId : userId,
+          adminId : user.id,
+          role : role[userId] ,
           status : accountStatus[userId],
-          // blockComment : blockComment
+          reason : blockComment
         }
       );
-      setBlockComment(blockComment);
-      alert("구현중 확인용 [" + blockComment + "] 수정 완료되었습니다.");
+
 
     } catch (e) {
       logError(e);
@@ -106,7 +111,9 @@ export default function AdminPage() {
       <td>{idx + 1}</td>  
       <td>{u.id}</td>
       <td>
-        <select name="" className="user__status" onChange={(e) => setRole({...role , [u.id] : e.target.value})} value={role[u.id]}>
+        <select name="" className="user__status" 
+
+        onChange={(e) => setRole({...role , [u.id] : e.target.value})} value={role[u.id]}>
           <option value="USER"> USER </option>
           <option value="ADMIN"> ADMIN </option>
         </select>
@@ -118,13 +125,22 @@ export default function AdminPage() {
       <td>{formatDateTimeDay(u.updatedAt)}</td>
       <td>{u.lastLoginAt ? formatDateTime(u.lastLoginAt) : "-"}</td>
       <td> 
-        <select title={accountStatus[u.id] === "BLOCKED" ? blockComment : undefined} 
+        <select 
+                onMouseEnter={() => setHoverId(u.id)}
+                onMouseLeave={() => setHoverId(null)}
                 className={accountStatus[u.id] === "ACTIVE" ? "user__status" : "user__status blocked"} 
                 onChange={(e) => setAccountStatus({...accountStatus , [u.id] : e.target.value})} 
                 value={accountStatus[u.id]}>
           <option value="ACTIVE"> 정상 </option>
           <option value="BLOCKED"> 정지 </option>
         </select>
+
+        {hoverId === u.id && accountStatus[u.id] === "BLOCKED" && (
+          <div className="custom-tooltip">
+            <div>정지 횟수: {u.blockCount}</div>
+            <div>정지 사유: {blockComment[u.id]}</div>
+          </div>
+        )}
       </td>
       <td>
         <button title="변경사항 저장" id="table__submit" onClick={() => handleUpdateUser(u.id)} >

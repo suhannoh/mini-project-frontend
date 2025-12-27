@@ -168,6 +168,16 @@ th {
 .active__notice {
   background: #69b578;
 }
+.custom-tooltip {
+  position: absolute;
+  background: #222;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: pre-line;
+  z-index: 1000;
+}
 
 @media (max-width: 768px) {
   .tools-section {
