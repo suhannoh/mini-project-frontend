@@ -9,7 +9,7 @@ export default function NoticeDetail() {
     const [editNotice, setEditNotice] = useState("");
     const {user} = AuthStore();
     const [editStatus, setEditStatus] = useState({});
-
+    const [editNoticeContent , setEditNoticeContent] = useState({});
     // 공지 목록 불러오기
     const readNotice = async () => {
         try {
@@ -17,10 +17,13 @@ export default function NoticeDetail() {
             // 정상 응답 후 상태 업데이트
             setNotice(res.data);
             let status = {};
+            let content = {};
             res.data.forEach((n) => {
                 status[n.id] = n.status;
+                content[n.id] = n.noticeContent;
             })
             setEditStatus(status);
+            setEditNoticeContent(content);
         } catch (e) {
           // 로그 에러 처리
             logError(e);
@@ -55,16 +58,19 @@ export default function NoticeDetail() {
         if(user.role !== "ADMIN") {
             return alert("어드민 권한이 없습니다.");
         }   
-        if (editStatus[notice.id] === notice.status) {
+        if (editStatus[notice.id] === notice.status &&
+            editNoticeContent[notice.id] === notice.noticeContent
+        ) {
             return alert("변경된 상태가 없습니다.");
         }   
-        const isSubmit = confirm(`[${notice.noticeContent}] 공지를 ${editStatus[notice.id] === "ACTIVE" ? "활성" : "비활성"}하시겠습니까 ? `);   
+        const isSubmit = confirm(`[${editNoticeContent[notice.id]}] 공지를 ${editStatus[notice.id] === "ACTIVE" ? "활성" : "비활성"}하시겠습니까 ? `);   
         if(!isSubmit) return;
         try {
             await api.patch(`/admin/notice`,null, {
                 params : {
                     id : notice.id,
                     status : editStatus[notice.id],
+                    noticeContent : editNoticeContent[notice.id]
                 }   
             });
             alert(`공지 상태를 [${editStatus[notice.id]}] 성공적으로 수정하였습니다 `);
@@ -78,7 +84,7 @@ export default function NoticeDetail() {
          if(user.role !== "ADMIN") {
             return alert("어드민 권한이 없습니다.");
         }   
-        const isSubmit = confirm(`[${notice.noticeContent}] 공지를 삭제하시겠습니까 ? `);  
+        const isSubmit = confirm(`[${editNoticeContent[notice.id]}] 공지를 삭제하시겠습니까 ? `);  
         if(!isSubmit) return;
 
         try {
@@ -119,7 +125,7 @@ export default function NoticeDetail() {
                     <tr key={n.id} className={n.status === "ACTIVE" ? "active__notice" : ""}>
                         <td>{n.id}</td>
                         <td>{n.userId}</td>
-                        <td>{n.noticeContent}</td>
+                        <td><input className="user__status" type="text" value={editNoticeContent[n.id]} onChange={(e) => setEditNoticeContent({...editNoticeContent, [n.id] : e.target.value})}/>  </td>
                         <td>{formatDateTimeDay(n.createdAt)}</td>
                         <td>{formatDateTimeDay(n.updatedAt)}</td>
                         <td>
