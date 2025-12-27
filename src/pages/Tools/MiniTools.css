@@ -151,7 +151,23 @@ th {
 .blocked{
   background: red;
 }
-
+.notice__create {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.notice__create button{
+  width: 10%;
+}
+.notice__create input {
+  flex: 1;
+}
+.notice-input {
+  width: 100%;
+  padding: 1rem;
+}
+.active__notice {
+  background: #69b578;
+}
 
 @media (max-width: 768px) {
   .tools-section {

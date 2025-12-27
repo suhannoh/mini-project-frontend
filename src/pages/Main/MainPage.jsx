@@ -4,6 +4,7 @@ import AuthStore from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../../layout/Layout';
 import { api } from '../../api/auth';
+import { logError } from '../../components/logError';
 
 export default function MainPage() {
   // 활성 사용자 목록
@@ -15,9 +16,21 @@ export default function MainPage() {
   const [activeUserAPI , setActiveUserAPI] = useState(false);
   const [linkAPI , setLinkAPI] = useState(false);
   const [postAPI , setPostAPI] = useState(false);
+  const [notice , setNotice] = useState("");
   //  네비게이트
   const navigate = useNavigate();
 
+  const handleReadActiveNotice = async () => {
+    try {
+        const res = await api.get(`/admin/notice/active`);
+        // 정상 응답 후 상태 업데이트
+        setNotice(res.data);
+        // console.log(res.data)
+    } catch (e) {
+      // 로그 에러 처리
+        logError(e);
+    }
+  }
 
   // 활성 사용자 목록 불러오기
    useEffect(() => {
@@ -36,6 +49,7 @@ export default function MainPage() {
         };
         // 호출
         getActiveUsers();
+        handleReadActiveNotice();
     }, []);
 
     // 각 API 헬스체크
@@ -76,7 +90,11 @@ export default function MainPage() {
             <p className={overallStatus === "orange" ? "is-active" : "is-disabled"}>🟠 일부 기능에 문제가 있어요</p>
             <p className={overallStatus === "red" ? "is-active" : "is-disabled"}>🔴 서버 연결 불가</p>
         </div>
-      </div>
+        {/* 공지 */}
+        {notice.length > 0 && <div className="notice-wrap">
+          <p className="notice-text">📢 {notice.map(n => n.noticeContent).join(" ｜ ")}</p>
+        </div>}
+      </div>  
         <Layout backbtn={false} >
           <div className='main__wrap'>
             <div className='main__top-layout'>
