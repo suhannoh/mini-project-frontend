@@ -4,8 +4,11 @@ import { logError } from "../../components/logError";
 import './Minitools.css'
 import { formatDateTime } from "../../components/date/dateTime";
 import AuthStore from "../../store/AuthStore";
+import { formatDateTimeDay } from "../../components/date/dateTimeDay";
 
 export default function AdminPage() {
+  
+
   // 전역 상태 사용자 정보 가져오기
   const [users, setUsers] = useState([]);
   const [accountStatus , setAccountStatus] = useState({});
@@ -27,7 +30,7 @@ export default function AdminPage() {
     try {
       const res = await api.get("/admin/users");
       setUsers(res.data);
-
+      console.log(res.data)
       const roles = {};
       const accountStatus = {};
       // 상태 업데이트
@@ -87,7 +90,7 @@ export default function AdminPage() {
           <th>성별</th>
           <th>이메일</th>
           <th>생성일</th>
-          <th>종료일</th>
+          <th>수정일</th>
           <th>마지막 접속일</th>
           <th>Status  
              <span className="info-icon"> ⓘ</span>
@@ -111,9 +114,9 @@ export default function AdminPage() {
       <td>{u.name}</td>
       <td>{gender[u.gender]}</td>
       <td>{u.email}</td> 
-      <td>{formatDateTime(u.createdAt)}</td>
-      <td>{formatDateTime(u.updatedAt)}</td>
-      <td>준비중</td>
+      <td>{formatDateTimeDay(u.createdAt)}</td>
+      <td>{formatDateTimeDay(u.updatedAt)}</td>
+      <td>{u.lastLoginAt ? formatDateTime(u.lastLoginAt) : "-"}</td>
       <td> 
         <select title={accountStatus[u.id] === "BLOCKED" ? blockComment : undefined} 
                 className={accountStatus[u.id] === "ACTIVE" ? "user__status" : "user__status blocked"} 

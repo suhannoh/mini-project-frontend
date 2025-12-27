@@ -88,7 +88,7 @@ export default function MainPage() {
         <div className='main__api-health'>
             <p className={overallStatus === "green" ? "is-active" : "is-disabled"}>🟢 정상 작동 중 </p>
             <p className={overallStatus === "orange" ? "is-active" : "is-disabled"}>🟠 일부 기능에 문제가 있어요</p>
-            <p className={overallStatus === "red" ? "is-active" : "is-disabled"}>🔴 서버 연결 불가</p>
+            <p className={overallStatus === "red" ? "is-active" : "is-disabled"}>🔴 서버 연결 실패</p>
         </div>
         {/* 공지 */}
         {notice.length > 0 && <div className="notice-wrap">
@@ -110,7 +110,7 @@ export default function MainPage() {
               </li>
               <li className='main__card-li' onClick={() => navigate('/links')}  >
                 <div className={theme ? "main__card-title" :  "main__card-title-w"} style={{color:"greenYellow"}}>
-                  <h2>🔗 Links</h2>
+                  <h2>🔗 프로필 </h2>
                 </div>
                  <div className='main__card-content'>
                   <p> Notion / GitHub 주소 공유</p>
