@@ -40,7 +40,7 @@ export default function AdminPage() {
       res.data.forEach ( (u) => {
         accountStatus[u.id] = u.status;
       })
-      // setBlockComment("TEST BLOCK COMMENT");
+      setBlockComment("TEST BLOCK COMMENT");
       setRole(roles);
       setAccountStatus(accountStatus)
     } catch (e) {
