@@ -25,9 +25,7 @@ export default function AdminPage() {
     NONE : "선택 없음"
   }
 
-  // 사용자 정보 가져오기
-  useEffect (() => {
-      const handleGetUsers = async () => {
+  const handleGetUsers = async () => {
     try {
       const res = await api.get("/admin/users");
       setUsers(res.data);
@@ -47,6 +45,10 @@ export default function AdminPage() {
     } catch (e) {
       logError(e);
     }};
+
+  // 사용자 정보 가져오기
+  useEffect (() => {
+    
   handleGetUsers();
   }, [])
 
@@ -75,7 +77,7 @@ export default function AdminPage() {
         }
       );
 
-
+      handleGetUsers();
     } catch (e) {
       logError(e);
     } 
