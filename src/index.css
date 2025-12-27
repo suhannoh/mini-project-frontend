@@ -3,11 +3,14 @@
   --text: #111111;
   --panel: #f4f4f5;
   --btn: #1a1a1a;
-  --option-btn : #725a5a;
+  /* --option-btn : #725a5a; */
+  --option-btn : #8a6f6f;
   --white-text : rgba(255,255,255,0.87);
   --card-link-title : #3B82F6;
   --point-border : #4FD1C5;
   --option-input : #9c8e8e93;
+  --notice-bg : rgba(85, 78, 70, 0.426);
+
   background-color: var(--bg);
   color: var(--text);
 }
@@ -20,6 +23,8 @@ html[data-theme="dark"]{
   --card-link-title : #1e1e1e; 
   --point-border : rgb(32, 111, 107);
   --option-input : #817d7d84;
+  --notice-bg : rgba(70, 130, 180, 0.18);
+
 
   color-scheme: dark;
 }

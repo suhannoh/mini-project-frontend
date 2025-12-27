@@ -16,7 +16,8 @@
 }
 .main__card-title { 
   width: 100%;
-  background: #1e1e1e; 
+  background: var(--option-btn);
+  /* #1e1e1e;  */
   border-radius: 12px; 
   padding: 20px;              
   box-shadow:0 4px 6px rgba(0, 0, 0, 0.12),
@@ -125,8 +126,9 @@
 .notice-wrap {
   width: 100%;
   overflow: hidden;       /* 밖으로 나가면 숨김 */
-  background: #222;
+  background:  var(--notice-bg);
   padding: 8px 0;
+  border-radius: 8px;
   overflow-x: hidden;
 }
 .notice-text {
