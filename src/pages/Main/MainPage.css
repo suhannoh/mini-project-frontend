@@ -94,6 +94,8 @@
 }
 
 .main__api {
+  width: 60rem;
+  /* width: 100%; */
   padding: 2rem;
   display: flex;
   align-items: center;
@@ -106,12 +108,8 @@
   flex-direction: column;
   text-align: start;
   gap: 1rem;
+  /* overflow-x: hidden; */
 }
-/* .main__api-health div {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-} */
 .is-active {
   font-weight: bold;
 }
@@ -129,13 +127,16 @@
   overflow: hidden;       /* 밖으로 나가면 숨김 */
   background: #222;
   padding: 8px 0;
+  overflow-x: hidden;
 }
 .notice-text {
+  padding: 1rem;
   display: inline-block;
   white-space: nowrap;    /* 줄바꿈 방지 */
   color: #fff;
   font-weight: bold;
-  animation: noticeMove 12s linear infinite;
+  animation: noticeMove 14s linear infinite;
+  /* overflow-x: hidden; */
 }
 .notice-text:hover {
   animation-play-state: paused;
@@ -143,10 +144,10 @@
 
 @keyframes noticeMove {
   from {
-    transform: translateX(130%);
+    transform: translateX(100%);
   }
   to {
-    transform: translateX(-130%);
+    transform: translateX(-100%);
   }
 }
 
@@ -166,5 +167,13 @@
   }
   .main__api {
     font-size: 0.8rem;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    transform: scale(0.9);
+    padding: 0;
   }
+  .notice-text {
+  animation: noticeMove 18s linear infinite;
+}
 }
