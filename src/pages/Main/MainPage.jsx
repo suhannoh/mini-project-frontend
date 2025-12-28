@@ -20,16 +20,36 @@ export default function MainPage() {
   //  네비게이트  
   const navigate = useNavigate();
 
+  const pxPerChar = 15;
+  const containerWidth = 600;
+  const speed = 50;
+  const [text, setText] = useState('');
+  const [duration, setDuration] = useState(0);
+
   const handleReadActiveNotice = async () => {
     try {
         const res = await api.get(`/admin/notice/active`);
         // 정상 응답 후 상태 업데이트
         setNotice(res.data);
+        // 👉 공지 하나의 문자열로 합치기
+        const mergedText = res.data
+          .map(n => n.noticeContent)
+          .join(" ｜ ");
+        setText(mergedText);
+        
     } catch (e) {
       // 로그 에러 처리
         logError(e);
     }
   }
+  useEffect(() => {
+    if (!text) return;
+
+    const d =
+      (text.length * pxPerChar + containerWidth) / speed;
+
+    setDuration(Math.round(d)); // 소수 싫으면 반올림
+  }, [text]);
 
   // 활성 사용자 목록 불러오기
    useEffect(() => {
@@ -79,6 +99,8 @@ export default function MainPage() {
   const overallStatus = statesCount === states.length ?
                            "green" : statesCount > 0 ? "orange" : "red";
 
+
+
   return (
     <div>
       <div className='main__api'> 
@@ -91,7 +113,9 @@ export default function MainPage() {
         </div>
         {/* 공지 */}
         {notice.length > 0 && <div className="notice-wrap">
-          <p className="notice-text">📢 {notice.map(n => n.noticeContent).join(" ｜ ")}</p>
+          <p className="notice-text"
+            style={{ animationDuration: `${duration}s` }}
+           > 📢 {text}</p>
         </div>}
       </div>  
         <Layout backbtn={false} >

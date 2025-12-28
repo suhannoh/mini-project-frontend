@@ -137,8 +137,7 @@
   white-space: nowrap;    /* 줄바꿈 방지 */
   color: #fff;
   font-weight: bold;
-  animation: noticeMove 14s linear infinite;
-  /* overflow-x: hidden; */
+  animation: noticeMove linear infinite;
 }
 .notice-text:hover {
   animation-play-state: paused;
