@@ -97,7 +97,8 @@ export default function PostAddPage() {
                 </div>
               </div>
               <div className='post-add-right'>
-                <textarea placeholder='내용을 입력하세요 (최대 500자)' value={content} 
+                <textarea className='post-textarea'
+                          placeholder='내용을 입력하세요 (최대 500자)' value={content} 
                           onChange={(e) => setContent(e.target.value)}
                           maxLength={500}></textarea>
                 <div className='post-submit-btn'>

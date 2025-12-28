@@ -12,7 +12,8 @@
   --option-input : #9c8e8e93;
   --notice-bg : rgba(85, 78, 70, 0.426);
   --my-info-bg : #3e1818d9;
-  background-color: var(--bg);
+  --input-ani : #5B5FEF;
+    background-color: var(--bg);
   color: var(--text);
 }
 html[data-theme="dark"]{
@@ -27,6 +28,7 @@ html[data-theme="dark"]{
   --option-input : #817d7d84;
   --notice-bg : rgba(70, 130, 180, 0.18);
   --my-info-bg : #aaa;
+  --input-ani : #7700ff;
 
   color-scheme: dark;
 }

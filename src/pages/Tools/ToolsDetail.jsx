@@ -25,13 +25,13 @@ export default function ToolsDetail() {
 				<BackBtn />
 				<br /> <br />
 				<button className={status === "notice" ? "active" : ""}
-								onClick={() => setStatus("notice")}> 공지 관리 </button><div className='aside-bar'></div>
+								onClick={() => setStatus("notice")}>📢 &nbsp; 공지 관리 </button><div className='aside-bar'></div>
 				<button className={status === "users" ? "active" : ""}
-								onClick={() => setStatus("users")}> 회원 관리 </button><div className='aside-bar'></div>
+								onClick={() => setStatus("users")}>🙋🏻 &nbsp; 회원 관리 </button><div className='aside-bar'></div>
 				<button className={status === "posts" ? "active" : ""}
-								onClick={() => setStatus("posts")}> 게시글 관리 </button><div className='aside-bar'></div>
+								onClick={() => setStatus("posts")}>📝 &nbsp; 게시글 관리 </button><div className='aside-bar'></div>
 				<button className={status === "links" ? "active" : ""}
-								onClick={() => setStatus("links")}> 링크 관리 </button><div className='aside-bar'></div>
+								onClick={() => setStatus("links")}>🔗 &nbsp; 링크 관리 </button><div className='aside-bar'></div>
 			</aside>
 			<div className='admin__detail'>
 				<header>

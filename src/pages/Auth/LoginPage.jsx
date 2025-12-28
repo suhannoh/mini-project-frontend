@@ -116,16 +116,20 @@ export default function LoginPage() {
                     </div>
 										{/* 로그인 입력 폼 */}
                     <div className='auth__form'>
-                        <div className='auth__field'>
-                            <p> Email </p>
-                            <input type="email" placeholder='이메일'
+                        <div className='auth__field input-ani'>
+                            {/* <p> Email </p> */}
+                            <input type="email" 
+                            placeholder=''
                                 value={email} onChange={(e) => setEmail(e.target.value)} />
-
+                                <label >이메일</label>
                         </div>
-                        <div className='auth__field'>
-                            <p> Password </p>
-                            <input type="password" placeholder='비밀번호' autoComplete="current-password"
+                        <div className='auth__field input-ani'>
+                            {/* <p> Password </p> */}
+                            <input type="password"
+                             placeholder='' 
+                             autoComplete="current-password"
                                 value={password} onChange={(e) => setPassword(e.target.value)} />
+                                <label>비밀번호</label>
                         </div>
                         <div className='auth__actions'>
                             <button type='submit'>Login</button>

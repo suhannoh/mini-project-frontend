@@ -65,11 +65,22 @@
   width: 100%;
 }
 .admin__sidebar {
-  width: 240px;
-  flex: 0 0 240px;
   padding-right: 1rem;
   border-right: 1px solid rgba(255,255,255,0.12);
+  transition: 1s ease;
+    width: 3rem;
+  overflow: hidden;
 }
+.admin__sidebar:hover {
+  width: 240px;
+  overflow: auto;
+}
+.admin__sidebar button{
+  text-wrap: nowrap;
+  overflow: hidden;
+  padding: 0.5rem;
+}
+
 .admin__detail {
   flex: 1;
   min-width: 0;  /* ⭐ 가로 스크롤 방지 핵심 */
@@ -99,6 +110,7 @@
 }
 .active {
   border: 1px solid rgb(105, 105, 216);
+  background: rgb(105, 105, 216) !important ;
 }
 .tr-active {
   border: 1px solid rgb(105, 105, 216);
@@ -151,19 +163,62 @@ th {
 .blocked{
   background: red;
 }
+
+
+
+/*  */
+.notice-add-ani {
+  position: relative;
+  width: auto;
+}
+
+.notice-add-ani input{
+  width: 100%;
+  background: transparent;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--text);
+  transition: 1s;
+  outline: none;
+  padding: 1rem;
+}
+.notice-add-ani label{
+  transition: 0.2s;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-40%);
+  font-size: 14px;
+}
+.notice-add-ani input:focus ~ label,
+.notice-add-ani input:not(:placeholder-shown) ~ label{
+  top: 0;
+  transform: translateY(-100%);
+  font-size: 0.8rem;
+}
+
+.notice-add-ani input:focus {
+  border: 1px solid var(--input-ani);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 30rem;
+}
 .notice__create {
   display: flex;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
+  justify-content: center;
 }
 .notice__create button{
-  width: 10%;
-}
-.notice__create input {
-  flex: 1;
-}
-.notice-input {
-  width: 100%;
+  width: 5rem;
+  height: 100%;
+  border-radius: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   padding: 1rem;
+}
+
+#notice-input{
+  height: 100%;
 }
 .active__notice {
   background: #69b578;

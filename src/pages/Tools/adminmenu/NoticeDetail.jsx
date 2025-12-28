@@ -103,8 +103,12 @@ export default function NoticeDetail() {
   return (
     <div>
         <form onSubmit={handleAddNotice} className="notice__create">
-         <input type="text" placeholder='공지를 입력해주세요' value={editNotice} className="notice-input"
+         <div className="notice-add-ani">
+         <input type="text" placeholder='' 
+                value={editNotice} id="notice-input"
                 onChange={(e) => setEditNotice(e.target.value)} />
+         <label htmlFor="notice-input">공지를 입력해주세요</label>       
+         </div>
          <button type="submit"> 추가 </button>
         </form>
         <table>
@@ -137,7 +141,6 @@ export default function NoticeDetail() {
 
                         </td>
                         <td>
-                            {/* <button type="button" onClick={() =>handleActiveNotice(n)}>수정</button> */}
                             <button type="button" title="변경사항 저장" id="table__submit" onClick={() => handleActiveNotice(n)} >
                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

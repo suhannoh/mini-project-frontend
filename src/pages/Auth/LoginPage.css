@@ -128,7 +128,34 @@
   cursor: pointer;
   background: rgb(87, 87, 219);
 }
-
+.input-ani {
+  position: relative;
+  margin-top: 1rem;
+}
+.input-ani input{
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--text);
+  transition: 1s;
+  outline: none;
+}
+.input-ani label{
+  transition: 0.2s;
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-40%);
+}
+.input-ani input:focus ~ label,
+.input-ani input:not(:placeholder-shown) ~ label{
+  top: 0;
+  transform: translateY(-100%);
+  font-size: 0.8rem;
+}
+.input-ani input:focus {
+  border-bottom: 1px solid var(--input-ani);
+}
 /* Join Page */
 .red-text {
     color: red;
@@ -143,6 +170,9 @@
     background: var(--option-btn);
     color: var(--white-text);
     width: 7rem;
+}
+.sm-span {
+  font-size: .8rem;
 }
 
 /* Loading Animation */

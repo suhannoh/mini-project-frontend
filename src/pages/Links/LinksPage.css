@@ -65,7 +65,26 @@
   align-items: flex-end;
   justify-content: flex-end;
 }
-
+.link-box {
+  position: relative;
+  padding: 0;
+}
+.link-box a {
+  display: block;
+  width: 100%;
+}
+.custom-tooltip-link {
+  position: absolute;
+  left: -1.5rem;
+  margin-bottom: 8px;
+  background: #222;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: pre-line;
+  z-index: 1000;
+}
 @media (max-width: 768px) {
   .link__wrap {
     width: 100%;
