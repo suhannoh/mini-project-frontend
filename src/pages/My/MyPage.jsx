@@ -49,17 +49,18 @@ export default function MyPage() {
       <BackBtn />
       <div className='my-page-wrap'>
         {/* 사용자 정보 표시 */}
+
         <ul className='my-info-list'>
-          <li> 이름 : {user.name } </li>
-          <li> 이메일 : {user.email}</li>
-          <li> 전화번호 : {user.phone=="" ? "비어있습니다" : user.phone}</li>
-          <li> 성별 : { gender[user.gender] } </li>
-          <li> 비밀번호 : {isMask ? maskedPassword : maskedPw}
-            <button onClick={() => setIsMask(!isMask)}>보기</button></li>
+          <li> <span>이름 :   </span> <span> {user.name } </span></li>
+          <li> <span>이메일 : </span> <span>{user.email}</span></li>
+          <li> <span>전화번호 :</span> <span>{user.phone=="" ? "비어있습니다" : user.phone}</span></li>
+          <li> <span>성별 :   </span> <span>{ gender[user.gender] } </span></li>
+          <li> <span>비밀번호 : </span> <span>{isMask ? maskedPassword : maskedPw} &nbsp;&nbsp;
+            <button onClick={() => setIsMask(!isMask)}>보기</button></span></li>
         </ul>
-        <ul className='my-info-list my-log'>
-          <li> 회원가입 날짜 : {formatDateTime(user.createdAt)}</li>
-          <li> 최근 수정한 날짜 : {formatDateTime(user.updatedAt)}</li>
+        <ul className='my-info-list'>
+          <li> <span> 회원가입 날짜 : </span> <span>{formatDateTime(user.createdAt)}</span></li>
+          <li> <span>최근 수정한 날짜 : </span><span>{formatDateTime(user.updatedAt)}</span></li>
           
           <h2 className='my-log-title'> 보기 옵션 </h2>
           <ul className='my-log-btn'>

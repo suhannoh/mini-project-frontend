@@ -20,9 +20,7 @@
     flex-direction: column;
     justify-content: flex-start;
 }
-.my-log {
-    flex: 1;
-}
+
 .my-log-btn {
     display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2열 */
@@ -39,12 +37,30 @@
     text-align: left;
     padding: 2rem 0;
 }
+.my-info-list {
+    /* display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 12px;   */
+}
 .my-info-list li{
     padding: 1rem;
-    display: flex;
+    
+    display: grid;
+    grid-template-columns: 2fr 8fr; /* ⭐ 핵심 */
     align-items: center;
-    justify-content: space-between;
+    /* text-align: left; */
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between; */
     border-bottom: 1px solid var(--text);
+}
+.my-info-list li span:first-child {
+  color: #aaa;
+  white-space: nowrap;
+}
+.my-info-list li span:last-child {
+  color: #fff;
+  word-break: break-all;
 }
 .my-log-btn li {
     display: contents; 

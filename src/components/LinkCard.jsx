@@ -15,6 +15,7 @@ export default function LinkCard({ link , url }) {
         onClick={url ? () => navigate(`${url}`)   : () => navigate(`/links/${link.id}` , {
             state: {
                 link,
+                badgeColor
             }
         })}>
             <div className="card-title">

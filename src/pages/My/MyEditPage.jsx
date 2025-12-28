@@ -39,6 +39,12 @@ export default function MyEditPage() {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
+    if(user.email === email && user.password === password && user.name === name
+      && user.phone === phone && user.gender === gender
+    ) {
+      alert("변경된 항목이 없습니다. 수정 항목을 확인해주세요");
+      return;
+    }
     // 정보 수정 요청
     try {
       const res = await axios.post(`${API_BASE}/user/${user.id}/edit`, 
