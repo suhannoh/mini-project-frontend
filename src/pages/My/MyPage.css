@@ -48,11 +48,12 @@
     border-bottom: 1px solid var(--text);
 }
 .my-info-list li span:first-child {
-  color: #aaa;
+  color: var(--my-info-bg);
   white-space: nowrap;
 }
-.my-info-list li span:last-child {
-  color: #fff;
+.my-info-list li span:last-child,
+.my-info-password-text {
+  color: var(--text);
   word-break: break-all;
 }
 .my-log-btn li {
