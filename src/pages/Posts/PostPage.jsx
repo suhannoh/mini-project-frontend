@@ -10,6 +10,7 @@ export default function PostPage() {
   // 게시글
   const [posts, setPosts] = useState([]);
   const [anonPosts, setAnonPosts] = useState([]);
+
   //
   const [randomAnonPosts, setRandomAnonPosts] = useState(null);
   // 검색 관련 상태
@@ -82,12 +83,7 @@ export default function PostPage() {
     // 카테고리 또는 페이지가 변경될 때마다 게시글 다시 로드
   }, [category, page , isSearching , radioShowType ]);
 
-  const pickRandomPost = (list) => {
-     if (!list || list.length === 0) return null; 
-     const idx = Math.floor(Math.random() * list.length); 
-     return list[idx]; 
-  };
-
+  
   // 검색 핸들러
   const handleSearchPost = async (e) => {
     e.preventDefault();
@@ -95,7 +91,13 @@ export default function PostPage() {
     setIsSearching(true); // 검색 중 상태로 설정
   }
   
+  const pickRandomPost = (list) => {
+     if (!list || list.length === 0) return null; 
+     const idx = Math.floor(Math.random() * list.length); 
+     return list[idx]; 
+  };
   const handleRandomAnon = () => {
+
     setRandomAnonPosts(pickRandomPost(anonPosts));
   };
   

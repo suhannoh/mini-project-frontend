@@ -18,6 +18,11 @@
     background: var(--option-btn);
     display: flex;
 }
+.like-btn-like {
+    color: var(--white-text);
+    display: flex;
+    background:#ff4757;
+}
 
 .post-header {
   position: relative;

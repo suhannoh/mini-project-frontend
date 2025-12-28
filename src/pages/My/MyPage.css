@@ -32,7 +32,9 @@
   list-style: none;
   width: 100%;
 }
-
+.my-page-wrap button {
+    background: var(--my-option-btn);
+}
 .my-log-title {
     text-align: left;
     padding: 2rem 0;

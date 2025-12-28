@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '../../layout/Layout';
 import { api } from '../../api/auth';
 import { logError } from '../../components/logError';
+import Loading from '../../components/Loading';
 
 export default function JoinPage() {
   // 사용자 입력 
@@ -20,9 +21,12 @@ export default function JoinPage() {
   const isMatch = password.length > 0 && passwordConfirm.length > 0 &&
                   password === passwordConfirm;
 
+  const [isSubmit, setIsSubmit] = useState(false);              
+  
   // 회원가입 처리
   const handleJoin = async (e) => {
     e.preventDefault();
+    setIsSubmit(true);
 
     // 입력 검증
     if (!email || !password || !name) {
@@ -41,17 +45,16 @@ export default function JoinPage() {
       navigate("/")
     } catch (e) {
       logError(e);
+    } finally {
       setLoad(false);
+      setIsSubmit(false);
     }
   };
   
   // 로딩 중일 때
   if (load) {
     return (
-      <h2 className='loading'>
-        <span className='loading-text'>Loading </span>
-        <br /><br />
-        <span>첫 회원가입 시 20초 ~ 60초 정도 걸릴 수 있습니다.</span></h2>
+      <Loading text={"회원가입"} />
     )
   }
 
@@ -70,7 +73,7 @@ export default function JoinPage() {
           </div>
 
           <div className='auth__form auth__form-join'>        
-            <form onSubmit={handleJoin} >
+            <form onSubmit={handleJoin} disabled={isSubmit}>
               <div className='auth__field'>
                 <p><span className='red-text'>*</span> Email </p>
                 <input type="email" placeholder='이메일 (필수)'
@@ -113,7 +116,7 @@ export default function JoinPage() {
               </div>
               <div className='auth__join-actions'>
               <button style={{ background: isMatch ? "" : "gray" }}
-                type='submit' disabled={!isMatch} id='auth__join-btn'> 가입 </button>
+                type='submit' disabled={!isMatch || isSubmit} id='auth__join-btn'> {isSubmit ? "가입중" : "회원가입"}</button>
               </div>
             </form>
           </div>

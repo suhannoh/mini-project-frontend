@@ -16,8 +16,10 @@ export default function Layout({ children , backbtn=true , logoutBtn=true , post
   
   const [comment, setComment] = useState("");
   const {user} = AuthStore();
+  const [isSubmit , setIsSubmit] = useState(false);
   const commentSubmitHandler = async (e) => {
      e.preventDefault();
+     setIsSubmit(true);
      try {
           await axios.post(`${API_BASE}/post/comment` , {
           postId,
@@ -28,6 +30,8 @@ export default function Layout({ children , backbtn=true , logoutBtn=true , post
         commentMethod();
      } catch {
         console.log("error 발생 !!")
+     } finally {
+        setIsSubmit(false);
      }
   }
 
@@ -56,7 +60,8 @@ export default function Layout({ children , backbtn=true , logoutBtn=true , post
           <form className='layout-option-input-wrap' onSubmit={commentSubmitHandler}>
             <input onChange={(e) => setComment(e.target.value)} 
                    value={comment} type="text" placeholder='댓글을 입력해주세요' /> 
-            <button type='submit' className='layout-option-submit'> ▷ </button> 
+            <button type='submit' disabled={isSubmit}
+                    className='layout-option-submit'> ▷ </button> 
           </form> 
         </div>}
         <div className={textInput ? 'layout-options-btn' : "layout-options-btn-default"}>

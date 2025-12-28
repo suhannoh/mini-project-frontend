@@ -12,12 +12,12 @@ export default function MainPage() {
   // 인증 정보
   const { user , theme } = AuthStore();
   // API 상태
-  const [userAPI , setUserAPI] = useState(false);
+    const [userAPI , setUserAPI] = useState(false);
   const [activeUserAPI , setActiveUserAPI] = useState(false);
   const [linkAPI , setLinkAPI] = useState(false);
   const [postAPI , setPostAPI] = useState(false);
-  const [notice , setNotice] = useState("");
-  //  네비게이트
+  const [notice , setNotice] = useState([]);
+  //  네비게이트  
   const navigate = useNavigate();
 
   const handleReadActiveNotice = async () => {
@@ -25,7 +25,6 @@ export default function MainPage() {
         const res = await api.get(`/admin/notice/active`);
         // 정상 응답 후 상태 업데이트
         setNotice(res.data);
-        // console.log(res.data)
     } catch (e) {
       // 로그 에러 처리
         logError(e);
@@ -59,8 +58,8 @@ export default function MainPage() {
         await api.get(url);
         // 정상 응답
         setState(true);
-      } catch (e) {
-        alert(e.response.data.msg);
+      } catch {
+        // alert(e.response.data.msg);
         // 오류 응답
         setState(false);
       }
@@ -147,9 +146,12 @@ export default function MainPage() {
         <div className='online-list'>
           <h3 className='online-title'> 최근 1시간 이내 접속 </h3>
           <ul className='online-users'>
-            {activeUsers.map((user) => (
-              <li className="online-li" key={user.userId}>🟢 <span style={{paddingLeft:"5px"}}>{user.userName}</span></li>
-            ))}
+            { activeUsers.length > 0 ?
+              activeUsers.map((user) => (
+                <li className="online-li" key={user.userId}>🟢 <span style={{paddingLeft:"5px"}}>{user.userName}</span></li>
+            )) :
+            <li className="online-li">최근 접속자가 없어요</li>
+          }
           </ul>
         </div>
       </Layout>

@@ -5,6 +5,7 @@
   --btn: #1a1a1a;
   /* --option-btn : #725a5a; */
   --option-btn : #423030b0;
+  --my-option-btn : #080202a1;
   --white-text : rgba(255,255,255,0.87);
   --card-link-title : #1c160859;
   --point-border : #4FD1C5;
@@ -20,6 +21,7 @@ html[data-theme="dark"]{
   --panel: #151515;
   --btn: #1a1a1a;
   --option-btn: #1a1a1a;
+  --my-option-btn : #1a1a1a;
   --card-link-title : #1e1e1e; 
   --point-border : rgb(32, 111, 107);
   --option-input : #817d7d84;

@@ -48,7 +48,7 @@ export default function LikeBtn({post}) {
 
   return (
     <div>
-        <button className='like-btn' onClick={handleLike}> {liked ? '❤️' : '♡'} {likeCount}</button>
+        <button className={liked ? 'like-btn-like' : 'like-btn'} onClick={handleLike}> {liked ? '❤️' : '♡'} {likeCount}</button>
     </div>
   )
 }
