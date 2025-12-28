@@ -174,7 +174,4 @@
     transform: scale(0.9);
     padding: 0;
   }
-  .notice-text {
-  animation: noticeMove 18s linear infinite;
-}
 }
