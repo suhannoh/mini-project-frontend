@@ -82,7 +82,7 @@ export default function MainPage() {
   return (
     <div>
       <div className='main__api'> 
-        <h2> API 상태 </h2>
+        <h2> API </h2>
         {/* API 상태 표시 */}
         <div className='main__api-health'>
             <p className={overallStatus === "green" ? "is-active" : "is-disabled"}>🟢 정상 작동 중 </p>

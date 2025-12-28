@@ -22,7 +22,7 @@
 }
 
 .my-log-btn {
-    display: grid;
+  display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2열 */
   gap: 12px; /* 버튼 간격 */
   padding: 0;
@@ -33,25 +33,18 @@
 .my-page-wrap button {
     background: var(--my-option-btn);
 }
+
 .my-log-title {
     text-align: left;
     padding: 2rem 0;
 }
-.my-info-list {
-    /* display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    row-gap: 12px;   */
-}
+
 .my-info-list li{
     padding: 1rem;
     
     display: grid;
-    grid-template-columns: 2fr 8fr; /* ⭐ 핵심 */
+    grid-template-columns: 2fr 8fr;
     align-items: center;
-    /* text-align: left; */
-    /* display: flex;
-    align-items: center;
-    justify-content: space-between; */
     border-bottom: 1px solid var(--text);
 }
 .my-info-list li span:first-child {

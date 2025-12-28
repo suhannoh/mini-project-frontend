@@ -8,7 +8,6 @@ export default function LinkDetailPage() {
     const { state } = useLocation();
     const link = state.link;
     const badgeColor = state.badgeColor;
-    console.log(link);
     return (
     <div>
         <Layout>

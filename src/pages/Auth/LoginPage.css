@@ -142,8 +142,7 @@
     margin: 0;
     background: var(--option-btn);
     color: var(--white-text);
-    /* border: 1px solid rgb(87, 87, 219); */
-    width: 5rem;
+    width: 7rem;
 }
 
 /* Loading Animation */

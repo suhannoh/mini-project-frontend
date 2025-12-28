@@ -55,8 +55,35 @@ export default function MyPage() {
           <li> <span>이메일 : </span> <span>{user.email}</span></li>
           <li> <span>전화번호 :</span> <span>{user.phone=="" ? "비어있습니다" : user.phone}</span></li>
           <li> <span>성별 :   </span> <span>{ gender[user.gender] } </span></li>
-          <li> <span>비밀번호 : </span> <span>{isMask ? maskedPassword : maskedPw} &nbsp;&nbsp;
-            <button onClick={() => setIsMask(!isMask)}>보기</button></span></li>
+          <li> <span>비밀번호 : </span> <span className='my-info-password'>
+            <span className='my-info-password-text'>{isMask ? maskedPassword : maskedPw} </span>&nbsp;&nbsp;
+            <button onClick={() => setIsMask(!isMask)}>
+              {isMask 
+              ? <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+                <circle cx="12" cy="12" r="2.5"/>
+              </svg>
+              :
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M3 4l18 18-1.5 1.5-3.2-3.2A10.8 10.8 0 0 1 12 21C5 21 2 14 2 14a20 20 0 0 1 4.1-5.5L1.5 5.5 3 4z"/>
+                <path d="M12 5c7 0 10 7 10 7a19.7 19.7 0 0 1-3.4 4.6l-2.2-2.2A4 4 0 0 0 9.6 8L7.8 6.2A10.7 10.7 0 0 1 12 5z"/>
+              </svg> }
+
+              </button></span></li>
         </ul>
         <ul className='my-info-list'>
           <li> <span> 회원가입 날짜 : </span> <span>{formatDateTime(user.createdAt)}</span></li>
