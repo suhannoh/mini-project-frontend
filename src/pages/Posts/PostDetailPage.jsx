@@ -44,11 +44,11 @@ export default function PostDetailPage() {
             logError(e);
             // 에러 시 게시글 목록 페이지로 이동
             navigate("/posts");
-        }} 
-        // 함수 호출
-        
+        } finally {
+          setPostLoding(false);
+        }};
+
         getPostDetail();
-        setPostLoding(false);
     }, [id])
 
     // 로딩 중일 때
