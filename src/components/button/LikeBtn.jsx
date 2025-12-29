@@ -4,12 +4,15 @@ import { logError } from '../logError';
 import AuthStore from '../../store/AuthStore';
 
 export default function LikeBtn({post}) {
+    
     const {user} = AuthStore();
     const [liked , setLiked] = useState(false);
     const [likeCount , setLikeCount] = useState(0);
 
+
     // 좋아요 상태 초기화 (예: 사용자가 이미 좋아요를 눌렀는지 확인)
         const checkIfLiked = async () => {
+            if (!post?.id || !user?.id) return;
             try {
                 const res = await api.post(`/post/like/read` , {
                     postId: post.id,
@@ -24,13 +27,13 @@ export default function LikeBtn({post}) {
             }
         }
 
-
+        
     useEffect(() => {
         const run = async () => {
             await checkIfLiked();
         }
         run();
-    }, [post.id , user.id]);
+    }, [post?.id , user?.id]);
 
 
     const handleLike = async () => {
