@@ -35,8 +35,8 @@ export default function LoginPage() {
         setLoad(true);
 
         try {
-            await api.post("/auth/login",{ email, password,});
-            const { data } = await api.get("/auth/me");
+            const {data} = await api.post("/auth/login",{ email, password,});
+            // const { data } = await api.get("/auth/me");
             // 전역 상태에 로그인 정보 반영
             login(data);
             // console.log("로그인 처리" , data);

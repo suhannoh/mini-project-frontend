@@ -31,7 +31,7 @@ export default function AdminPage() {
     try {
       const res = await api.get("/admin/users", {params : {page, size}});
       setUsers(res.data.content);
-      console.log(res.data)
+      // console.log(res.data)
       const roles = {};
       const accountStatus = {};
       const blockReason = {};
