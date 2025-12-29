@@ -51,7 +51,7 @@ export default function LinksPage() {
 	return (
 		<div>
 			<Layout layoutType='post'>
-					<div className='link__wrap'>
+					<main className='link__wrap'>
 						<ul className='link__card-ul' >
 							{/* 링크 추가 및 설정 카드 */}
 							<div className="point-border">
@@ -63,7 +63,7 @@ export default function LinksPage() {
 								<LinkCard key={link.id} link={link} />
 							))}
 						</ul>
-					</div>
+					</main>
 			</Layout>
 		</div>
 	)

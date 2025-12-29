@@ -91,21 +91,21 @@ export default function AdminPage() {
 
       <table>
         <thead>
-        <tr>
-          <th>순서</th>
-          <th>PK</th>
-          <th>Role</th>
-          <th>이름</th>
-          <th>성별</th>
-          <th>이메일</th>
-          <th>생성일</th>
-          <th>수정일</th>
-          <th>마지막 접속일</th>
-          <th>Status  
-             <span className="info-icon"> ⓘ</span>
-          </th>
-          <th>수정</th>
-        </tr>
+          <tr>
+            <th>순서</th>
+            <th>PK</th>
+            <th>Role</th>
+            <th>이름</th>
+            <th>성별</th>
+            <th>이메일</th>
+            <th>생성일</th>
+            <th>수정일</th>
+            <th>마지막 접속일</th>
+            <th>Status  
+              <span className="info-icon"> ⓘ</span>
+            </th>
+            <th>수정</th>
+          </tr>
         </thead>
         <tbody>
         

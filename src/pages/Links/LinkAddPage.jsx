@@ -18,7 +18,6 @@ export default function LinkAddPage() {
   // 전역 상태
   const {user } = AuthStore();
   const {linkStore} = LinkStore();
-  
   const [isSubmit , setIsSubmit] = useState(false);
 
   useEffect (() => {
@@ -57,22 +56,25 @@ export default function LinkAddPage() {
   return (
     <div>
       <BackBtn />
-      <div className='link__add-wrap'>
-        <div>
-          <div className='link__add-card'>
+      <main className='link__add-wrap'>
+        <section>
+          <article className='link__add-card'>
             <form onSubmit={handleAdd}>
             <ul className='link__add-ul' >
-                <li>GitHub : <input id="git" type="url" value={gitHubUrl} placeholder='github - url' name="gitHubUrl"
-                               onChange={(e) => setGithub(e.target.value)}/></li>
-                <li>Notion : <input id="notion" type="url" value={notionUrl} placeholder='notion - url' name="notionUrl"
-                               onChange={(e) => setNotion(e.target.value)} /></li>
+                <li>GitHub : 
+                  <input id="git" type="url" value={gitHubUrl} placeholder='github - url' 
+                         name="gitHubUrl" onChange={(e) => setGithub(e.target.value)}/>
+                </li>
+                <li>Notion : 
+                  <input id="notion" type="url" value={notionUrl} placeholder='notion - url' 
+                         name="notionUrl" onChange={(e) => setNotion(e.target.value)} />
+                </li>
             </ul>
-            <button disabled={isSubmit}
-                  className="link__edit-btn" type='submit'>저장</button>
+            <button disabled={isSubmit} className="link__edit-btn" type='submit'>저장</button>
             </form>
-          </div>
-        </div>
-      </div>
+          </article>
+        </section>
+      </main>
     </div>
   )
   }

@@ -21,16 +21,11 @@ export default function Tools() {
           <ul className="tools-grid">
             {/* 툴 목록 */}
             {TOOLS.map(t => (
-              <li
-                key={t.type}
-                className={`tool-card spin-wrap ${t.disabled ? "disabled" : ""}`}
-                onClick={() => !t.disabled && navigate(`/tools/${t.type}`)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (!t.disabled && (e.key === "Enter" || e.key === " ")) navigate(`/tools/${t.type}`);
-                }}
-              >
+              <li key={t.type} className={`tool-card spin-wrap ${t.disabled ? "disabled" : ""}`}
+                  onClick={() => !t.disabled && navigate(`/tools/${t.type}`)} role="button"
+                  tabIndex={0} onKeyDown={(e) => { if (!t.disabled && (e.key === "Enter" || e.key === " "))
+                                                       navigate(`/tools/${t.type}`);
+                }}>
                 <div className="tool-icon spin-icon">{t.icon}</div>
                 <div className="tool-title">{t.title}</div>
                 <div className="tool-desc">{t.desc}</div>

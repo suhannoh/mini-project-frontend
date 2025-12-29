@@ -83,6 +83,9 @@
 .auth__field-radio {
   display: flex ;
   flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid var(--text);
+  transition: 1s;
 }
 .auth__radio-box {
   flex: 1;

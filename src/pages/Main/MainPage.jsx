@@ -103,7 +103,7 @@ export default function MainPage() {
 
   return (
     <div>
-      <div className='main__api'> 
+      <section className='main__api'> 
         <h2> API </h2>
         {/* API 상태 표시 */}
         <div className='main__api-health'>
@@ -112,15 +112,15 @@ export default function MainPage() {
             <p className={overallStatus === "red" ? "is-active" : "is-disabled"}>🔴 서버 연결 실패</p>
         </div>
         {/* 공지 */}
-        {notice.length > 0 && <div className="notice-wrap">
-          <p className="notice-text"
-            style={{ animationDuration: `${duration}s` }}
-           > 📢 {text}</p>
-        </div>}
-      </div>  
+        {notice.length > 0 && 
+          <div className="notice-wrap">
+            <p className="notice-text" style={{ animationDuration: `${duration}s` }}> 📢 {text}</p>
+          </div>
+        }
+      </section>  
         <Layout backbtn={false} >
-          <div className='main__wrap'>
-            <div className='main__top-layout'>
+          <main className='main__wrap'>
+            <section className='main__top-layout'>
             {/* grid로 변경 예정 */}
              <ul className='main__card-ul'>
               <li className='main__card-li ' onClick={() => navigate('/posts')} >
@@ -131,6 +131,7 @@ export default function MainPage() {
                   <p> 자유 / 질문 / 개발정보</p>
                 </div>
               </li>
+
               <li className='main__card-li' onClick={() => navigate('/links')}  >
                 <div className={theme ? "main__card-title" :  "main__card-title-w"} style={{color:"greenYellow"}}>
                   <h2>🔗 프로필 </h2>
@@ -140,9 +141,9 @@ export default function MainPage() {
                 </div>
               </li>
              </ul>
-          </div>
+          </section>
 
-          <div className='main__bottom-layout'>
+          <section className='main__bottom-layout'>
             <ul className='main__card-ul'>
               <li className='main__card-li' onClick={() =>navigate('/mini-tools')}>
                 <div className={theme ? "main__card-title" :  "main__card-title-w"}>
@@ -150,10 +151,9 @@ export default function MainPage() {
                 </div>
                   <div className='main__card-content'>
                     <p> 관리자페이지 / 기능 테스트 </p>
-                  {/* <p> 개발하며 구현한 작은 기능들을<br />
-                      직접 체험해보세요</p> */}
                 </div>
               </li>
+
               <li className='main__card-li' onClick={() => navigate('/my')}>
                 <div className={theme ? "main__card-title" :  "main__card-title-w"}>
                   <h2>👤 마이페이지</h2>
@@ -163,21 +163,23 @@ export default function MainPage() {
                 </div>
               </li>
              </ul>
-          </div>
-        </div>
+          </section>
+        </main>
         
         <div className='bar'>&nbsp;</div>
-        <div className='online-list'>
+
+        <aside className='online-list'>
           <h3 className='online-title'> 최근 1시간 이내 접속 </h3>
           <ul className='online-users'>
             { activeUsers.length > 0 ?
               activeUsers.map((user) => (
-                <li className="online-li" key={user.userId}>🟢 <span style={{paddingLeft:"5px"}}>{user.userName}</span></li>
-            )) :
-            <li className="online-li">최근 접속자가 없어요</li>
-          }
+                <li className="online-li" key={user.userId}> 
+                  🟢 <span style={{paddingLeft:"5px"}}>{user.userName}</span>
+                </li>
+              )) : <li className="online-li">최근 접속자가 없어요</li>
+            }
           </ul>
-        </div>
+        </aside>
       </Layout>
     </div>
   )
