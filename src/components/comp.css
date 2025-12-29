@@ -68,6 +68,7 @@
 /* 다크모드 토글 버튼 */
 .theme-btn {
   background: var(--option-btn);
+  transition: background 1s ease;
 }
 
 .post-delete-btn {
@@ -163,8 +164,27 @@
 .profile-img {
   height: 100%;
 }
-
-
+.theme-spin-icon {
+  display: inline-block;
+  transition: transform 700ms ease, filter 700ms ease;
+  will-change: transform;
+}
+/* .theme-btn:focus .theme-spin-icon {
+  display: inline-block;
+  transition: transform 700ms ease, filter 700ms ease;
+  will-change: transform;
+} */
+.theme-spin-icon.light{
+  transform: rotate(0deg);
+  filter: brightness(1.15) saturate(1.1);
+}
+.theme-spin-icon.dark{
+  transform: rotate(360deg);
+  filter: brightness(0.85) saturate(0.9);
+}
+.theme-spin-icon.light.back{
+  transform: rotate(-360deg);
+}
 
 @media (max-width: 768px) {
   .flex-link-box {

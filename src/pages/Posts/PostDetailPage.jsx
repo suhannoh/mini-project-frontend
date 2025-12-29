@@ -73,7 +73,7 @@ export default function PostDetailPage() {
     const isMyPost = user && post.userId === user.id;
 
   return (
-    <div>
+    <div className="page-enter">
         <Layout editBtn={isMyPost} post={post} likeBtn={true}
         textInput={true} postId={Number(id)} commentMethod={fetchComments}>
         <div className="post-detail">
