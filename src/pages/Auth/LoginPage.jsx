@@ -81,7 +81,7 @@ export default function LoginPage() {
         <div>
           <div className='auth__header'>
               <p>version 1.0.0 </p>
-                <div className='main__api-health'>
+                <div id='main__api-health'>
                   <h2> API(서버연결) 상태 : {APIload ? " 로딩 중 (서버 깨우는 중)..."
                                                 : API
                                                 ? " 🟢 정상"

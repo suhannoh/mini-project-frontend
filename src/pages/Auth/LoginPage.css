@@ -27,6 +27,9 @@
   line-height: 1.5rem;
   color : rgba(232, 175, 175, 0.909);
 }
+.main__api-health {
+  width: min-content;
+}
 .auth__wrap Button {
   margin-top: 2rem;
 }
