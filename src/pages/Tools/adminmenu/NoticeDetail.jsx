@@ -10,20 +10,31 @@ export default function NoticeDetail() {
     const {user} = AuthStore();
     const [editStatus, setEditStatus] = useState({});
     const [editNoticeContent , setEditNoticeContent] = useState({});
+     // 페이지네이션 관련 상태 
+    const [page, setPage] = useState(0);
+    // 전체 페이지 수 상태
+    const [totalPages, setTotalPages] = useState(0);
+    const size = 10;
     // 공지 목록 불러오기
     const readNotice = async () => {
         try {
-            const res = await api.get(`/admin/notice`);
+            const res = await api.get(`/admin/notice`, {
+                params : {
+                    page,
+                    size
+                }
+            });
             // 정상 응답 후 상태 업데이트
-            setNotice(res.data);
+            setNotice(res.data.content);
             let status = {};
             let content = {};
-            res.data.forEach((n) => {
+            res.data.content.forEach((n) => {
                 status[n.id] = n.status;
                 content[n.id] = n.noticeContent;
             })
             setEditStatus(status);
             setEditNoticeContent(content);
+            setTotalPages(res.data.totalPages);
         } catch (e) {
           // 로그 에러 처리
             logError(e);
@@ -32,7 +43,7 @@ export default function NoticeDetail() {
     // 처음 공지 목록 불러오기
     useEffect(() => {
        readNotice();
-    } , [])
+    } , [page])
     // 공지 추가
     const handleAddNotice = async (e) => {
         e.preventDefault();
@@ -46,9 +57,9 @@ export default function NoticeDetail() {
                 userId : user.id,
                 noticeContent : editNotice
              });
-             alert("공지를 성공적으로 저장하였습니다 ");
-           readNotice();
-
+            alert("공지를 성공적으로 저장하였습니다 ");
+            readNotice();
+            setEditNotice("");
         } catch (e) {
             logError(e);
         }
@@ -125,9 +136,9 @@ export default function NoticeDetail() {
                 </tr>
             </thead>
             <tbody>
-                {notice.length > 0 ? notice.map((n) => (
+                {notice.length > 0 ? notice.map((n , idx) => (
                     <tr key={n.id} className={n.status === "ACTIVE" ? "active__notice" : ""}>
-                        <td>{n.id}</td>
+                        <td>{(idx + 1 ) + (page * size)}</td>
                         <td>{n.userId}</td>
                         <td><input className="user__status" type="text" value={editNoticeContent[n.id]} onChange={(e) => setEditNoticeContent({...editNoticeContent, [n.id] : e.target.value})}/>  </td>
                         <td>{formatDateTimeDay(n.createdAt)}</td>
@@ -178,7 +189,20 @@ export default function NoticeDetail() {
                 }
             </tbody>
         </table>
-        
+        <div className="pagination">
+              <button
+              // 이전 버튼 비활성화 조건: 현재 페이지가 첫 페이지일 때
+                disabled={page === 0}
+                onClick={() => setPage(page => page - 1)}
+              > 이전 </button>
+            {/* 페이지 번호 표시 */}
+              <span>{page + 1} / {totalPages}</span>
+
+              <button disabled={page + 1 >= totalPages}
+              // 다음 버튼 비활성화 조건: 현재 페이지가 마지막 페이지일 때
+                onClick={() => setPage(page => page + 1)}
+              > 다음 </button>
+            </div>
     </div>
   )
 }

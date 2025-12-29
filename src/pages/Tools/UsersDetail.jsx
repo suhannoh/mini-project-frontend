@@ -17,7 +17,9 @@ export default function AdminPage() {
   const [role, setRole] = useState({});
   const {user} = AuthStore();
   const [hoverId, setHoverId] = useState(null);
-
+  const [page , setPage] = useState(0);
+  const [totalPages , setTotalPages] = useState(0);
+  const size = 10;
   // 성별
   const gender = {
     MALE : "남자",
@@ -27,14 +29,14 @@ export default function AdminPage() {
 
   const handleGetUsers = async () => {
     try {
-      const res = await api.get("/admin/users");
-      setUsers(res.data);
-      // console.log(res.data)
+      const res = await api.get("/admin/users", {params : {page, size}});
+      setUsers(res.data.content);
+      console.log(res.data)
       const roles = {};
       const accountStatus = {};
       const blockReason = {};
       // 상태 업데이트
-      res.data.forEach((u) => {
+      res.data.content.forEach((u) => {
         roles[u.id] = u.role;
         accountStatus[u.id] = u.status;
         blockReason[u.id] = u.reason;
@@ -42,6 +44,7 @@ export default function AdminPage() {
       setBlockComment(blockReason);
       setRole(roles);
       setAccountStatus(accountStatus)
+      setTotalPages(res.data.totalPages);
     } catch (e) {
       logError(e);
     }};
@@ -50,7 +53,7 @@ export default function AdminPage() {
   useEffect (() => {
     
   handleGetUsers();
-  }, [])
+  }, [page])
 
   // 사용자 정보 수정
   const handleUpdateUser = async (userId) => {
@@ -110,7 +113,7 @@ export default function AdminPage() {
       {users.map((u ,idx) => 
       <tr key={u.id} className={idx % 2 === 0 ? "user__info-table" : "user__info-table-gray"}
 > 
-      <td>{idx + 1}</td>  
+      <td>{(idx + 1 ) + (page * size)}</td>  
       <td>{u.id}</td>
       <td>
         <select name="" className="user__status" 
@@ -156,9 +159,20 @@ export default function AdminPage() {
       )}
         </tbody>
         </table>
+         <div className="pagination">
+              <button
+              // 이전 버튼 비활성화 조건: 현재 페이지가 첫 페이지일 때
+                disabled={page === 0}
+                onClick={() => setPage(page => page - 1)}
+              > 이전 </button>
+            {/* 페이지 번호 표시 */}
+              <span>{page + 1} / {totalPages}</span>
 
-
-
+              <button disabled={page + 1 >= totalPages}
+              // 다음 버튼 비활성화 조건: 현재 페이지가 마지막 페이지일 때
+                onClick={() => setPage(page => page + 1)}
+              > 다음 </button>
+            </div>
     </div>
   )
 }

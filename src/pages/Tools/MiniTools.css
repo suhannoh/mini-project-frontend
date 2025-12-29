@@ -142,6 +142,9 @@ th {
   cursor: help;
 }
   
+.admin__pagination {
+  width: 100%;
+}
 
 .user__info-table-gray {
   background: rgb(109, 99, 99);

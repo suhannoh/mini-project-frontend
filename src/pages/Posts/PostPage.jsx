@@ -178,20 +178,21 @@ export default function PostPage() {
             )
           }) : posts.length == 0 &&  <h2> 게시글이 없습니다. </h2> }
           {/* pagination */}
-          {(page < totalPages && radioShowType === "list") && <div className="pagination">
-            <button
-            // 이전 버튼 비활성화 조건: 현재 페이지가 첫 페이지일 때
-              disabled={page === 0}
-              onClick={() => setPage(page => page - 1)}
-            > 이전 </button>
-           {/* 페이지 번호 표시 */}
-            <span>{page + 1} / {totalPages}</span>
+          {(page < totalPages && radioShowType === "list") && 
+            <div className="pagination">
+              <button
+              // 이전 버튼 비활성화 조건: 현재 페이지가 첫 페이지일 때
+                disabled={page === 0}
+                onClick={() => setPage(page => page - 1)}
+              > 이전 </button>
+            {/* 페이지 번호 표시 */}
+              <span>{page + 1} / {totalPages}</span>
 
-            <button disabled={page + 1 >= totalPages}
-            // 다음 버튼 비활성화 조건: 현재 페이지가 마지막 페이지일 때
-              onClick={() => setPage(page => page + 1)}
-            > 다음 </button>
-          </div>}
+              <button disabled={page + 1 >= totalPages}
+              // 다음 버튼 비활성화 조건: 현재 페이지가 마지막 페이지일 때
+                onClick={() => setPage(page => page + 1)}
+              > 다음 </button>
+            </div>}
 
 
 
