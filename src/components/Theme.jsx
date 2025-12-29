@@ -1,5 +1,5 @@
-import React from 'react'
 import AuthStore from '../store/AuthStore'
+import './comp.css'
 
 export default function Theme() {
     const {theme , toggleTheme} = AuthStore();
@@ -7,9 +7,10 @@ export default function Theme() {
         toggleTheme();
     }
   return (
-    <div >
+    <div>
         <button className='theme-btn' style={{height:"100%"}}
-        onClick={handelToggleTheme}> {theme ? "🌙" : "☀️"} </button>
+        onClick={handelToggleTheme}><span 
+        className={`theme-spin-icon ${theme ? "dark" : "light"}`}>{theme ? "🌙" : "☀️"}</span></button>
     </div>
   )
 }

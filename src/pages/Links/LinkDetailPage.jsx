@@ -12,7 +12,7 @@ export default function LinkDetailPage() {
     const [hover, setHover] = useState(null);
     const [url , setUrl] = useState(null);
     return (
-    <div>
+    <div className="page-enter">
         <Layout>
             <div style={{
                 display : "flex", flexDirection : "column",

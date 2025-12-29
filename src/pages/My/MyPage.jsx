@@ -45,7 +45,7 @@ export default function MyPage() {
   
   maskedPassword
   return (
-    <div>
+    <div className="page-enter2">
       <BackBtn />
       <div className='my-page-wrap'>
         {/* 사용자 정보 표시 */}
