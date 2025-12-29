@@ -1,6 +1,8 @@
 /* Links Page */
 .link__wrap {
   width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .link__card-ul {
@@ -8,12 +10,7 @@
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 3rem;
     padding: 1.8rem;
-  list-style: none;
-    /* flex-wrap: wrap; */
-    /* gap: 1.5rem;
-    justify-content: flex-start;
-    padding-left: 1.8rem;
-    padding-bottom: 1.8rem; */
+    list-style: none;
 }
 .link__card-ul li{
     background: none;
@@ -23,7 +20,6 @@
 } 
 
 .flex-link-box {
-  border: 1px solid var(--text);
   border-radius: 10px;
 }
 /* Links Add Page */
@@ -53,6 +49,7 @@
   height: 13rem; /* 필요하면 조절 */
 }
 .point-border {
+  height: 100%;
   border: 3px solid var(--point-border);
   border-radius: 12px;
 } 
@@ -68,7 +65,26 @@
   align-items: flex-end;
   justify-content: flex-end;
 }
-
+.link-box {
+  position: relative;
+  padding: 0;
+}
+.link-box a {
+  display: block;
+  width: 100%;
+}
+.custom-tooltip-link {
+  position: absolute;
+  left: -1.5rem;
+  margin-bottom: 8px;
+  background: #222;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  white-space: pre-line;
+  z-index: 1000;
+}
 @media (max-width: 768px) {
   .link__wrap {
     width: 100%;
@@ -80,10 +96,10 @@
   }
 
   .link__card-ul {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     padding: 0;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1.5rem; */
   }
   .link__card-ul li{
     height: auto;

@@ -5,6 +5,7 @@ import './LoginPage.css'
 import Layout from '../../layout/Layout';
 import { api } from '../../api/auth';
 import { logError } from '../../components/logError';
+import Loading from '../../components/Loading';
 
 export default function LoginPage() {
 
@@ -17,8 +18,12 @@ export default function LoginPage() {
     const login = AuthStore((state) => state.login);
     // 네비게이트
     const navigate = useNavigate();
+    // API 환경
+    const [API , setAPI] = useState(false);
+    const [APIload , setAPILoad] = useState(true);
+              
 
-
+    
     // 로그인 처리
     const handleLogin = async (e) => {
         // 배포 및 개발 환경 출력
@@ -34,7 +39,7 @@ export default function LoginPage() {
             const { data } = await api.get("/auth/me");
             // 전역 상태에 로그인 정보 반영
             login(data);
-            console.log("로그인 처리" , data);
+            // console.log("로그인 처리" , data);
             // 메인 페이지로 이동
             navigate("/main", { replace: true });
         } catch (e) {
@@ -43,8 +48,8 @@ export default function LoginPage() {
             setLoad(false);
         }
     }
-    const [API , setAPI] = useState(false);
-    const [APIload , setAPILoad] = useState(true);
+    
+    // API 환경 확인
     useEffect(() => {
         const apiPingCheck = async () => {
             try {
@@ -66,16 +71,7 @@ export default function LoginPage() {
     // 로딩 중일 때
     if (load) {
       return (
-        <>
-          <h2 className='loading'>
-            <span className='loading-text'>Loading </span>
-              <br /><br />
-              <span>
-                첫 로그인 시 최대 1~2분 정도<br />
-                소요될 수 있습니다.</span></h2>
-              <br /><br />
-						<p className='loading-desc'> 원인 ✅ 서버가 일정 시간 미접속 시 절전 상태로 전환됩니다. </p>
-          </>
+          <Loading text={"로그인"}/>
         )
     }
 
@@ -83,17 +79,17 @@ export default function LoginPage() {
 
     return (
         <div>
-            <div className='auth__header'>
-                    <p>version 1.1.0</p>
+          <div className='auth__header'>
+              <p>version 1.0.0 </p>
                 <div className='main__api-health'>
-                    <h2> API(서버연결) 상태 :     {APIload ? " 로딩 중 (서버 깨우는 중)..."
+                  <h2> API(서버연결) 상태 : {APIload ? " 로딩 중 (서버 깨우는 중)..."
                                                 : API
                                                 ? " 🟢 정상"
                                                 : " 🔴 비정상 - 배포 및 수정 중"}
-                     </h2>
+                  </h2>
+              </div>
             </div>
-            </div>
-			{/* 개발 편의를 위한 버튼 */}
+						{/* 개발 편의를 위한 버튼 */}
             {import.meta.env.DEV && (
                 <button
                     onClick={() => {
@@ -102,6 +98,7 @@ export default function LoginPage() {
                     }}> DEV: 바로 입장
                 </button>
             )}
+
             <Layout backbtn={false} logoutBtn={false}>
                 <form onSubmit={handleLogin} className='auth__wrap'>
 									{/* 로그인 안내 */}
@@ -119,16 +116,20 @@ export default function LoginPage() {
                     </div>
 										{/* 로그인 입력 폼 */}
                     <div className='auth__form'>
-                        <div className='auth__field'>
-                            <p> Email </p>
-                            <input type="email" placeholder='이메일'
+                        <div className='auth__field input-ani'>
+                            {/* <p> Email </p> */}
+                            <input type="email" 
+                            placeholder=''
                                 value={email} onChange={(e) => setEmail(e.target.value)} />
-
+                                <label >이메일</label>
                         </div>
-                        <div className='auth__field'>
-                            <p> Password </p>
-                            <input type="password" placeholder='비밀번호' autoComplete="current-password"
+                        <div className='auth__field input-ani'>
+                            {/* <p> Password </p> */}
+                            <input type="password"
+                             placeholder='' 
+                             autoComplete="current-password"
                                 value={password} onChange={(e) => setPassword(e.target.value)} />
+                                <label>비밀번호</label>
                         </div>
                         <div className='auth__actions'>
                             <button type='submit'>Login</button>

@@ -10,6 +10,7 @@ export default function PostPage() {
   // 게시글
   const [posts, setPosts] = useState([]);
   const [anonPosts, setAnonPosts] = useState([]);
+
   //
   const [randomAnonPosts, setRandomAnonPosts] = useState(null);
   // 검색 관련 상태
@@ -82,12 +83,7 @@ export default function PostPage() {
     // 카테고리 또는 페이지가 변경될 때마다 게시글 다시 로드
   }, [category, page , isSearching , radioShowType ]);
 
-  const pickRandomPost = (list) => {
-     if (!list || list.length === 0) return null; 
-     const idx = Math.floor(Math.random() * list.length); 
-     return list[idx]; 
-  };
-
+  
   // 검색 핸들러
   const handleSearchPost = async (e) => {
     e.preventDefault();
@@ -95,7 +91,13 @@ export default function PostPage() {
     setIsSearching(true); // 검색 중 상태로 설정
   }
   
+  const pickRandomPost = (list) => {
+     if (!list || list.length === 0) return null; 
+     const idx = Math.floor(Math.random() * list.length); 
+     return list[idx]; 
+  };
   const handleRandomAnon = () => {
+
     setRandomAnonPosts(pickRandomPost(anonPosts));
   };
   
@@ -176,20 +178,21 @@ export default function PostPage() {
             )
           }) : posts.length == 0 &&  <h2> 게시글이 없습니다. </h2> }
           {/* pagination */}
-          {(page < totalPages && radioShowType === "list") && <div className="pagination">
-            <button
-            // 이전 버튼 비활성화 조건: 현재 페이지가 첫 페이지일 때
-              disabled={page === 0}
-              onClick={() => setPage(page => page - 1)}
-            > 이전 </button>
-           {/* 페이지 번호 표시 */}
-            <span>{page + 1} / {totalPages}</span>
+          {(page < totalPages && radioShowType === "list") && 
+            <div className="pagination">
+              <button
+              // 이전 버튼 비활성화 조건: 현재 페이지가 첫 페이지일 때
+                disabled={page === 0}
+                onClick={() => setPage(page => page - 1)}
+              > 이전 </button>
+            {/* 페이지 번호 표시 */}
+              <span>{page + 1} / {totalPages}</span>
 
-            <button disabled={page + 1 >= totalPages}
-            // 다음 버튼 비활성화 조건: 현재 페이지가 마지막 페이지일 때
-              onClick={() => setPage(page => page + 1)}
-            > 다음 </button>
-          </div>}
+              <button disabled={page + 1 >= totalPages}
+              // 다음 버튼 비활성화 조건: 현재 페이지가 마지막 페이지일 때
+                onClick={() => setPage(page => page + 1)}
+              > 다음 </button>
+            </div>}
 
 
 

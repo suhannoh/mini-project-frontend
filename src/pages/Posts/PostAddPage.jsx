@@ -19,6 +19,9 @@ export default function PostAddPage() {
   const [author , setAuthor] = useState("author"); // 이름표시
   const [content , setContent] = useState(""); // 내용
 
+  // 더블클릭 방지
+  const [isSubmit, setIsSubmit] = useState(false);              
+  
 
   // 수정 모드일 때 기존 데이터 불러오기
   useEffect(() => {
@@ -33,6 +36,7 @@ export default function PostAddPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    setIsSubmit(true);
     // 서버로 전송할 데이터 구성
     const data = {
       userId : user.id,
@@ -54,6 +58,8 @@ export default function PostAddPage() {
       navigate(-1);
     } catch (e) {
         logError(e);
+    } finally {
+      setIsSubmit(false);
     }
   }
 
@@ -91,11 +97,13 @@ export default function PostAddPage() {
                 </div>
               </div>
               <div className='post-add-right'>
-                <textarea placeholder='내용을 입력하세요 (최대 500자)' value={content} 
+                <textarea className='post-textarea'
+                          placeholder='내용을 입력하세요 (최대 500자)' value={content} 
                           onChange={(e) => setContent(e.target.value)}
                           maxLength={500}></textarea>
                 <div className='post-submit-btn'>
-                  <button type='submit' disabled={!title.trim() || !category.trim() || !content.trim()}>
+                  <button type='submit' 
+                    disabled={!title.trim() || !category.trim() || !content.trim() || isSubmit}>
                     {state ? "수정" : "작성"}
                   </button>
                 </div>

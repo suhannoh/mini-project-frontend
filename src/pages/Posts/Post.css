@@ -141,6 +141,7 @@
   align-items: flex-start;
   gap: 1rem;
 }
+
 .post-submit-btn{
   width: 100%;
   display: flex;
@@ -178,12 +179,19 @@
   border-radius: 5px;
 
 }
-textarea {
+.post-textarea {
   width: 100%;
   resize: none;
-  height: 30rem;
+  height: 5rem;
   border-radius: 10px;
   padding: 1rem;
+  transition: 0.5s ease;
+  outline: none;
+}
+
+.post-textarea:focus ,
+.post-textarea:not(:placeholder-shown){
+  height: 25rem;
 }
 
 .post-detail {
@@ -311,6 +319,14 @@ textarea {
   justify-content: center;
   align-items: center;
 }
+.pagination button {
+  background: var(--option-btn);
+  color: var(--white-text);
+}
+.random-btn {
+  background: var(--option-btn);
+  color: var(--white-text);
+}
 @media (max-height: 875px) {
   .post-list-ul {
     overflow-y: auto;
@@ -318,12 +334,18 @@ textarea {
   }
 }
 @media (max-width: 768px) {
+  .post-list-ul {
+    padding: 0 1rem;
+  }
   .post-search {
     width: 100%;
     box-shadow: none;
     border-radius: 0;
     border-bottom: 1px solid #ccc;
     padding: 0.5rem;
+  }
+  .view-toggle button{
+    font-size: 0.7rem;
   }
   .input-set {
   width: 100%;
@@ -353,7 +375,6 @@ textarea {
   .post-card-ul {
     padding: 0.5rem;
   }
- */
   .post-detail-comment {
     flex-wrap: wrap;
   }

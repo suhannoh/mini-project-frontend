@@ -4,14 +4,22 @@ import { logError } from "../../components/logError";
 import './Minitools.css'
 import { formatDateTime } from "../../components/date/dateTime";
 import AuthStore from "../../store/AuthStore";
+import { formatDateTimeDay } from "../../components/date/dateTimeDay";
 
 export default function AdminPage() {
+  
+
   // 전역 상태 사용자 정보 가져오기
   const [users, setUsers] = useState([]);
   const [accountStatus , setAccountStatus] = useState({});
+  // 정지사유 
+  const [blockComment, setBlockComment] = useState({});
   const [role, setRole] = useState({});
   const {user} = AuthStore();
-
+  const [hoverId, setHoverId] = useState(null);
+  const [page , setPage] = useState(0);
+  const [totalPages , setTotalPages] = useState(0);
+  const size = 10;
   // 성별
   const gender = {
     MALE : "남자",
@@ -19,44 +27,60 @@ export default function AdminPage() {
     NONE : "선택 없음"
   }
 
-  // 사용자 정보 가져오기
-  useEffect (() => {
-      const handleGetUsers = async () => {
+  const handleGetUsers = async () => {
     try {
-      const res = await api.get("/admin/users");
-      setUsers(res.data);
-
+      const res = await api.get("/admin/users", {params : {page, size}});
+      setUsers(res.data.content);
+      console.log(res.data)
       const roles = {};
       const accountStatus = {};
+      const blockReason = {};
       // 상태 업데이트
-      res.data.forEach((u) => {
+      res.data.content.forEach((u) => {
         roles[u.id] = u.role;
-      })
-      res.data.forEach ( (u) => {
         accountStatus[u.id] = u.status;
+        blockReason[u.id] = u.reason;
       })
+      setBlockComment(blockReason);
       setRole(roles);
       setAccountStatus(accountStatus)
+      setTotalPages(res.data.totalPages);
     } catch (e) {
       logError(e);
     }};
+
+  // 사용자 정보 가져오기
+  useEffect (() => {
+    
   handleGetUsers();
-  }, [])
+  }, [page])
 
   // 사용자 정보 수정
   const handleUpdateUser = async (userId) => {
     if(user.role !== "ADMIN") {
-      return alert("admin 만 수정할 수 있습니다.");
-    }
+            return alert("어드민 권한이 없습니다.");
+        }   
     const conf = confirm("정말 수정하시겠습니까 ?");
     if(!conf) return;
-    
+
+    let blockComment = "";
+    if(accountStatus[userId] === "BLOCKED") {
+      blockComment = prompt("정지 사유를 작성해주세요");
+    }
+    setBlockComment(blockComment);
+    alert("정지사유 [" + blockComment + "] 수정 완료되었습니다.");
     try {
-      await api.patch(`/admin/user/${userId}` , 
-        { role : role[userId] , status : accountStatus[userId] });
+      await api.patch(`/admin/user` , 
+        { 
+          userId : userId,
+          adminId : user.id,
+          role : role[userId] ,
+          status : accountStatus[userId],
+          reason : blockComment
+        }
+      );
 
-      alert("수정 완료되었습니다.");
-
+      handleGetUsers();
     } catch (e) {
       logError(e);
     } 
@@ -64,9 +88,8 @@ export default function AdminPage() {
   
   return (
     <div>
-      <h3 style={{
-        margin: "1rem",
-      }}> User는 접근이 안 되지만 일부러 오픈하였습니다 , User는 수정 불가합니다 ! <br /> 게시판에 admin 요청하시면 드리겠습니다 ! </h3>
+      <h3 className="admin-desc"> 게시판에 admin 요청하시면 드리겠습니다 ! <br></br> 🔍 <span style={{color:"red"}}>정지(status)</span> 인 경우 마우스를 올리면 정지사유를 확인할 수 있습니다.</h3>
+
       <table>
         <thead>
         <tr>
@@ -77,9 +100,11 @@ export default function AdminPage() {
           <th>성별</th>
           <th>이메일</th>
           <th>생성일</th>
-          <th>종료일</th>
+          <th>수정일</th>
           <th>마지막 접속일</th>
-          <th>Status</th>
+          <th>Status  
+             <span className="info-icon"> ⓘ</span>
+          </th>
           <th>수정</th>
         </tr>
         </thead>
@@ -88,10 +113,12 @@ export default function AdminPage() {
       {users.map((u ,idx) => 
       <tr key={u.id} className={idx % 2 === 0 ? "user__info-table" : "user__info-table-gray"}
 > 
-      <td>{idx + 1}</td>  
+      <td>{(idx + 1 ) + (page * size)}</td>  
       <td>{u.id}</td>
       <td>
-        <select name="" className="user__status" onChange={(e) => setRole({...role , [u.id] : e.target.value})} value={role[u.id]}>
+        <select name="" className="user__status" 
+
+        onChange={(e) => setRole({...role , [u.id] : e.target.value})} value={role[u.id]}>
           <option value="USER"> USER </option>
           <option value="ADMIN"> ADMIN </option>
         </select>
@@ -99,18 +126,30 @@ export default function AdminPage() {
       <td>{u.name}</td>
       <td>{gender[u.gender]}</td>
       <td>{u.email}</td> 
-      <td>{formatDateTime(u.createdAt)}</td>
-      <td>{formatDateTime(u.updatedAt)}</td>
-      <td>준비중</td>
+      <td>{formatDateTimeDay(u.createdAt)}</td>
+      <td>{formatDateTimeDay(u.updatedAt)}</td>
+      <td>{u.lastLoginAt ? formatDateTime(u.lastLoginAt) : "-"}</td>
       <td> 
-        <select name="" className={accountStatus[u.id] === "ACTIVE" ? "user__status" : "user__status blocked"} onChange={(e) => setAccountStatus({...accountStatus , [u.id] : e.target.value})} value={accountStatus[u.id]}>
+        <select 
+                onMouseEnter={() => setHoverId(u.id)}
+                onMouseLeave={() => setHoverId(null)}
+                className={accountStatus[u.id] === "ACTIVE" ? "user__status" : "user__status blocked"} 
+                onChange={(e) => setAccountStatus({...accountStatus , [u.id] : e.target.value})} 
+                value={accountStatus[u.id]}>
           <option value="ACTIVE"> 정상 </option>
           <option value="BLOCKED"> 정지 </option>
         </select>
+
+        {hoverId === u.id && accountStatus[u.id] === "BLOCKED" && (
+          <div className="custom-tooltip">
+            <div>정지 횟수: {u.blockCount}</div>
+            <div>정지 사유: {blockComment[u.id]}</div>
+          </div>
+        )}
       </td>
       <td>
-        <button id="table__submit" onClick={() => handleUpdateUser(u.id)} >
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <button title="변경사항 저장" id="table__submit" onClick={() => handleUpdateUser(u.id)} >
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="9" />
             <path d="M8.5 12.5l2.2 2.2L16.5 9" />
           </svg>
@@ -120,9 +159,20 @@ export default function AdminPage() {
       )}
         </tbody>
         </table>
+         <div className="pagination">
+              <button
+              // 이전 버튼 비활성화 조건: 현재 페이지가 첫 페이지일 때
+                disabled={page === 0}
+                onClick={() => setPage(page => page - 1)}
+              > 이전 </button>
+            {/* 페이지 번호 표시 */}
+              <span>{page + 1} / {totalPages}</span>
 
-
-
+              <button disabled={page + 1 >= totalPages}
+              // 다음 버튼 비활성화 조건: 현재 페이지가 마지막 페이지일 때
+                onClick={() => setPage(page => page + 1)}
+              > 다음 </button>
+            </div>
     </div>
   )
 }

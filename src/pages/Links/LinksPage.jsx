@@ -54,10 +54,10 @@ export default function LinksPage() {
 					<div className='link__wrap'>
 						<ul className='link__card-ul' >
 							{/* 링크 추가 및 설정 카드 */}
-							<li className="point-border">
+							<div className="point-border">
 								{!linkStore ? <LinkCard url={"/links/new"} key={addLink.id} link={addLink} />
 											: <LinkCard url={"/links/new"} key={setLink.id} link={setLink} />}
-							</li> 
+							</div> 
 							{/* 링크 목록 */}
 							{linkList.map(link => (
 								<LinkCard key={link.id} link={link} />

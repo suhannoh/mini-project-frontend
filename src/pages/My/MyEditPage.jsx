@@ -39,6 +39,12 @@ export default function MyEditPage() {
   const handleUpdate = async (e) => {
     e.preventDefault();
 
+    if(user.email === email && user.password === password && user.name === name
+      && user.phone === phone && user.gender === gender
+    ) {
+      alert("변경된 항목이 없습니다. 수정 항목을 확인해주세요");
+      return;
+    }
     // 정보 수정 요청
     try {
       const res = await axios.post(`${API_BASE}/user/${user.id}/edit`, 
@@ -60,6 +66,7 @@ export default function MyEditPage() {
                   <div className='my-page-wrap'>
                     {/* 수정 폼 */}
                         <form onSubmit={handleUpdate} className={theme ? '' : 'mpw-w'} >
+                          
                             <ul >
                               <li><span>이름 : </span><input type="text" value={name} 
                                           onChange={(e) => setName(e.target.value)}/></li>
@@ -68,7 +75,7 @@ export default function MyEditPage() {
                               <li><span> 전화번호 : </span> <input type="tel" value={phone}
                                             onChange={(e) => setPhone(e.target.value)}/> </li> 
                                 <div className='auth__radio-box' style={{padding:"1rem" , justifyContent: "right"}}>
-                                <p> Gender : </p>
+                                <p> 성별 : </p>
                                   <label><input type='radio' name='gender' value="NONE" 
                                   onChange={(e) => setGender(e.target.value)} checked={gender == "NONE"}/> 없음 </label>
                                   <label><input type='radio' name='gender' value="MALE"

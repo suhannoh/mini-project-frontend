@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '../../layout/Layout';
 import { api } from '../../api/auth';
 import { logError } from '../../components/logError';
+import Loading from '../../components/Loading';
 
 export default function JoinPage() {
   // 사용자 입력 
@@ -20,9 +21,12 @@ export default function JoinPage() {
   const isMatch = password.length > 0 && passwordConfirm.length > 0 &&
                   password === passwordConfirm;
 
+  const [isSubmit, setIsSubmit] = useState(false);              
+  
   // 회원가입 처리
   const handleJoin = async (e) => {
     e.preventDefault();
+    setIsSubmit(true);
 
     // 입력 검증
     if (!email || !password || !name) {
@@ -41,17 +45,16 @@ export default function JoinPage() {
       navigate("/")
     } catch (e) {
       logError(e);
+    } finally {
       setLoad(false);
+      setIsSubmit(false);
     }
   };
   
   // 로딩 중일 때
   if (load) {
     return (
-      <h2 className='loading'>
-        <span className='loading-text'>Loading </span>
-        <br /><br />
-        <span>첫 회원가입 시 20초 ~ 60초 정도 걸릴 수 있습니다.</span></h2>
+      <Loading text={"회원가입"} />
     )
   }
 
@@ -70,35 +73,38 @@ export default function JoinPage() {
           </div>
 
           <div className='auth__form auth__form-join'>        
-            <form onSubmit={handleJoin} >
-              <div className='auth__field'>
-                <p><span className='red-text'>*</span> Email </p>
-                <input type="email" placeholder='이메일 (필수)'
+            <form onSubmit={handleJoin} disabled={isSubmit}>
+              <div className='auth__field input-ani'>
+                <input id="email"type="email" 
+                placeholder=''
                   value={email} onChange={(e) => setEmail(e.target.value)} />
+                <label htmlFor='email'><span className='red-text'>* </span> 이메일 </label>  
               </div>
               <div className='auth__field-flex'>
-              <div className='auth__field'>
-                <p><span className='red-text'>*</span> Name </p>
-                <input type="text" placeholder='이름 (필수)'
+              <div className='auth__field input-ani'>
+                <input id='name' type="text" 
+                placeholder=''
                   value={name} onChange={(e) => setName(e.target.value)} />
+                <label htmlFor='name'><span className='red-text'>* </span> 이름 </label>  
+
               </div>
-              <div className='auth__field'>
-                <p> Phone </p>
-                <input type="tel" placeholder='010-1234-5678 (선택)'
+              <div className='auth__field input-ani'>
+                <input id='phone' type="tel" placeholder=''
                   value={phone} onChange={(e) => setPhone(e.target.value)} />
+                  <label htmlFor='phone'>번호 <span className='sm-span'>(010-1234-5678)</span></label>
               </div>
               </div>
               <div className='auth__field-flex'>
-              <div className='auth__field'>
-                <p><span className='red-text'>*</span> Password </p>
-                <input type="password" placeholder='비밀번호 5자리 이상 (필수) ' autoComplete='new-password'
+              <div className='auth__field input-ani'>
+                <input id='password' type="password" placeholder='' autoComplete='new-password'
                   value={password} onChange={(e) => setPassword(e.target.value)} />
+                  <label htmlFor="password"><span className='red-text'>* </span>비밀번호</label>
               </div>
-              <div className='auth__field auth__field-radio'>
-                <p> Gender </p>
-                <div className='auth__radio-box'>
+              <div className='auth__field auth__field-radio '>
+                <p className='sm-span'> 성별: {gender} </p>
+                <div className='auth__radio-box '>
                   <label><input type='radio' name='gender' value="NONE" 
-                  onChange={(e) => setGender(e.target.value)} checked={gender == "NONE"}/> 없음 </label>
+                  onChange={(e) => setGender(e.target.value)} checked={gender == "NONE"}/> 미선택 </label>
                   <label><input type='radio' name='gender' value="MALE"
                    onChange={(e) => setGender(e.target.value)} checked={gender == "MALE"} /> 남자 </label>
                   <label><input type='radio' name='gender' value="FEMALE" 
@@ -106,14 +112,14 @@ export default function JoinPage() {
                 </div>
               </div>
               </div>
-              <div className='auth__field'>
-                <p><span className='red-text'>*</span> Password Confirm {isMatch ? "🟢" : "🔴"} </p>
-                <input type="password" placeholder='비밀번호 재확인 (필수)'
+              <div className='auth__field input-ani'>
+                <input id="passwordConfirm" type="password" placeholder=''
                   value={passwordConfirm} onChange={(e) => setPasswordConfirm(e.target.value)} />
+                  <label htmlFor="passwordConfirm"><span className='red-text'>* </span>비밀번호 재확인 {isMatch ? "🟢" : "🔴"} </label>
               </div>
               <div className='auth__join-actions'>
               <button style={{ background: isMatch ? "" : "gray" }}
-                type='submit' disabled={!isMatch} id='auth__join-btn'> 가입 </button>
+                type='submit' disabled={!isMatch || isSubmit} id='auth__join-btn'> {isSubmit ? "가입중" : "회원가입"}</button>
               </div>
             </form>
           </div>

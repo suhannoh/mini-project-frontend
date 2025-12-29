@@ -18,6 +18,8 @@ export default function LinkAddPage() {
   // 전역 상태
   const {user } = AuthStore();
   const {linkStore} = LinkStore();
+  
+  const [isSubmit , setIsSubmit] = useState(false);
 
   useEffect (() => {
     // 수정 모드일 때 기존 값 불러오기
@@ -31,6 +33,7 @@ export default function LinkAddPage() {
   const handleAdd = async (e) => {
     e.preventDefault();
     // 링크 추가 or 수정
+    setIsSubmit(true);
     try {
       if(linkStore) {
         // 수정 모드
@@ -46,6 +49,7 @@ export default function LinkAddPage() {
         logError(e);
     } finally {
       // 링크 목록으로 이동
+      setIsSubmit(false);
       navigate("/links" ,{ replace: true });
     }
   }
@@ -63,7 +67,8 @@ export default function LinkAddPage() {
                 <li>Notion : <input id="notion" type="url" value={notionUrl} placeholder='notion - url' name="notionUrl"
                                onChange={(e) => setNotion(e.target.value)} /></li>
             </ul>
-            <button className="link__edit-btn" type='submit'>저장</button>
+            <button disabled={isSubmit}
+                  className="link__edit-btn" type='submit'>저장</button>
             </form>
           </div>
         </div>

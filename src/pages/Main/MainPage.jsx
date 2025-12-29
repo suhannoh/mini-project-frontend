@@ -4,6 +4,7 @@ import AuthStore from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../../layout/Layout';
 import { api } from '../../api/auth';
+import { logError } from '../../components/logError';
 
 export default function MainPage() {
   // 활성 사용자 목록
@@ -11,13 +12,44 @@ export default function MainPage() {
   // 인증 정보
   const { user , theme } = AuthStore();
   // API 상태
-  const [userAPI , setUserAPI] = useState(false);
+    const [userAPI , setUserAPI] = useState(false);
   const [activeUserAPI , setActiveUserAPI] = useState(false);
   const [linkAPI , setLinkAPI] = useState(false);
   const [postAPI , setPostAPI] = useState(false);
-  //  네비게이트
+  const [notice , setNotice] = useState([]);
+  //  네비게이트  
   const navigate = useNavigate();
 
+  const pxPerChar = 15;
+  const containerWidth = 600;
+  const speed = 50;
+  const [text, setText] = useState('');
+  const [duration, setDuration] = useState(0);
+
+  const handleReadActiveNotice = async () => {
+    try {
+        const res = await api.get(`/admin/notice/active`);
+        // 정상 응답 후 상태 업데이트
+        setNotice(res.data);
+        // 👉 공지 하나의 문자열로 합치기
+        const mergedText = res.data
+          .map(n => n.noticeContent)
+          .join(" ｜ ");
+        setText(mergedText);
+        
+    } catch (e) {
+      // 로그 에러 처리
+        logError(e);
+    }
+  }
+  useEffect(() => {
+    if (!text) return;
+
+    const d =
+      (text.length * pxPerChar + containerWidth) / speed;
+
+    setDuration(Math.round(d)); // 소수 싫으면 반올림
+  }, [text]);
 
   // 활성 사용자 목록 불러오기
    useEffect(() => {
@@ -36,6 +68,7 @@ export default function MainPage() {
         };
         // 호출
         getActiveUsers();
+        handleReadActiveNotice();
     }, []);
 
     // 각 API 헬스체크
@@ -45,8 +78,8 @@ export default function MainPage() {
         await api.get(url);
         // 정상 응답
         setState(true);
-      } catch (e) {
-        alert(e.response.data.msg);
+      } catch {
+        // alert(e.response.data.msg);
         // 오류 응답
         setState(false);
       }
@@ -66,17 +99,25 @@ export default function MainPage() {
   const overallStatus = statesCount === states.length ?
                            "green" : statesCount > 0 ? "orange" : "red";
 
+
+
   return (
     <div>
       <div className='main__api'> 
-        <h2> API 상태 </h2>
+        <h2> API </h2>
         {/* API 상태 표시 */}
         <div className='main__api-health'>
             <p className={overallStatus === "green" ? "is-active" : "is-disabled"}>🟢 정상 작동 중 </p>
             <p className={overallStatus === "orange" ? "is-active" : "is-disabled"}>🟠 일부 기능에 문제가 있어요</p>
-            <p className={overallStatus === "red" ? "is-active" : "is-disabled"}>🔴 서버 연결 불가</p>
+            <p className={overallStatus === "red" ? "is-active" : "is-disabled"}>🔴 서버 연결 실패</p>
         </div>
-      </div>
+        {/* 공지 */}
+        {notice.length > 0 && <div className="notice-wrap">
+          <p className="notice-text"
+            style={{ animationDuration: `${duration}s` }}
+           > 📢 {text}</p>
+        </div>}
+      </div>  
         <Layout backbtn={false} >
           <div className='main__wrap'>
             <div className='main__top-layout'>
@@ -92,7 +133,7 @@ export default function MainPage() {
               </li>
               <li className='main__card-li' onClick={() => navigate('/links')}  >
                 <div className={theme ? "main__card-title" :  "main__card-title-w"} style={{color:"greenYellow"}}>
-                  <h2>🔗 Links</h2>
+                  <h2>🔗 프로필 </h2>
                 </div>
                  <div className='main__card-content'>
                   <p> Notion / GitHub 주소 공유</p>
@@ -129,9 +170,12 @@ export default function MainPage() {
         <div className='online-list'>
           <h3 className='online-title'> 최근 1시간 이내 접속 </h3>
           <ul className='online-users'>
-            {activeUsers.map((user) => (
-              <li className="online-li" key={user.userId}>🟢 <span style={{paddingLeft:"5px"}}>{user.userName}</span></li>
-            ))}
+            { activeUsers.length > 0 ?
+              activeUsers.map((user) => (
+                <li className="online-li" key={user.userId}>🟢 <span style={{paddingLeft:"5px"}}>{user.userName}</span></li>
+            )) :
+            <li className="online-li">최근 접속자가 없어요</li>
+          }
           </ul>
         </div>
       </Layout>

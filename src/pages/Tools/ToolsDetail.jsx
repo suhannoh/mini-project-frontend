@@ -3,6 +3,7 @@ import UsersDetail from './UsersDetail';
 import BackBtn from '../../components/button/BackBtn';
 import { useEffect, useState } from 'react';
 import AuthStore from '../../store/AuthStore';
+import NoticeDetail from './adminmenu/NoticeDetail';
 
 export default function ToolsDetail() {
 	// URL 파라미터에서 type 값을 추출
@@ -13,7 +14,8 @@ export default function ToolsDetail() {
 		setDarkTheme();
 	} ,[])
 	const detailList = {
-		users : <UsersDetail />
+		users : <UsersDetail />,
+		notice : <NoticeDetail />
 	}
 
 	return (
@@ -22,13 +24,14 @@ export default function ToolsDetail() {
 			<aside className='admin__sidebar'>
 				<BackBtn />
 				<br /> <br />
+				<button className={status === "notice" ? "active" : ""}
+								onClick={() => setStatus("notice")}>📢 &nbsp; 공지 관리 </button><div className='aside-bar'></div>
 				<button className={status === "users" ? "active" : ""}
-								onClick={() => setStatus("users")}> 회원 관리 </button><div className='aside-bar'></div>
+								onClick={() => setStatus("users")}>🙋🏻 &nbsp; 회원 관리 </button><div className='aside-bar'></div>
 				<button className={status === "posts" ? "active" : ""}
-								onClick={() => setStatus("posts")}> 게시글 관리 </button><div className='aside-bar'></div>
+								onClick={() => setStatus("posts")}>📝 &nbsp; 게시글 관리 </button><div className='aside-bar'></div>
 				<button className={status === "links" ? "active" : ""}
-								onClick={() => setStatus("links")}> 링크 관리 </button><div className='aside-bar'></div>
-
+								onClick={() => setStatus("links")}>🔗 &nbsp; 링크 관리 </button><div className='aside-bar'></div>
 			</aside>
 			<div className='admin__detail'>
 				<header>

@@ -25,7 +25,7 @@ export default function FindAccountPage() {
 				<div>
 					<div className='link__add-card'>
 						<form onSubmit={(e) => handleFindPassword(e)}>
-							<ul className='link__add-ul' >
+							<ul className='link__add-ul input-ani' >
 								<li>이메일 : <input type="email" value={findEmail} placeholder='이메일을 입력하세요' name="findEmail"
 									onChange={(e) => setFindEmail(e.target.value)} /></li>
 								<li>이름 : <input type="text" value={findName} placeholder='이름을 입력하세요' name="findName"
