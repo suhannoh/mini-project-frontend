@@ -48,7 +48,7 @@ export default function PostDetailPage() {
         // 함수 호출
         
         getPostDetail();
-        // setPostLoding(false);
+        setPostLoding(false);
     }, [id])
 
     // 로딩 중일 때
