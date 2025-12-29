@@ -11,6 +11,7 @@ export default function LinkDetailPage() {
     const badgeColor = state.badgeColor;
     const [hover, setHover] = useState(null);
     const [url , setUrl] = useState(null);
+    
     return (
     <div className="page-enter">
         <Layout>

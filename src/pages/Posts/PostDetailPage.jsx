@@ -13,6 +13,7 @@ export default function PostDetailPage() {
     const {id} = useParams();
     // 게시글 상세 정보
     const [post , setPost] = useState(null);
+    const [postLoding , setPostLoding] = useState(false);
     // 댓글 리스트 
     const [comments ,setComments] = useState([]);
     // 전역 상태 관리에서 사용자 정보 가져오기 
@@ -32,6 +33,7 @@ export default function PostDetailPage() {
     useEffect (() => {
     // 게시글 상세 정보 불러오기
     const getPostDetail = async () => {
+        setPostLoding(true);
         try {
             const res = await api.get(`/post/${id}`);
             // 상태 업데이트
@@ -44,7 +46,9 @@ export default function PostDetailPage() {
             navigate("/posts");
         }} 
         // 함수 호출
+        
         getPostDetail();
+        // setPostLoding(false);
     }, [id])
 
     // 로딩 중일 때
@@ -72,10 +76,41 @@ export default function PostDetailPage() {
     // 현재 사용자가 작성한 게시글인지 확인
     const isMyPost = user && post.userId === user.id;
 
+
+    const PostDetailSkeleton = () => (
+    <div className="post-detail skeleton-wrap">
+      <div className="post-detail-header">
+        <div className="post-detail-header-top">
+          <div className="sk sk-title" />
+        </div>
+        <div className="post-detail-header-btm">
+          <div className="sk sk-meta" />
+          <div className="sk sk-meta short" />
+        </div>
+      </div>
+
+      <div className="post-detail-main">
+        <div className="sk sk-line" />
+        <div className="sk sk-line" />
+        <div className="sk sk-line" />
+        <div className="sk sk-line short" />
+      </div>
+
+      <div className="post-detail-footer">
+        <div className="sk sk-comment" />
+      </div>
+    </div>
+  )
+
+
+
   return (
     <div className="page-enter">
         <Layout editBtn={isMyPost} post={post} likeBtn={true}
         textInput={true} postId={Number(id)} commentMethod={fetchComments}>
+        {
+            postLoding ? <PostDetailSkeleton /> : !post ?
+            <p>게시글을 찾을 수 없습니다</p> : (
         <div className="post-detail">
             
             <div className='post-detail-header'> 
@@ -114,6 +149,7 @@ export default function PostDetailPage() {
             </div>
            
         </div>
+        )}
         </Layout>
     </div>
   )
