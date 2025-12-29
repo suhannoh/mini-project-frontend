@@ -68,7 +68,6 @@ export default function AdminPage() {
       blockComment = prompt("정지 사유를 작성해주세요");
     }
     setBlockComment(blockComment);
-    alert("정지사유 [" + blockComment + "] 수정 완료되었습니다.");
     try {
       await api.patch(`/admin/user` , 
         { 
@@ -79,7 +78,7 @@ export default function AdminPage() {
           reason : blockComment
         }
       );
-
+      alert("정지사유 [" + blockComment + "] 수정 완료되었습니다.");
       handleGetUsers();
     } catch (e) {
       logError(e);

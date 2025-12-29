@@ -54,7 +54,7 @@ export default function LoginPage() {
         const apiPingCheck = async () => {
             try {
                 // 세션 확인
-                await api.get("/auth/api/ping");
+                await api.get("/auth/health");
                 // 세션 유효
                 setAPI(true);
             } catch {

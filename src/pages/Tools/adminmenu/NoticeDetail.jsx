@@ -77,12 +77,11 @@ export default function NoticeDetail() {
         const isSubmit = confirm(`[${editNoticeContent[notice.id]}] 공지를 ${editStatus[notice.id] === "ACTIVE" ? "활성" : "비활성"}하시겠습니까 ? `);   
         if(!isSubmit) return;
         try {
-            await api.patch(`/admin/notice`,null, {
-                params : {
-                    id : notice.id,
-                    status : editStatus[notice.id],
-                    noticeContent : editNoticeContent[notice.id]
-                }   
+            await api.patch(`/admin/notice`,
+                {
+                id : notice.id,
+                status : editStatus[notice.id],
+                noticeContent : editNoticeContent[notice.id] 
             });
             alert(`공지 상태를 [${editStatus[notice.id]}] 성공적으로 수정하였습니다 `);
             readNotice();

@@ -61,12 +61,14 @@ export default function PostPage() {
         }
         // 검색 중일 때 검색된 게시글 불러오기
         else {
-            const res = await api.get(`/post/search`, 
-                          { params: {
-                              type: radioType, text: searchText , category : category,
-                              page, size,
-                            } 
-                          });
+            const res = await api.post(`/post/search`, 
+              {
+                type: radioType, 
+                text: searchText ,
+                category : category,
+                page,
+                size,
+               });
             // 검색된 게시글 상태 업데이트
             setPosts(res.data.content);
             setTotalPages(res.data.totalPages);
