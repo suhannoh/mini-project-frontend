@@ -101,7 +101,7 @@ export default function PostPage() {
     setRandomAnonPosts(pickRandomPost(anonPosts));
   };
   
-
+  
   return (
     <div>
       <Layout layoutType="post" postBtn={true} backNavi={"/main"}>
