@@ -52,13 +52,13 @@ export default function PostDetailPage() {
     }, [id])
 
     // 로딩 중일 때
-    if(!post) {
-        return (
-            <Layout>
-                <p>Loading,,,,</p>
-            </Layout>
-        )
-    }
+    // if(!post) {
+    //     return (
+    //         <Layout>
+    //             <p>Loading,,,,</p>
+    //         </Layout>
+    //     )
+    // }
 
 
     // 댓글 삭제 함수 (준비중)
@@ -111,7 +111,7 @@ export default function PostDetailPage() {
         {
             postLoding ? <PostDetailSkeleton /> : !post ?
             <p>게시글을 찾을 수 없습니다</p> : (
-        <div className="post-detail">
+            <div className="post-detail">
             
             <div className='post-detail-header'> 
               <div className='post-detail-header-top'>
