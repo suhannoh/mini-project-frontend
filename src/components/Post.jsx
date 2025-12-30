@@ -15,11 +15,9 @@ export default function Post({id, idx , view , list}) {
       try {
         const resc = await api.get(`/post/${id}/comment`);
         setCommentCount(resc.data.length);
-        const resl = await api.post(`/post/like/read`, {
-          postId: id,
-          userId : user.id,
-        });
-        setLikeCount(resl.data.likeCount);
+        const resl = await api.get(`/post/like/count` ,
+          { params : { postId : id } });
+        setLikeCount(resl.data);
       } catch {
         // 오류시 댓글수 0으로 초기화
         setCommentCount(0);
