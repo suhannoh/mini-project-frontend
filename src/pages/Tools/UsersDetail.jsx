@@ -31,7 +31,7 @@ export default function AdminPage() {
     try {
       const res = await api.get("/admin/users", {params : {page, size}});
       setUsers(res.data.content);
-      // console.log(res.data)
+      console.log(res.data)
       const roles = {};
       const accountStatus = {};
       const blockReason = {};
@@ -56,10 +56,16 @@ export default function AdminPage() {
   }, [page])
 
   // 사용자 정보 수정
-  const handleUpdateUser = async (userId) => {
+  const handleUpdateUser = async (u) => {
+    const userId = u.id;
     if(user.role !== "ADMIN") {
             return alert("어드민 권한이 없습니다.");
-        }   
+        }
+
+    if(accountStatus[userId] === u.status) {
+            return alert("변경된 상태가 없습니다.");
+    }
+
     const conf = confirm("정말 수정하시겠습니까 ?");
     if(!conf) return;
 
@@ -78,7 +84,11 @@ export default function AdminPage() {
           reason : blockComment
         }
       );
-      alert("정지사유 [" + blockComment + "] 수정 완료되었습니다.");
+      if (accountStatus[userId] === "BLOCKED") {
+        alert("정지사유 [" + blockComment + "] 수정 완료되었습니다.");
+      } else {
+        alert("정상적인 계정으로 전환되었습니다.");
+      }
       handleGetUsers();
     } catch (e) {
       logError(e);
@@ -147,7 +157,7 @@ export default function AdminPage() {
         )}
       </td>
       <td>
-        <button title="변경사항 저장" id="table__submit" onClick={() => handleUpdateUser(u.id)} >
+        <button title="변경사항 저장" id="table__submit" onClick={() => handleUpdateUser(u)} >
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="9" />
             <path d="M8.5 12.5l2.2 2.2L16.5 9" />
