@@ -49,6 +49,7 @@ export default function PostDetailPage() {
     // 댓글 불러오기
     const fetchComments = async () => {
         const resc = await api.get(`/post/${id}/comment`);
+        console.log(resc.data);
         // 댓글 상태 업데이트
         setComments(resc.data);
     };

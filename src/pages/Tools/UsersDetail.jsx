@@ -62,7 +62,7 @@ export default function AdminPage() {
             return alert("어드민 권한이 없습니다.");
         }
 
-    if(accountStatus[userId] === u.status) {
+    if(accountStatus[userId] === u.status && role[userId] === u.role) {
             return alert("변경된 상태가 없습니다.");
     }
 
